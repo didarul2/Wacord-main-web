@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wacord — E-Commerce & Omni Channel CRM</title>
+    <meta
+      name="description"
+      content="Wacord is an e-commerce & omni-channel CRM that unifies chat, orders, and delivery so growing brands can scale faster."
+    />
+    <meta name="theme-color" content="#050705" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Wacord — E-Commerce & Omni Channel CRM" />
+    <meta
+      property="og:description"
+      content="Unify chat, orders, and delivery across every channel with Wacord CRM."
+    />
+    <meta property="og:image" content="./assets/hero/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Wacord — E-Commerce & Omni Channel CRM" />
+    <meta
+      name="twitter:description"
+      content="Unify chat, orders, and delivery across every channel with Wacord CRM."
+    />
+    <link rel="icon" type="image/png" href="./assets/hero/logo.png" />
+    <link rel="apple-touch-icon" href="./assets/hero/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <style>
+      .skip-link {
+        position: absolute;
+        left: 16px;
+        top: -48px;
+        z-index: 300;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #4c7046;
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .skip-link:focus {
+        top: 16px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Lenis smooth scroll */
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      /*
+        Fit 1440 artboard to browser with `zoom` (not transform:scale).
+        Cap at 1× so wide screens stay Figma-native size (centered).
+        Section backgrounds full-bleed via .bleed; content stays 1440.
+        transform:scale on the canvas breaks backdrop-filter glass blur.
+      */
+      .page-scale-wrap {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        background: #000;
+      }
+
+      .page-canvas {
+        width: 1440px;
+        height: 6441px;
+        position: relative;
+        margin: 0;
+        /* Transparent so full-bleed section colors can paint past 1440 */
+        background: transparent;
+        overflow: visible;
+        transform: none;
+      }
+
+      /* Fallback when CSS zoom is unsupported (older Firefox) */
+      @supports not (zoom: 1) {
+        .page-canvas {
+          transform: var(--page-scale-transform, none);
+          transform-origin: top center;
+        }
+      }
+
+      /*
+        Full-bleed backgrounds: stretch color/gradient to viewport edges
+        while the 1440 artboard content stays centered.
+      */
+      .bleed {
+        isolation: isolate;
+        /* Never clip the full-bleed ::before layer */
+        overflow: visible !important;
+      }
+
+      .bleed::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        /* Compensate for ancestor `zoom` so sides always fill the viewport */
+        width: calc(100vw / var(--page-zoom, 1));
+        transform: translateX(-50%);
+        z-index: -1;
+        pointer-events: none;
+        background-color: var(--bleed-color, transparent);
+        background-image: var(--bleed-image, none);
+        background-size: var(--bleed-size, 100% 100%);
+        background-repeat: var(--bleed-repeat, no-repeat);
+        background-position: var(--bleed-position, center top);
+      }
+
+      .screen-mask {
+        -webkit-mask-image: url("./assets/hero/mask.svg");
+        mask-image: url("./assets/hero/mask.svg");
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+
+      .nav-glass {
+        /* Figma 2:194 — soft green glass */
+        background: linear-gradient(
+          165deg,
+          rgba(163, 255, 147, 0.2) 0%,
+          rgba(163, 255, 147, 0.1) 45%,
+          rgba(76, 112, 70, 0.12) 100%
+        );
+        backdrop-filter: blur(22px) saturate(1.35);
+        -webkit-backdrop-filter: blur(22px) saturate(1.35);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow:
+          0 10px 40px rgba(0, 0, 0, 0.28),
+          0 0 0 1px rgba(163, 255, 147, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.28),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+      }
+
+      /*
+        Fixed morphing site nav — outside zoom canvas so it stays viewport-true.
+        Open: full Figma pill. Collapsed: round logo dock.
+      */
+      .site-nav {
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        z-index: 200;
+        width: 1280px;
+        height: 68.8px;
+        margin: 0;
+        transform: translateX(-50%);
+        transform-origin: top center;
+        pointer-events: none;
+      }
+
+      .site-nav * {
+        pointer-events: auto;
+      }
+
+      .site-nav__shell {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1321px;
+        height: 69px;
+        margin-left: -660.5px; /* 1321/2 */
+        border-radius: 34.5px;
+        /* no overflow:hidden — kills backdrop-filter glass */
+        will-change: width, height, margin, border-radius, transform;
+      }
+
+      .site-nav__shine {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.16) 0%,
+          rgba(255, 255, 255, 0.04) 28%,
+          transparent 55%
+        );
+      }
+
+      .site-nav__inner {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+      }
+
+      .site-nav__logo {
+        position: absolute;
+        left: 15px; /* (-10) - (-25) within shell */
+        top: 50%;
+        width: 45px;
+        height: 45px;
+        margin-top: -22.5px;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 3;
+        display: block;
+        flex-shrink: 0;
+        transition: filter 0.3s ease;
+      }
+
+      .site-nav__logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .site-nav__logo:focus-visible {
+        outline: 2px solid rgba(163, 255, 147, 0.8);
+        outline-offset: 3px;
+      }
+
+      .site-nav__links {
+        position: absolute;
+        left: 477.95px; /* 452.95 - (-25) */
+        top: 0;
+        display: flex;
+        height: 68.8px;
+        width: 398px;
+        align-items: center;
+        gap: 32px;
+        white-space: nowrap;
+        font-size: 15px;
+        line-height: 20.8px;
+        color: #fff;
+      }
+
+      .site-nav__links a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.92;
+        transition: opacity 0.2s ease;
+      }
+
+      .site-nav__links a:hover {
+        opacity: 1;
+      }
+
+      .site-nav__actions {
+        position: absolute;
+        left: 993px; /* 968 - (-25) */
+        top: 10.39px;
+        display: flex;
+        height: 48px;
+        width: 312px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+      }
+
+      .site-nav__actions > a:not(.btn-demo) {
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-size: 15px;
+        line-height: 16px;
+        opacity: 0.92;
+        transition: opacity 0.2s ease;
+      }
+
+      .site-nav__actions > a:not(.btn-demo):hover {
+        opacity: 1;
+      }
+
+      .site-nav.is-collapsed {
+        cursor: pointer;
+      }
+
+      .site-nav.is-collapsed .site-nav__links,
+      .site-nav.is-collapsed .site-nav__actions {
+        pointer-events: none;
+      }
+
+      .site-nav.is-collapsed .site-nav__logo {
+        cursor: pointer;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-nav__shell,
+        .site-nav__logo,
+        .site-nav__links,
+        .site-nav__actions {
+          transition: none !important;
+        }
+      }
+
+      .btn-demo {
+        background: #4c7046;
+        color: #fff;
+        box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+      }
+
+      /*
+        Figma glass pills — Glass/Frost (MCP omits shader; CSS approx):
+        - Fills: #1ABA00 / #4C7046 @ 20%
+        - Strong frost so typography under pills visibly blurs
+        - No opacity/transform on PARENT (kills backdrop-filter)
+        - Tilt + blur on the same .glass-surface node
+      */
+      .glass-tilt {
+        width: 428px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .glass-surface {
+        width: 100%;
+        height: 100%;
+        border-radius: 43.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 70.4px;
+        letter-spacing: -2px;
+        color: #fff;
+        white-space: nowrap;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.35);
+        /* Frost — strong enough to blur brands text behind (Figma glass vibe) */
+        backdrop-filter: blur(28px) saturate(160%);
+        -webkit-backdrop-filter: blur(28px) saturate(160%);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .glass-surface--smart {
+        background: rgba(26, 186, 0, 0.2);
+        transform: rotate(6.14deg) skewX(6deg) scaleY(0.99);
+      }
+
+      .glass-surface--ai {
+        background: rgba(76, 112, 70, 0.2);
+        transform: rotate(5.59deg) skewX(5deg);
+        box-shadow:
+          inset 1px 1px 1px 0 rgba(255, 255, 255, 0.35),
+          -43px 43px 50.2px 0 rgba(0, 0, 0, 0.25);
+      }
+
+      /* Fade the LABEL only — never opacity-fade the glass shell (breaks blur) */
+      @keyframes glass-label-fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .glass-surface > .glass-label {
+        animation: glass-label-fade 0.85s ease 0.35s both;
+      }
+
+      .glass-surface--ai > .glass-label {
+        animation-delay: 0.5s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .glass-surface > .glass-label {
+          animation: none;
+          opacity: 1;
+        }
+      }
+
+      /* Section reveal — GSAP ScrollTrigger drives this (Phase 1) */
+      [data-reveal] {
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      [data-reveal].is-revealed {
+        opacity: 1;
+        will-change: auto;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        [data-reveal] {
+          opacity: 1;
+          transform: none !important;
+        }
+      }
+
+      /* Hero entrance targets (GSAP) */
+      [data-hero] {
+        will-change: opacity, transform;
+      }
+
+      .logo-fade {
+        background: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+      }
+
+      /* Figma 2:210 — Rockwell 60 / leading 57 / Wacord #4c7046 */
+      .brands-heading {
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-size: 60px;
+        font-weight: 400;
+        line-height: 57px;
+        color: #fff;
+        margin: 0;
+        letter-spacing: 0;
+      }
+
+      .brands-heading .brand {
+        color: #4c7046;
+      }
+
+      .stat-row {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: -1px;
+        padding-right: 94px;
+      }
+
+      .stat-title {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 29px;
+        font-weight: 400;
+        letter-spacing: -0.25px;
+        line-height: 38.4px;
+        color: #fff;
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .stat-title .muted {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .stat-desc {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 15.6px;
+        color: rgba(255, 255, 255, 0.65);
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      /* Feature text — Figma 2:111 exact (white section bg) */
+      .feature-heading {
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 56px;
+        letter-spacing: -1px;
+        color: #050038;
+        margin: 0;
+      }
+
+      .feature-heading .accent {
+        color: #4c7046;
+      }
+
+      .feature-body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        color: rgba(5, 0, 56, 0.6);
+        margin: 0;
+      }
+
+      .feature-link {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 24px;
+        color: #4262ff;
+        text-decoration: none;
+      }
+
+      .feature-link-label {
+        border-bottom: 1px solid #4262ff;
+        display: inline-block;
+        height: 23px;
+      }
+
+      /* Stats section — dotted grid + mouse spotlight */
+      .stats-section {
+        --bleed-color: #0a0a0a;
+        --dot-mx: 50%;
+        --dot-my: 40%;
+        --dot-spot: 260px;
+        /* Base dots — lower opacity */
+        --bleed-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.07) 1px,
+          transparent 1.2px
+        );
+        --bleed-size: 16px 16px;
+        --bleed-repeat: repeat;
+        --bleed-position: 0 0;
+        background: transparent;
+      }
+
+      /* Brighter dots under the cursor (flashlight) */
+      .stats-dots-spotlight {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.42) 1px,
+          transparent 1.2px
+        );
+        background-size: 16px 16px;
+        background-repeat: repeat;
+        background-position: 0 0;
+        -webkit-mask-image: radial-gradient(
+          circle var(--dot-spot) at var(--dot-mx) var(--dot-my),
+          #000 0%,
+          rgba(0, 0, 0, 0.65) 32%,
+          rgba(0, 0, 0, 0.2) 58%,
+          transparent 72%
+        );
+        mask-image: radial-gradient(
+          circle var(--dot-spot) at var(--dot-mx) var(--dot-my),
+          #000 0%,
+          rgba(0, 0, 0, 0.65) 32%,
+          rgba(0, 0, 0, 0.2) 58%,
+          transparent 72%
+        );
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .stats-section.is-dot-active .stats-dots-spotlight {
+        opacity: 1;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .stats-dots-spotlight {
+          display: none;
+        }
+      }
+
+      .stats-heading {
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-weight: 400;
+        font-size: 60px;
+        line-height: 78px;
+        color: #fff;
+        text-align: center;
+        margin: 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 264px);
+        grid-template-rows: 180px 176px;
+        width: 1056px;
+        height: 356px;
+        position: relative;
+      }
+
+      .stats-cell {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 16px;
+      }
+
+      .stats-cell--highlight {
+        background: linear-gradient(
+          145.71deg,
+          rgb(76, 112, 70) 0%,
+          rgb(127, 196, 116) 44.76%,
+          rgb(210, 171, 103) 100%
+        );
+      }
+
+      .stats-value {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 500;
+        color: #fff;
+        margin: 0;
+      }
+
+      .stats-label {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 400;
+        color: #e5e5e5;
+        margin: 0;
+      }
+
+      .stats-divider-v {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 352px;
+        background: linear-gradient(
+          90.33deg,
+          rgb(102, 93, 205) 0%,
+          rgb(95, 164, 230) 44.76%,
+          rgb(210, 171, 103) 100%
+        );
+      }
+
+      .stats-divider-h {
+        position: absolute;
+        left: 2px;
+        top: 176px;
+        width: 1052px;
+        height: 2px;
+        background: linear-gradient(
+          179.89deg,
+          rgb(102, 93, 205) 0%,
+          rgb(95, 164, 230) 44.76%,
+          rgb(210, 171, 103) 100%
+        );
+      }
+
+      .cursor-3d {
+        pointer-events: none;
+        /*
+          Resting placement tuned to sit between feature & stats (right side).
+          Figma node box is 1304×2226 / 405×444 — motion translates are offsets;
+          applying START rotate(229°) on the baked PNG covered the orbit.
+          Phase 1 = visible resting pose (no start keyframe). Transparent PNG.
+        */
+        left: 1100px;
+        top: 2333px;
+        width: 405px;
+        height: 444px;
+        filter: blur(6.9px);
+        transform: none;
+        transform-origin: 50% 50%;
+        will-change: transform;
+        visibility: hidden;
+      }
+
+      .cursor-3d.is-ready {
+        visibility: visible;
+      }
+
+      .cursor-3d img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: contain;
+        pointer-events: none;
+        transform: scaleX(-1);
+      }
+
+      .glow-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        pointer-events: none;
+      }
+
+      /*
+        Baked “10x” removed from overlay PNG (original kept as screen-overlay-original.png).
+        Animated digits fill that exact hole — same Figma plane as Sales/Faster:
+        rotate(8deg) skewX(8deg) scaleY(0.99). Only one 10x, no second layer.
+      */
+      .screen-count-10x {
+        position: absolute;
+        left: 255px;
+        top: 262px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        color: #1aba00;
+        font-family: "Nexa Pro", "Nexa_Pro_Trial", Inter, ui-sans-serif, system-ui,
+          sans-serif;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 64px;
+        letter-spacing: -1px;
+        pointer-events: none;
+        white-space: nowrap;
+        transform: rotate(8deg) skewX(8deg) scaleY(0.99);
+        transform-origin: left center;
+      }
+
+
+      /* Feature orbit — Figma 2:119 (rings stroke #2F2F2F) */
+      .orbit {
+        position: absolute;
+        left: 14px;
+        top: 189px;
+        width: 630px;
+        height: 586.7px;
+        pointer-events: none;
+      }
+
+      .orbit-overlay {
+        position: absolute;
+        object-fit: contain;
+        max-width: none;
+        filter: none;
+        z-index: 3;
+      }
+
+      .orbit-ring {
+        position: absolute;
+        display: block;
+        max-width: none;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .orbit-icon {
+        position: absolute;
+        object-fit: contain;
+        max-width: none;
+        /* Figma Dev Mode — drop shadow under each app icon */
+        filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
+        z-index: 4;
+      }
+
+      /*
+        Orbit arms — one transform chain so radius stays exact on the ring.
+        rotate(θ) translate(r) rotate(-θ) keeps icons upright while revolving.
+        transform-origin MUST stay at 0 0 (arm is a 0×0 pivot).
+        --orbit-cx/--orbit-cy set per icon (outer vs inner ring centers differ in Figma).
+      */
+      .orbit-arm {
+        position: absolute;
+        left: var(--orbit-cx);
+        top: var(--orbit-cy);
+        width: 0;
+        height: 0;
+        z-index: 4;
+        transform-origin: 0 0;
+        animation: orbit-spin 48s linear infinite;
+      }
+
+      .orbit-arm .orbit-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        display: block;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes orbit-spin {
+        from {
+          transform: rotate(var(--orbit-angle)) translate(var(--orbit-r), 0)
+            rotate(calc(-1 * var(--orbit-angle)));
+        }
+        to {
+          transform: rotate(calc(var(--orbit-angle) + 360deg))
+            translate(var(--orbit-r), 0)
+            rotate(calc(-1 * var(--orbit-angle) - 360deg));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .orbit-arm {
+          animation: none !important;
+          transform: rotate(var(--orbit-angle)) translate(var(--orbit-r), 0)
+            rotate(calc(-1 * var(--orbit-angle)));
+        }
+      }
+
+      .orbit-center {
+        position: absolute;
+        left: 150.29px;
+        top: 127.6px;
+        width: 344.385px;
+        height: 344.385px;
+        border-radius: 50%;
+        overflow: hidden;
+        /* Figma Mask group 2:134 — hard circular clip */
+        -webkit-mask-image: url("./assets/feature/layer-1-mask.svg");
+        mask-image: url("./assets/feature/layer-1-mask.svg");
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        z-index: 2;
+      }
+
+      /* Photo 2:136 — Figma size/offset inside the 344px mask circle */
+      .orbit-center-img {
+        position: absolute;
+        left: -233.24px;
+        top: -44.25px;
+        width: 621.908px;
+        height: 415.145px;
+        max-width: none;
+        object-fit: fill;
+        pointer-events: none;
+        display: block;
+      }
+
+      /* Meeting / book demo — dark section + white form card */
+      .meeting-section {
+        --bleed-color: #050705;
+        --bleed-image: radial-gradient(
+          90% 80% at 12% 55%,
+          rgba(76, 112, 70, 0.55) 0%,
+          rgba(76, 112, 70, 0.12) 42%,
+          transparent 70%
+        );
+        --bleed-size: 100% 100%;
+        --bleed-repeat: no-repeat;
+        --bleed-position: center top;
+        background: transparent;
+      }
+
+      .meeting-layout {
+        display: grid;
+        grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+        gap: 40px 56px;
+        width: 1280px;
+        align-items: start;
+      }
+
+      .meeting-title {
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-weight: 400;
+        font-size: 59px;
+        line-height: 70.4px;
+        letter-spacing: -2px;
+        color: #fff;
+        margin: 0 0 16px;
+        width: auto;
+        max-width: 340px;
+      }
+
+      .meeting-lead {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        color: rgba(255, 255, 255, 0.62);
+        margin: 0;
+        max-width: 320px;
+      }
+
+      .meeting-stay {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        color: #fff;
+        margin: 28px 0 0;
+      }
+
+      /* White form panel — soft corner radius + masked dots */
+      .meeting-card {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        border-radius: 14px;
+        background: #fff;
+        overflow: hidden;
+        isolation: isolate;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      }
+
+      .meeting-card__dots {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+          circle,
+          rgba(10, 10, 10, 0.12) 1px,
+          transparent 1.2px
+        );
+        background-size: 14px 14px;
+        background-repeat: repeat;
+        /* Soft mask so dots fade toward edges of the card */
+        -webkit-mask-image: radial-gradient(
+          85% 80% at 50% 40%,
+          #000 35%,
+          rgba(0, 0, 0, 0.45) 70%,
+          transparent 100%
+        );
+        mask-image: radial-gradient(
+          85% 80% at 50% 40%,
+          #000 35%,
+          rgba(0, 0, 0, 0.45) 70%,
+          transparent 100%
+        );
+      }
+
+      .meeting-form {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+        padding: 32px 36px 28px;
+        color: #111;
+      }
+
+      .meeting-field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        width: 100%;
+      }
+
+      .meeting-field--half {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .meeting-row {
+        display: flex;
+        gap: 18px;
+        width: 100%;
+      }
+
+      .meeting-label {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: #333;
+      }
+
+      .meeting-label .req {
+        color: #e11d48;
+        margin-left: 2px;
+      }
+
+      .meeting-input {
+        display: block;
+        width: 100%;
+        height: 42px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #111;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 15px;
+        outline: none;
+        padding: 0 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .meeting-input:focus {
+        border-color: #4c7046;
+        box-shadow: 0 0 0 3px rgba(76, 112, 70, 0.15);
+      }
+
+      .meeting-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .meeting-phone {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.86);
+        overflow: hidden;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .meeting-phone:focus-within {
+        border-color: #4c7046;
+        box-shadow: 0 0 0 3px rgba(76, 112, 70, 0.15);
+      }
+
+      .meeting-phone__prefix {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 14px;
+        color: #6b7280;
+        padding: 0 10px 0 12px;
+        border-right: 1px solid #e5e7eb;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        background: rgba(249, 250, 251, 0.9);
+      }
+
+      .meeting-phone .meeting-input {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        height: 42px;
+        background: transparent;
+      }
+
+      .meeting-phone .meeting-input:focus {
+        box-shadow: none;
+      }
+
+      .meeting-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+      }
+
+      .meeting-radio {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 14px;
+        color: #1f2937;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .meeting-radio input {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid #c4c9d1;
+        border-radius: 50%;
+        margin: 0;
+        position: relative;
+        background: #fff;
+        flex-shrink: 0;
+      }
+
+      .meeting-radio input:checked {
+        border-color: #4c7046;
+        background: radial-gradient(circle at center, #4c7046 0 45%, #fff 48%);
+      }
+
+      .meeting-check-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px 16px;
+      }
+
+      .meeting-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 14px;
+        color: #1f2937;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .meeting-check input {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid #c4c9d1;
+        border-radius: 4px;
+        margin: 0;
+        background: #fff;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .meeting-check input:checked {
+        border-color: #4c7046;
+        background: #4c7046;
+      }
+
+      .meeting-check input:checked::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 1px;
+        width: 5px;
+        height: 9px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .meeting-error {
+        display: none;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        color: #e11d48;
+        margin: 0;
+      }
+
+      .meeting-error.is-visible {
+        display: block;
+      }
+
+      .meeting-field.is-invalid .meeting-check input {
+        border-color: #e11d48;
+      }
+
+      .meeting-submit-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 4px;
+      }
+
+      .meeting-submit {
+        position: relative;
+        width: auto;
+        height: 46px;
+        border: 0;
+        border-radius: 64px;
+        background: #4c7046;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 15px;
+        box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .meeting-submit:hover {
+        opacity: 0.92;
+      }
+
+      .meeting-submit img {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .meeting-submit.is-sent {
+        opacity: 0.6;
+      }
+
+      /* Features section — Figma 2:87 */
+      .powers-section {
+        --bleed-color: #fff;
+        background: transparent;
+        color: #000;
+      }
+
+      .powers-title {
+        font-family: Rockwell, "Zilla Slab", serif;
+        font-weight: 400;
+        font-size: 128px;
+        line-height: 0;
+        letter-spacing: -1px;
+        color: #000;
+        margin: 0;
+        white-space: normal;
+      }
+
+      .powers-title .line {
+        display: block;
+        line-height: 115.2px;
+      }
+
+      .powers-title .brand {
+        color: #4c7146;
+      }
+
+      .powers-row-title {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 59px;
+        line-height: 70.4px;
+        letter-spacing: -2px;
+        color: #000;
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .powers-pill {
+        background: #f3ffab;
+        border-radius: 384px;
+        overflow: hidden;
+        height: 240px;
+      }
+
+      .powers-divider {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer — Figma 2:34 exact */
+      .site-footer {
+        --bleed-color: #4c7046;
+        background: transparent;
+        color: #fff;
+      }
+
+      .footer-label {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 18.2px;
+        color: rgba(255, 255, 255, 0.65);
+        margin: 0;
+      }
+
+      .footer-link {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 19px;
+        line-height: 24px;
+        letter-spacing: -0.2px;
+        color: #fff;
+        text-decoration: none;
+        margin: 0;
+      }
+
+      .footer-link.sm {
+        font-size: 18px;
+      }
+
+      .footer-meta {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 18.2px;
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        margin: 0;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /*
+        Features / about — normal scroll (no pin stack).
+      */
+      #features.stack-card {
+        z-index: 15;
+      }
+
+      #about {
+        z-index: 30;
+        position: absolute;
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#features">Skip to content</a>
+    <!-- Fixed morphing nav (outside zoom canvas) -->
+    <nav
+      id="site-nav"
+      class="site-nav is-open"
+      data-state="open"
+      aria-label="Primary"
+    >
+      <div class="site-nav__shell nav-glass" data-node-id="2:194">
+        <div class="site-nav__shine" aria-hidden="true"></div>
+        <div class="site-nav__inner">
+          <a
+            href="#"
+            class="site-nav__logo"
+            id="nav-logo-btn"
+            data-node-id="2:206"
+            aria-label="Wacord — open menu"
+          >
+            <img src="./assets/hero/logo.png" alt="Wacord" />
+          </a>
+
+          <div class="site-nav__links" data-node-id="2:195">
+            <a href="#features">Features</a>
+            <a href="#demo">Pricing</a>
+            <a href="#features">Events</a>
+            <a href="#about">About</a>
+            <a href="#about">Blog</a>
+          </div>
+
+          <div class="site-nav__actions" data-node-id="2:201">
+            <a href="#contact">Support</a>
+            <a href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
+            <a href="#demo" class="btn-demo relative inline-flex items-center rounded-[64px] px-[23px] py-[14px] text-[16px] leading-none text-white" data-node-id="2:204">Demo</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-scale-wrap" id="page-wrap">
+      <div class="page-canvas" id="page-canvas" data-node-id="2:30">
+      <header class="bleed relative h-[1616px] w-[1440px]" data-node-id="2:178" aria-label="Wacord hero" style="--bleed-color:#000">
+        <!-- Green glow ellipses (Figma exact frames + bleed insets) -->
+        <div
+          class="pointer-events-none absolute left-[89px] top-[525px] z-0 h-[630px] w-[659px]"
+          data-node-id="2:179"
+          aria-hidden="true"
+        >
+          <div class="absolute -top-[33.14%] right-[-31.68%] bottom-[7.4%] left-[-31.68%]">
+            <img src="./assets/effects/ellipse2.svg" alt="" class="glow-img" />
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute left-[279.43px] top-[453px] z-0 flex h-[700.635px] w-[1054.235px] items-center justify-center"
+          data-node-id="2:180"
+          aria-hidden="true"
+        >
+          <div class="relative h-[967.761px] w-[498.041px] rotate-[77.16deg]">
+            <div class="absolute -top-[21.58%] right-[-41.92%] bottom-[3.19%] left-[-41.92%]">
+              <img src="./assets/effects/ellipse3.svg" alt="" class="glow-img" />
+            </div>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute left-[421px] top-[524px] z-0 h-[550px] w-[610px]"
+          data-node-id="2:181"
+          aria-hidden="true"
+        >
+          <div class="absolute -top-[37.96%] right-[-34.23%] bottom-[10.41%] left-[-34.23%]">
+            <img src="./assets/effects/ellipse4.svg" alt="" class="glow-img" />
+          </div>
+        </div>
+
+        <!-- Main heading -->
+        <h1
+          class="font-display absolute left-1/2 top-[151px] z-20 w-[1312px] -translate-x-1/2 text-center text-[80px] leading-[121px] tracking-[2px] text-white"
+          data-node-id="2:298"
+          data-hero
+        >
+          E-COMMERCE&amp;OMNI CHANNEL
+        </h1>
+        <p
+          class="absolute left-1/2 top-[246px] z-20 flex h-[49px] w-[480px] -translate-x-1/2 items-center justify-center text-center text-[40px] leading-[121px] tracking-[-2px] text-white"
+          data-node-id="2:299"
+          data-hero
+        >
+          CRM SOLUTION
+        </p>
+
+        <!-- Hero CTAs -->
+        <div
+          class="absolute left-[80px] top-[378px] z-20 flex w-[1280px] items-center justify-center gap-2"
+          data-node-id="2:183"
+          data-hero
+        >
+          <a
+            href="#demo"
+            class="btn-demo relative inline-flex items-center rounded-[64px] px-[23px] py-[14px] text-[16px] leading-none text-white"
+            data-node-id="2:184"
+            >Demo</a
+          >
+          <a
+            href="#how-it-works"
+            class="relative inline-flex h-[50px] w-[177px] items-center justify-center gap-2 rounded-[64px] border border-white/20 text-[16px] leading-none text-white"
+            data-node-id="2:186"
+          >
+            <img src="./assets/icons/play.svg" alt="" class="size-6" />
+            How it works
+          </a>
+        </div>
+
+        <!-- Laptop mockup -->
+        <div
+          class="absolute left-[48px] top-[471px] z-10 h-[656.34px] w-[1356.8px]"
+          data-node-id="2:192"
+        >
+          <img
+            src="./assets/hero/mockup.webp"
+            alt="Wacord product mockup on laptop"
+            width="1357"
+            height="656"
+            fetchpriority="high"
+            decoding="async"
+            class="absolute inset-0 size-full max-w-none object-cover"
+          />
+        </div>
+
+        <!-- Screen content overlay -->
+        <div
+          class="screen-mask absolute left-[380px] top-[487.86px] z-10 h-[506.64px] w-[668px]"
+          data-node-id="2:289"
+        >
+          <img
+            src="./assets/hero/screen-overlay.png"
+            alt=""
+            width="668"
+            height="507"
+            decoding="async"
+            class="absolute inset-0 size-full max-w-none object-fill"
+          />
+          <!-- Figma plane: rotate(8deg) skewX(8deg) scaleY(0.99) — only “10x” counts -->
+          <span class="screen-count-10x" aria-hidden="true"
+            ><span data-count-to="10">0</span>x</span
+          >
+        </div>
+
+        <!-- Brands / social proof — UNDER sticker + glass so glass can blur typography -->
+        <section
+          class="absolute left-0 top-[1126.8px] z-[15] flex w-[1440px] items-start bg-transparent px-20"
+          data-node-id="2:207"
+        >
+          <div class="relative flex w-full items-start" data-node-id="2:208">
+            <div class="relative h-[460.38px] w-[416px] shrink-0" data-node-id="2:209">
+              <!-- Figma text node y=-65.8, h=171 — sits up under laptop / Ai glass -->
+              <h2
+                class="brands-heading absolute left-[9px] top-[-65.8px] w-[723px]"
+                data-node-id="2:210"
+              >
+                Fast-growing e-commerce<br />
+                brands are upgrading to<br />
+                <span class="brand">Wacord</span>
+              </h2>
+
+              <div
+                class="absolute left-0 top-[303.98px] flex flex-col items-start pb-[0.6px]"
+                data-node-id="2:211"
+              >
+                <div class="stat-row" data-node-id="2:212">
+                  <div class="flex shrink-0 items-start pb-[4.8px]">
+                    <img
+                      src="./assets/icons/arrow.svg"
+                      alt=""
+                      class="size-10 shrink-0"
+                    />
+                  </div>
+                  <p class="stat-title">
+                    <span
+                      ><span data-count-to="3">0</span>x&nbsp;</span
+                    >
+                    <span class="muted">Faster Customer Resolutions</span>
+                  </p>
+                </div>
+                <p class="stat-desc" data-node-id="2:218">
+                  respond, confirm orders, and book parcels instantly from one
+                  screen
+                </p>
+              </div>
+            </div>
+
+            <!-- Logo cloud -->
+            <div
+              class="absolute inset-y-0 right-[144px] left-[780.5px] top-[-32px] z-10 overflow-hidden"
+              data-node-id="2:219"
+            >
+              <div class="logo-fade absolute inset-x-0 top-0 z-10 h-[120px]"></div>
+
+              <div
+                class="absolute left-0 top-[-112.62px] h-[492.38px] w-[136.5px]"
+                data-node-id="2:220"
+              >
+                <img
+                  src="./assets/logos/adobe.png"
+                  alt="Adobe"
+                  class="absolute left-1/2 top-[152.5px] h-[31.5px] w-[121px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/square.png"
+                  alt="Square"
+                  class="absolute left-1/2 top-[224px] h-[34.5px] w-[136.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/1password.svg"
+                  alt="1Password"
+                  class="absolute left-1/2 top-[298.5px] h-[25.75px] w-[136.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/nba.png"
+                  alt="NBA"
+                  class="absolute left-1/2 top-[364.25px] h-[45px] w-[78.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/adobe.png"
+                  alt="Adobe"
+                  class="absolute left-1/2 top-[449.25px] h-[31.5px] w-[121px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/motive.svg"
+                  alt="Motive"
+                  class="absolute left-1/2 top-[520.75px] h-[47.11px] w-[127px] -translate-x-1/2 object-contain"
+                />
+              </div>
+
+              <div
+                class="absolute left-[176.5px] top-[-113.58px] h-[492.38px] w-[179px]"
+                data-node-id="2:260"
+              >
+                <img
+                  src="./assets/logos/1password.svg"
+                  alt="1Password"
+                  class="absolute left-1/2 top-[130.5px] h-[25.75px] w-[136.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/checkr.png"
+                  alt="Checkr"
+                  class="absolute left-1/2 top-[196.25px] h-[29.5px] w-[113.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/twilio.png"
+                  alt="Twilio"
+                  class="absolute left-1/2 top-[265.75px] h-[33.5px] w-[109.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/broadcom.png"
+                  alt="Broadcom"
+                  class="absolute left-1/2 top-[339.25px] h-[24.5px] w-[179px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/sendoso.png"
+                  alt="Sendoso"
+                  class="absolute left-1/2 top-[403.75px] h-[22.5px] w-[105.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/brex.svg"
+                  alt="Brex"
+                  class="absolute left-1/2 top-[466.25px] h-[29.77px] w-[113.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/univision.svg"
+                  alt="Univision"
+                  class="absolute left-1/2 top-[536.02px] h-[13.91px] w-[109.5px] -translate-x-1/2 object-contain"
+                />
+                <img
+                  src="./assets/logos/zendesk.png"
+                  alt="Zendesk"
+                  class="absolute left-1/2 top-[589.92px] h-[59.67px] w-[83px] -translate-x-1/2 object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Receipt sticker — ABOVE logo fade / logos -->
+        <div
+          class="absolute left-[921px] top-[861px] z-30 h-[275px] w-[399px]"
+          data-node-id="2:297"
+        >
+          <img
+            src="./assets/hero/sticker.png"
+            alt="Order receipt"
+            class="absolute inset-0 size-full object-cover"
+          />
+        </div>
+
+        <!-- Glass labels — shell always opaque so backdrop blur works on brands text -->
+        <div
+          class="pointer-events-none absolute left-[938.65px] top-[639.8px] z-[35] flex h-[113.78px] w-[425.71px] items-center justify-center"
+          data-node-id="2:300"
+        >
+          <div class="glass-tilt">
+            <div class="glass-surface glass-surface--smart">
+              <span class="glass-label">Smart Chat</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute left-[146.65px] top-[798.34px] z-[35] flex h-[109.67px] w-[426.66px] items-center justify-center"
+          data-node-id="2:304"
+        >
+          <div class="glass-tilt">
+            <div class="glass-surface glass-surface--ai">
+              <span class="glass-label">Ai powered</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========== FEATURE SECTION (orbit + copy) — Figma 2:119 + 2:111 ========== -->
+      <section
+        id="features"
+        class="bleed absolute left-0 top-[1648px] h-[963px] w-[1440px] overflow-visible"
+        data-node-id="2:70"
+        aria-label="Centralize your tools"
+        style="--bleed-color:#f4f4f5"
+      >
+        <!-- Feature Container — layered from Figma (not knocked-out PNG) -->
+        <div class="orbit" data-node-id="2:119" aria-hidden="true">
+          <!-- Orbit rings — stroke #2F2F2F (Figma Ellipse 1 / Ellipse 1 copy) -->
+          <img
+            class="orbit-ring"
+            src="./assets/feature/ellipse-1.svg"
+            alt=""
+            data-node-id="2:120"
+            style="left: 35.61px; top: 13.35px; width: 573.353px; height: 573.353px"
+          />
+          <img
+            class="orbit-ring"
+            src="./assets/feature/ellipse-1-copy.svg"
+            alt=""
+            data-node-id="2:121"
+            style="left: 89.9px; top: 74.28px; width: 460.905px; height: 460.905px"
+          />
+
+          <!-- Center masked photo (Mask group 2:134) -->
+          <div class="orbit-center" data-node-id="2:134">
+            <img
+              class="orbit-center-img"
+            src="./assets/feature/layer-3.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            data-node-id="2:136"
+            />
+          </div>
+
+          <!-- Inner UI overlays (no floating shadow) -->
+          <img
+            class="orbit-overlay"
+            src="./assets/feature/layer-1-copy.png"
+            alt=""
+            data-node-id="2:137"
+            style="left: 229.02px; top: 129.08px; width: 235.896px; height: 202.312px"
+          />
+          <img
+            class="orbit-overlay"
+            src="./assets/feature/layer-4.png"
+            alt=""
+            data-node-id="2:138"
+            style="left: 233.06px; top: 135.14px; width: 226.59px; height: 182.89px"
+          />
+
+          <!-- App icons — exact Figma fills/colors (black bg keyed out) -->
+          <img
+            class="orbit-icon"
+            src="./assets/feature/communication-1.png"
+            alt=""
+            data-node-id="2:130"
+            style="left: 384.39px; top: 0; width: 90.636px; height: 90.636px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/layer-2.png"
+            alt=""
+            data-node-id="2:132"
+            style="left: 138.79px; top: 20.23px; width: 78.092px; height: 78.092px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/instagram.png"
+            alt=""
+            data-node-id="2:126"
+            style="left: 261.79px; top: 30.35px; width: 84.971px; height: 84.971px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/social.png"
+            alt=""
+            data-node-id="2:124"
+            style="left: 477.46px; top: 127.46px; width: 28.728px; height: 28.728px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/live-chat.png"
+            alt=""
+            data-node-id="2:133"
+            style="left: 86.99px; top: 136.76px; width: 74.046px; height: 74.046px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/communication.png"
+            alt=""
+            data-node-id="2:125"
+            style="left: 541.39px; top: 154.16px; width: 88.613px; height: 88.613px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/sheets.png"
+            alt=""
+            data-node-id="2:129"
+            style="left: 0; top: 279.19px; width: 72.023px; height: 72.023px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/line.png"
+            alt=""
+            data-node-id="2:131"
+            style="left: 66.36px; top: 280.81px; width: 45.723px; height: 45.723px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/shopify.png"
+            alt=""
+            data-node-id="2:139"
+            style="left: 411.91px; top: 351.21px; width: 100.751px; height: 99.942px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/telephone-call-figma.png"
+            alt=""
+            data-node-id="2:128"
+            style="left: 91.85px; top: 385.61px; width: 53.006px; height: 53.006px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/whatsapp.png"
+            alt=""
+            data-node-id="2:127"
+            style="left: 521.97px; top: 435.78px; width: 65.549px; height: 65.549px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/pngegg.png"
+            alt=""
+            data-node-id="2:123"
+            style="left: 293.35px; top: 490.4px; width: 89.017px; height: 88.208px"
+          />
+          <img
+            class="orbit-icon"
+            src="./assets/feature/unnamed.png"
+            alt=""
+            data-node-id="2:122"
+            style="left: 123.01px; top: 495.66px; width: 77.688px; height: 77.688px"
+          />
+        </div>
+
+        <!-- Feature Text Container — page y 1943 → section-relative 1943-1648=295 -->
+        <div
+          class="absolute left-[714px] top-[295px] h-[306px] w-[705px]"
+          data-node-id="2:111"
+        >
+          <h2
+            class="feature-heading absolute left-0 top-[56px] w-[705px] -translate-y-1/2"
+            data-node-id="2:112"
+          >
+            Centralize your tools,<br />
+            scale your <span class="accent">brand</span>
+          </h2>
+
+          <p
+            class="feature-body absolute left-0 top-[185px] w-[577.77px] -translate-y-1/2"
+            data-node-id="2:113"
+          >
+            The chaos of managing multiple plugins and platforms is over.
+            Connect your sales, support, and delivery infrastructure seamlessly
+            to give your customers the fastest, automated shopping experience
+            they’ve ever seen.
+          </p>
+
+          <a
+            href="#how-it-works"
+            class="feature-link absolute left-0 top-[282px] flex items-end gap-[5px]"
+            data-node-id="2:114"
+          >
+            <span class="feature-link-label" data-node-id="2:115">
+              <span class="relative top-[-1px]">Learn more</span>
+            </span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3D cursor — Figma 2:141 keyframes (scroll scrub = Phase 2) -->
+      <div
+        class="cursor-3d absolute z-50"
+        id="cursor-3d"
+        data-node-id="2:141"
+        data-name="cursor 2"
+        data-motion-start-x="-702"
+        data-motion-start-y="-547"
+        data-motion-start-rot="229.437"
+        data-motion-end-x="92.834"
+        data-motion-end-y="98.201"
+        data-motion-end-rot="176.031"
+        data-motion-ease="0.5,0,0.5,1"
+        aria-hidden="true"
+      >
+        <img src="./assets/stats/cursor-figma.png" alt="" loading="lazy" decoding="async" />
+      </div>
+
+      <!-- ========== STATS SECTION — Figma 2:142 ========== -->
+      <section
+        id="about"
+        class="stats-section bleed absolute left-0 top-[2599px] z-30 h-[869px] w-[1440px]"
+        data-node-id="2:142"
+        aria-label="Built to Handle Infinite Business Growth"
+      >
+        <div class="stats-dots-spotlight" aria-hidden="true"></div>
+        <h2
+          class="stats-heading absolute left-1/2 top-[221.5px] w-[1128px] -translate-x-1/2 -translate-y-1/2"
+          data-node-id="2:177"
+        >
+          Built to Handle Infinite Business Growth
+        </h2>
+
+        <div
+          class="absolute left-[201.83px] top-[312px]"
+          data-node-id="2:144"
+        >
+          <div class="stats-grid" data-node-id="2:146">
+            <!-- Row 1 -->
+            <div class="stats-cell" data-node-id="2:147">
+              <svg
+                class="mb-2"
+                width="48"
+                height="48"
+                viewBox="0 0 40 40"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M38 26C38 27.0609 37.5786 28.0783 36.8284 28.8284C36.0783 29.5786 35.0609 30 34 30H10L2 38V6C2 4.93913 2.42143 3.92172 3.17157 3.17157C3.92172 2.42143 4.93913 2 6 2H34C35.0609 2 36.0783 2.42143 36.8284 3.17157C37.5786 3.92172 38 4.93913 38 6V26Z"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="stats-value text-[32px] leading-[29px]">10+ Channels</p>
+              <p class="stats-label mt-2 text-[18px] leading-[30px]">
+                integration
+              </p>
+            </div>
+
+            <div class="stats-cell stats-cell--highlight" data-node-id="2:151">
+              <p class="stats-value text-[35px] leading-[68px]">Ai auto reply</p>
+              <p class="stats-label text-[20px] leading-[19px] text-white">
+                across every customer conversation
+              </p>
+            </div>
+
+            <div class="stats-cell" data-node-id="2:155">
+              <p class="stats-value text-[39px] leading-[68px]">~30</p>
+              <p class="stats-label text-[18px] leading-[30px]">
+                team seats ready<br />(&amp; growing)
+              </p>
+            </div>
+
+            <div class="stats-cell" data-node-id="2:158">
+              <p class="stats-value text-[38px] leading-[68px]">25+</p>
+              <p class="stats-label text-[19px] leading-[30px]">
+                e-commerce &amp; omni-channel integrations
+              </p>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="stats-cell" data-node-id="2:161">
+              <p class="stats-value text-[37px] leading-[68px]">2024</p>
+              <p class="stats-label text-[17px] leading-[30px]">
+                built for commerce teams
+              </p>
+            </div>
+
+            <div class="stats-cell" data-node-id="2:164">
+              <p class="stats-value text-[39px] leading-[68px]">1,200+</p>
+              <p class="stats-label text-[17px] leading-[30px]">
+                brands powered by Wacord
+              </p>
+            </div>
+
+            <div class="stats-cell" data-node-id="2:167">
+              <p class="stats-value text-[38px] leading-[68px]">24/7</p>
+              <p class="stats-label text-[18px] leading-[30px]">inbox coverage</p>
+            </div>
+
+            <div class="stats-cell" data-node-id="2:170">
+              <p class="stats-value text-[38px] leading-[68px]">5 million+</p>
+              <p class="stats-label text-[18px] leading-[30px]">
+                messages handled to date
+              </p>
+            </div>
+
+            <!-- Dividers (Figma gradient lines) -->
+            <div
+              class="stats-divider-v left-[264px]"
+              data-node-id="2:173"
+            ></div>
+            <div
+              class="stats-divider-v left-[528px]"
+              data-node-id="2:174"
+            ></div>
+            <div
+              class="stats-divider-v left-[792px]"
+              data-node-id="2:175"
+            ></div>
+            <div class="stats-divider-h" data-node-id="2:176"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== BOOK MEETING — title outside + white form card ========== -->
+      <section
+        id="demo"
+        class="meeting-section bleed absolute left-0 top-[3457px] z-20 flex h-[920px] w-[1440px] items-start p-[80px]"
+        data-node-id="2:71"
+        aria-label="Book meeting"
+      >
+        <div class="meeting-layout">
+          <div class="meeting-copy">
+            <h2 class="meeting-title" data-node-id="2:73">Book meeting</h2>
+            <p class="meeting-lead">
+              Join growing e-commerce brands using Wacord to unify chat, orders,
+              and delivery across every channel.
+            </p>
+            <p class="meeting-stay" data-node-id="2:75">Stay connected</p>
+          </div>
+
+          <div class="meeting-card">
+            <div class="meeting-card__dots" aria-hidden="true"></div>
+            <form id="contact" class="meeting-form" action="#" method="post" novalidate>
+              <div class="meeting-field">
+                <label class="meeting-label" for="meeting-website"
+                  >Website or Facebook Page URL <span class="req" aria-hidden="true">*</span></label
+                >
+                <input
+                  id="meeting-website"
+                  class="meeting-input"
+                  type="text"
+                  name="website"
+                  placeholder="https://yourstore.com"
+                  required
+                  autocomplete="url"
+                  inputmode="url"
+                />
+              </div>
+
+              <div class="meeting-row">
+                <div class="meeting-field meeting-field--half">
+                  <label class="meeting-label" for="meeting-name"
+                    >Full Name <span class="req" aria-hidden="true">*</span></label
+                  >
+                  <input
+                    id="meeting-name"
+                    class="meeting-input"
+                    type="text"
+                    name="fullname"
+                    placeholder="Your full name"
+                    required
+                    autocomplete="name"
+                  />
+                </div>
+                <div class="meeting-field meeting-field--half">
+                  <label class="meeting-label" for="meeting-email"
+                    >Email Address <span class="req" aria-hidden="true">*</span></label
+                  >
+                  <input
+                    id="meeting-email"
+                    class="meeting-input"
+                    type="email"
+                    name="email"
+                    placeholder="you@brand.com"
+                    required
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+
+              <div class="meeting-field">
+                <label class="meeting-label" for="meeting-phone"
+                  >Phone Number <span class="req" aria-hidden="true">*</span></label
+                >
+                <div class="meeting-phone">
+                  <span class="meeting-phone__prefix">+880</span>
+                  <input
+                    id="meeting-phone"
+                    class="meeting-input"
+                    type="tel"
+                    name="phone"
+                    placeholder="1XXXXXXXXX"
+                    required
+                    autocomplete="tel-national"
+                    inputmode="numeric"
+                  />
+                </div>
+              </div>
+
+              <fieldset class="meeting-field" style="border: 0; margin: 0; padding: 0">
+                <legend class="meeting-label" style="padding: 0">
+                  Monthly Order Volume <span class="req" aria-hidden="true">*</span>
+                </legend>
+                <div class="meeting-options" role="radiogroup" aria-label="Monthly Order Volume">
+                  <label class="meeting-radio"
+                    ><input type="radio" name="volume" value="0-1000" required /> Up to
+                    1,000</label
+                  >
+                  <label class="meeting-radio"
+                    ><input type="radio" name="volume" value="1001-5000" /> 1,001 –
+                    5,000</label
+                  >
+                  <label class="meeting-radio"
+                    ><input type="radio" name="volume" value="5001-10000" /> 5,001 –
+                    10,000</label
+                  >
+                  <label class="meeting-radio"
+                    ><input type="radio" name="volume" value="10001-20000" /> 10,001 –
+                    20,000</label
+                  >
+                  <label class="meeting-radio"
+                    ><input type="radio" name="volume" value="20000+" checked />
+                    20,000+</label
+                  >
+                </div>
+              </fieldset>
+
+              <fieldset
+                class="meeting-field"
+                id="courier-field"
+                style="border: 0; margin: 0; padding: 0"
+              >
+                <legend class="meeting-label" style="padding: 0">
+                  Which couriers do you use? <span class="req" aria-hidden="true">*</span>
+                </legend>
+                <div class="meeting-check-grid">
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="Pathao" /> Pathao</label
+                  >
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="RedX" /> RedX</label
+                  >
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="Steadfast" />
+                    Steadfast</label
+                  >
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="eCourier" />
+                    eCourier</label
+                  >
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="Paperfly" />
+                    Paperfly</label
+                  >
+                  <label class="meeting-check"
+                    ><input type="checkbox" name="courier" value="Carrybee" />
+                    Carrybee</label
+                  >
+                </div>
+                <p class="meeting-error" id="courier-error" role="alert">
+                  Please select at least one courier
+                </p>
+              </fieldset>
+
+              <div class="meeting-submit-row">
+                <button class="meeting-submit" type="submit" aria-label="Book meeting">
+                  Book meeting
+                  <img src="./assets/meeting/arrow-right-white.svg" alt="" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== HOW WACORD POWERS — Figma 2:87 exact ========== -->
+      <section
+        id="how-it-works"
+        class="powers-section bleed absolute left-0 top-[4377px] z-20 flex h-[1513px] w-[1440px] items-start px-[80px]"
+        data-node-id="2:87"
+        aria-label="How Wacord Powers Your Business"
+      >
+        <div class="relative h-[1513.375px] w-[1280px] shrink-0" data-node-id="2:88">
+          <div class="powers-divider top-[446.38px]" data-node-id="2:89"></div>
+          <div class="powers-divider top-[767.38px]" data-node-id="2:109"></div>
+          <div class="powers-divider top-[1088.38px]" data-node-id="2:110"></div>
+
+          <!-- Row 1 -->
+          <a
+            id="unify"
+            href="#unify"
+            class="absolute left-0 top-[447.38px] h-[320px] w-[1280px]"
+            data-node-id="2:90"
+          >
+            <h2
+              class="powers-title absolute left-[-30px] top-[-207.38px] flex h-[264px] w-[1205px] -translate-y-1/2 flex-col justify-center"
+              data-node-id="2:91"
+            >
+              <span class="line">How <span class="brand">Wacord</span> Powers</span>
+              <span class="line">Your Business</span>
+            </h2>
+
+            <div
+              class="absolute left-[-40px] top-[calc(50%-26.38px)] h-[209.984px] w-[288px] -translate-y-1/2"
+              data-node-id="2:92"
+            >
+              <p
+                class="powers-row-title absolute left-0 top-[124.5px] -translate-y-1/2"
+                data-node-id="2:93"
+              >
+                Unify Your<br />Conversations
+              </p>
+            </div>
+
+            <img
+              class="absolute left-[262px] top-[102.63px] size-[41.381px] max-w-none"
+              src="./assets/features/arrow.svg"
+              alt=""
+              data-node-id="2:94"
+            />
+
+            <div
+              class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
+              data-node-id="2:95"
+            >
+              <div class="absolute inset-[-192px_-47px_-202px_-80px]" data-node-id="2:96">
+                <img
+                  class="absolute left-[4.42%] top-[5.28%] h-[118.67%] w-[91.32%] max-w-none"
+                  src="./assets/features/unify.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </a>
+
+          <!-- Row 2 -->
+          <a
+            id="manage"
+            href="#manage"
+            class="absolute left-0 top-[757px] h-[320px] w-[1280px]"
+            data-node-id="2:97"
+          >
+            <div
+              class="absolute left-[-26px] top-[calc(50%-27.38px)] h-[209.984px] w-[288px] -translate-y-1/2"
+              data-node-id="2:98"
+            >
+              <p
+                class="powers-row-title absolute left-[-22px] top-[124.88px] -translate-y-1/2"
+                data-node-id="2:99"
+              >
+                Manage &amp;<br />Dispatch
+              </p>
+            </div>
+
+            <img
+              class="absolute left-[254px] top-[102px] size-[41.381px] max-w-none"
+              src="./assets/features/arrow.svg"
+              alt=""
+              data-node-id="2:100"
+            />
+
+            <div
+              class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
+              data-node-id="2:101"
+            >
+              <div class="absolute inset-[-11.63px_-36.4px_-12.38px_-58px]" data-node-id="2:102">
+                <img
+                  class="absolute left-[4.94%] top-[-63.27%] h-[302.56%] w-full max-w-none"
+                  src="./assets/features/manage.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </a>
+
+          <!-- Row 3 -->
+          <a
+            id="track"
+            href="#track"
+            class="absolute left-0 top-[1089px] h-[320px] w-[1280px]"
+            data-node-id="2:103"
+          >
+            <p
+              class="powers-row-title absolute left-[-36px] top-[159.5px] -translate-y-1/2"
+              data-node-id="2:105"
+            >
+              Track, Retarget<br />&amp; Scale Sales
+            </p>
+
+            <img
+              class="absolute left-[323px] top-[173px] size-[41.381px] max-w-none"
+              src="./assets/features/arrow.svg"
+              alt=""
+              data-node-id="2:106"
+            />
+
+            <div
+              class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
+              data-node-id="2:107"
+            >
+              <div class="absolute inset-[-11.63px_-36.4px_-12.38px_-58px]" data-node-id="2:108">
+                <img
+                  class="absolute left-[-3.23%] top-[-57%] h-[262.22%] w-full max-w-none"
+                  src="./assets/features/track.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ========== FOOTER — Figma 2:34 exact ========== -->
+      <footer
+        class="site-footer bleed absolute left-0 top-[5890px] z-20 flex h-[551px] w-[1440px] flex-col items-center gap-[192px] pt-[112px]"
+        data-node-id="2:34"
+        aria-label="Site footer"
+      >
+        <div class="relative flex w-[1133.86px] items-start gap-[32px]" data-node-id="2:36">
+          <div
+            class="relative size-[170px] shrink-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
+            data-node-id="2:37"
+          >
+            <img
+              src="./assets/footer/logo.png"
+              alt="Wacord"
+              class="absolute inset-0 size-full object-cover"
+            />
+          </div>
+
+          <div class="relative h-[154.188px] w-[289.281px] shrink-0" data-node-id="2:38">
+            <p class="footer-label absolute left-0 top-[9.5px] -translate-y-1/2">Product</p>
+            <a href="#features" class="footer-link absolute left-0 top-[54.19px] -translate-y-1/2">Features</a>
+            <a href="#demo" class="footer-link absolute left-0 top-[94.19px] -translate-y-1/2">Pricing</a>
+            <a href="#demo" class="footer-link sm absolute left-0 top-[134.19px] -translate-y-1/2">Book a demo</a>
+          </div>
+
+          <div class="relative h-[114.188px] w-[289.281px] shrink-0" data-node-id="2:43">
+            <p class="footer-label absolute left-0 top-[9.5px] -translate-y-1/2">Explore</p>
+            <a href="#features" class="footer-link sm absolute left-0 top-[54.19px] -translate-y-1/2">Events</a>
+            <a href="#about" class="footer-link absolute left-0 top-[94.19px] -translate-y-1/2">Blog</a>
+          </div>
+
+          <div class="relative h-[114.188px] w-[289.297px] shrink-0" data-node-id="2:47">
+            <p class="footer-label absolute left-0 top-[9.5px] -translate-y-1/2">Company</p>
+            <a href="#about" class="footer-link absolute left-0 top-[54.19px] -translate-y-1/2">About us</a>
+            <a href="#contact" class="footer-link sm absolute left-0 top-[94.19px] -translate-y-1/2">Contact us</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom relative flex w-full items-start px-[80px] pt-px" data-node-id="2:51">
+          <div class="relative flex w-[1280px] items-center gap-[726.23px] py-[28px]" data-node-id="2:52">
+            <div class="relative h-[18.188px] w-[461.766px] shrink-0" data-node-id="2:53">
+              <p class="footer-meta absolute left-0 top-[9.5px] -translate-y-1/2">
+                © 2026 Wacord. All rights reserved.
+              </p>
+              <a href="#contact" class="footer-meta absolute left-[247.22px] top-[9.5px] -translate-y-1/2">
+                Privacy Policy
+              </a>
+              <a href="#contact" class="footer-meta absolute left-[357.97px] top-[9.5px] -translate-y-1/2">
+                Terms of Service
+              </a>
+            </div>
+
+            <div class="flex shrink-0 items-start gap-4" data-node-id="2:57">
+              <a href="#demo" class="relative block size-5" aria-label="YouTube" data-node-id="2:58">
+                <img src="./assets/footer/social-1.svg" alt="" class="size-full" />
+              </a>
+              <a href="#demo" class="relative block size-5" aria-label="Twitter" data-node-id="2:62">
+                <img src="./assets/footer/social-2.svg" alt="" class="size-full" />
+              </a>
+              <a href="#demo" class="relative block size-5" aria-label="LinkedIn" data-node-id="2:66">
+                <img src="./assets/footer/social-3.svg" alt="" class="size-full" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script>
+      (function () {
+        const DESIGN_W = 1440;
+        const wrap = document.getElementById("page-wrap");
+        const canvas = document.getElementById("page-canvas");
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        let lenis = null;
+
+        function fitPage() {
+          const width = wrap.clientWidth || window.innerWidth;
+          const scale = Math.min(1, width / DESIGN_W);
+          const supportsZoom =
+            typeof CSS !== "undefined" &&
+            CSS.supports &&
+            CSS.supports("zoom", "1");
+          if (supportsZoom) {
+            canvas.style.zoom = String(scale);
+            canvas.style.transform = "";
+          } else {
+            canvas.style.zoom = "";
+            canvas.style.setProperty(
+              "--page-scale-transform",
+              "scale(" + scale + ")"
+            );
+            canvas.style.transform = "scale(" + scale + ")";
+            canvas.style.transformOrigin = "top center";
+            /* Approx layout height so page scroll isn't clipped */
+            wrap.style.minHeight = 6441 * scale + "px";
+          }
+          document.documentElement.style.setProperty("--page-zoom", String(scale));
+          const nav = document.getElementById("site-nav");
+          if (nav) {
+            nav.style.transform = "translateX(-50%) scale(" + scale + ")";
+            nav.style.top = 30 * scale + "px";
+          }
+          if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }
+
+        fitPage();
+        window.addEventListener("resize", fitPage);
+
+        /*
+          ========= MOTION PHASES =========
+          Phase 1 (this): Lenis + GSAP ScrollTrigger section/hero reveals;
+                 cursor posed at Figma START keyframe (ready for scrub).
+          Phase 2 (next): Scroll-linked cursor drop between feature→stats
+                 using Figma 2:141 keyframes (x/y/rotate, ~25% of 2s timeline).
+        */
+
+        function initLenis() {
+          if (reduceMotion || typeof Lenis === "undefined") return null;
+          lenis = new Lenis({
+            duration: 1.15,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            touchMultiplier: 1.1,
+          });
+          window.__lenis = lenis;
+
+          if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+            gsap.registerPlugin(ScrollTrigger);
+            lenis.on("scroll", ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+              lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+          } else {
+            function raf(time) {
+              lenis.raf(time);
+              requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+          }
+          return lenis;
+        }
+
+        /* Lower sections: no reveal / no stack — plain Figma layout */
+        function initScrollMotion() {
+          /* intentionally empty — stacking only on #features via initFeatureStackPin */
+        }
+
+        /*
+          No pin/stack between features ↔ about.
+          Pin was sticking the white section then yanking it upward on release.
+          Both sections now scroll in normal Figma layout order.
+        */
+        function initFeatureStackPin() {
+          const feature = document.getElementById("features");
+          if (!feature) return;
+          feature.classList.remove("stack-card");
+          if (typeof gsap !== "undefined") {
+            gsap.set(feature, {
+              clearProps: "transform,filter,opacity,visibility",
+            });
+          }
+        }
+
+        /* —— Phase 1: hero entrance —— */
+        function initHeroMotion() {
+          const heroes = document.querySelectorAll("[data-hero]");
+          if (!heroes.length || reduceMotion || typeof gsap === "undefined") return;
+          gsap.from(heroes, {
+            autoAlpha: 0,
+            y: 28,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: "power3.out",
+            delay: 0.08,
+          });
+        }
+
+        /*
+          Phase 1 cursor — FIX:
+          Opaque black PNG + START rotate(229°)/translate(-702,-547) made a giant
+          dark blob over the orbit. Now: transparent asset, resting at tuned CSS
+          box (1100,2333), transform none. Phase 2 will scrub relative motion
+          using Figma delta (end - start) from above down into this pose.
+        */
+        function initCursorPhase1() {
+          const cursor = document.getElementById("cursor-3d");
+          if (!cursor) return;
+
+          const start = {
+            x: Number(cursor.dataset.motionStartX),
+            y: Number(cursor.dataset.motionStartY),
+            rotation: Number(cursor.dataset.motionStartRot),
+          };
+          const end = {
+            x: Number(cursor.dataset.motionEndX),
+            y: Number(cursor.dataset.motionEndY),
+            rotation: Number(cursor.dataset.motionEndRot),
+          };
+          const rotDelta = end.rotation - start.rotation;
+
+          window.__cursorMotion = {
+            el: cursor,
+            start,
+            end,
+            /* Relative to resting CSS box — Phase 2 scrub start→end */
+            webStart: {
+              x: start.x - end.x,
+              y: start.y - end.y,
+              rotation: 0,
+            },
+            webEnd: {
+              x: 0,
+              y: 0,
+              rotation: rotDelta,
+            },
+            ease: cursor.dataset.motionEase || "0.5,0,0.5,1",
+          };
+
+          if (typeof gsap === "undefined") {
+            cursor.style.transform = "none";
+            cursor.classList.add("is-ready");
+            return;
+          }
+
+          gsap.set(cursor, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            transformOrigin: "50% 50%",
+          });
+          cursor.classList.add("is-ready");
+        }
+
+        /* —— Count-up: 10x (hero screen) + 3x (social proof) —— */
+        function animateCount(el, to, duration) {
+          const start = performance.now();
+          const from = 0;
+          function frame(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = String(Math.round(from + (to - from) * eased));
+            if (t < 1) requestAnimationFrame(frame);
+            else el.textContent = String(to);
+          }
+          requestAnimationFrame(frame);
+        }
+
+        function initCounters() {
+          const nodes = document.querySelectorAll("[data-count-to]");
+          if (!nodes.length) return;
+
+          const run = (el) => {
+            if (el.dataset.countDone) return;
+            el.dataset.countDone = "1";
+            const to = Number(el.getAttribute("data-count-to")) || 0;
+            if (reduceMotion) {
+              el.textContent = String(to);
+              return;
+            }
+            animateCount(el, to, to >= 10 ? 1600 : 1100);
+          };
+
+          if (!("IntersectionObserver" in window)) {
+            nodes.forEach(run);
+            return;
+          }
+
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  run(entry.target);
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+          );
+          nodes.forEach((el) => io.observe(el));
+          nodes.forEach((el) => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) run(el);
+          });
+        }
+
+        /* —— Orbit icons: concentric with Figma rings, upright while revolving —— */
+        function initOrbit() {
+          const orbit = document.querySelector(".orbit");
+          if (!orbit) return;
+          const icons = Array.from(orbit.querySelectorAll(":scope > .orbit-icon"));
+          if (!icons.length) return;
+
+          const OUTER = { cx: 322.2865, cy: 300.0265, r: 286.6765 };
+          const INNER = { cx: 320.3525, cy: 304.7325, r: 230.4525 };
+
+          function pickRing(ix, iy) {
+            const dOuter = Math.abs(Math.hypot(ix - OUTER.cx, iy - OUTER.cy) - OUTER.r);
+            const dInner = Math.abs(Math.hypot(ix - INNER.cx, iy - INNER.cy) - INNER.r);
+            if (Math.min(dOuter, dInner) > 48) return OUTER;
+            return dInner < dOuter ? INNER : OUTER;
+          }
+
+          icons.forEach((icon) => {
+            const left = parseFloat(icon.style.left) || 0;
+            const top = parseFloat(icon.style.top) || 0;
+            const w = parseFloat(icon.style.width) || icon.offsetWidth || 0;
+            const h = parseFloat(icon.style.height) || icon.offsetHeight || 0;
+            const ix = left + w / 2;
+            const iy = top + h / 2;
+            const ring = pickRing(ix, iy);
+            const dx = ix - ring.cx;
+            const dy = iy - ring.cy;
+            const r = Math.hypot(dx, dy);
+            const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+            const arm = document.createElement("div");
+            arm.className = "orbit-arm";
+            arm.style.setProperty("--orbit-cx", ring.cx + "px");
+            arm.style.setProperty("--orbit-cy", ring.cy + "px");
+            arm.style.setProperty("--orbit-angle", angle + "deg");
+            arm.style.setProperty("--orbit-r", r + "px");
+
+            icon.style.left = "";
+            icon.style.top = "";
+            icon.style.marginLeft = "";
+            icon.style.marginTop = "";
+
+            arm.appendChild(icon);
+            orbit.appendChild(arm);
+          });
+        }
+
+        function initMeetingForm() {
+          const form = document.getElementById("contact");
+          if (!form) return;
+          const courierField = document.getElementById("courier-field");
+          const courierError = document.getElementById("courier-error");
+          const btn = form.querySelector(".meeting-submit");
+
+          form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const data = new FormData(form);
+            const website = String(data.get("website") || "").trim();
+            const name = String(data.get("fullname") || "").trim();
+            const email = String(data.get("email") || "").trim();
+            const phone = String(data.get("phone") || "").trim();
+            const volume = data.get("volume");
+            const couriers = data.getAll("courier");
+
+            const courierOk = couriers.length > 0;
+            if (courierField && courierError) {
+              courierField.classList.toggle("is-invalid", !courierOk);
+              courierError.classList.toggle("is-visible", !courierOk);
+            }
+            if (!website || !name || !email || !phone || !volume || !courierOk) return;
+
+            form.reset();
+            if (courierField && courierError) {
+              courierField.classList.remove("is-invalid");
+              courierError.classList.remove("is-visible");
+            }
+            const vol = form.querySelector('input[name="volume"][value="20000+"]');
+            if (vol) vol.checked = true;
+
+            if (!btn) return;
+            btn.classList.add("is-sent");
+            const prev = btn.getAttribute("aria-label") || "Book meeting";
+            btn.setAttribute("aria-label", "Sent");
+            setTimeout(() => {
+              btn.classList.remove("is-sent");
+              btn.setAttribute("aria-label", prev);
+            }, 1600);
+          });
+
+          form.querySelectorAll('input[name="courier"]').forEach((box) => {
+            box.addEventListener("change", () => {
+              if (!courierField || !courierError) return;
+              const any =
+                form.querySelectorAll('input[name="courier"]:checked').length > 0;
+              if (any) {
+                courierField.classList.remove("is-invalid");
+                courierError.classList.remove("is-visible");
+              }
+            });
+          });
+        }
+
+        function initAnchorScroll() {
+          document.addEventListener("click", (event) => {
+            const link = event.target.closest('a[href^="#"]');
+            if (!link) return;
+            const id = link.getAttribute("href").slice(1);
+            if (!id) return;
+            const target = document.getElementById(id);
+            if (!target) return;
+            event.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(target, { offset: 0, duration: 1.2 });
+            } else {
+              target.scrollIntoView({
+                behavior: reduceMotion ? "auto" : "smooth",
+                block: "start",
+              });
+            }
+            history.pushState(null, "", "#" + id);
+          });
+        }
+
+        /* Stats dots — low base opacity + mouse flashlight spotlight */
+        function initStatsDotSpotlight() {
+          const section = document.getElementById("about");
+          if (!section || reduceMotion) return;
+
+          let raf = 0;
+          let nextX = 0.5;
+          let nextY = 0.4;
+          let visible = false;
+
+          function paint() {
+            raf = 0;
+            section.style.setProperty("--dot-mx", nextX * 100 + "%");
+            section.style.setProperty("--dot-my", nextY * 100 + "%");
+          }
+
+          function onMove(event) {
+            const rect = section.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            nextX = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+            nextY = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+            if (!visible) {
+              visible = true;
+              section.classList.add("is-dot-active");
+            }
+            if (!raf) raf = requestAnimationFrame(paint);
+          }
+
+          function onLeave() {
+            visible = false;
+            section.classList.remove("is-dot-active");
+          }
+
+          section.addEventListener("pointermove", onMove, { passive: true });
+          section.addEventListener("pointerleave", onLeave);
+          section.addEventListener("pointerenter", onMove, { passive: true });
+        }
+
+        /* Fixed glass nav — morph open ↔ logo pill */
+        function initSiteNav() {
+          const nav = document.getElementById("site-nav");
+          const shell = nav && nav.querySelector(".site-nav__shell");
+          const logo = document.getElementById("nav-logo-btn");
+          const links = nav && nav.querySelector(".site-nav__links");
+          const actions = nav && nav.querySelector(".site-nav__actions");
+          const header = document.querySelector("header[aria-label='Wacord hero']");
+          if (!nav || !shell || !logo || !links || !actions) return;
+
+          const OPEN = {
+            width: 1321,
+            height: 69,
+            radius: 34.5,
+            marginLeft: -660.5,
+            logoLeft: 15,
+            logoSize: 45,
+          };
+          const CLOSED = {
+            width: 64,
+            height: 64,
+            radius: 32,
+            marginLeft: -32,
+            logoLeft: 9.5,
+            logoSize: 45,
+          };
+
+          let state = "open";
+          let tweening = false;
+          let manualOpen = false;
+          let tl = null;
+
+          function isInHero() {
+            if (!header) return window.scrollY < 400;
+            const rect = header.getBoundingClientRect();
+            return rect.bottom > window.innerHeight * 0.45;
+          }
+
+          function setState(next) {
+            state = next;
+            nav.dataset.state = next;
+            nav.classList.toggle("is-open", next === "open");
+            nav.classList.toggle("is-collapsed", next === "collapsed");
+            logo.setAttribute(
+              "aria-label",
+              next === "collapsed" ? "Wacord — open menu" : "Wacord home"
+            );
+          }
+
+          function collapse(force) {
+            if (state === "collapsed" && !force) return;
+            if (tweening && !force) return;
+            manualOpen = false;
+            if (tl) tl.kill();
+            tweening = true;
+            setState("collapsed");
+
+            if (reduceMotion || typeof gsap === "undefined") {
+              shell.style.width = CLOSED.width + "px";
+              shell.style.height = CLOSED.height + "px";
+              shell.style.borderRadius = CLOSED.radius + "px";
+              shell.style.marginLeft = CLOSED.marginLeft + "px";
+              links.style.opacity = "0";
+              actions.style.opacity = "0";
+              logo.style.left = CLOSED.logoLeft + "px";
+              tweening = false;
+              return;
+            }
+
+            tl = gsap.timeline({
+              defaults: { ease: "power3.inOut" },
+              onComplete: () => {
+                tweening = false;
+              },
+            });
+
+            tl.to(
+              [links, actions],
+              { autoAlpha: 0, y: -6, duration: 0.22, stagger: 0.02 },
+              0
+            );
+            tl.to(
+              shell,
+              {
+                width: CLOSED.width,
+                height: CLOSED.height,
+                borderRadius: CLOSED.radius,
+                marginLeft: CLOSED.marginLeft,
+                duration: 0.65,
+              },
+              0.05
+            );
+            tl.to(
+              logo,
+              {
+                left: CLOSED.logoLeft,
+                width: CLOSED.logoSize,
+                height: CLOSED.logoSize,
+                marginTop: -CLOSED.logoSize / 2,
+                duration: 0.65,
+              },
+              0.05
+            );
+            tl.fromTo(
+              shell,
+              { scale: 1 },
+              { scale: 1.04, duration: 0.28, yoyo: true, repeat: 1, ease: "power2.out" },
+              0.35
+            );
+          }
+
+          function expand(fromManual) {
+            if (state === "open" && !fromManual) return;
+            if (tweening && !fromManual) return;
+            if (fromManual) manualOpen = true;
+            if (tl) tl.kill();
+            tweening = true;
+            setState("open");
+
+            if (reduceMotion || typeof gsap === "undefined") {
+              shell.style.width = OPEN.width + "px";
+              shell.style.height = OPEN.height + "px";
+              shell.style.borderRadius = OPEN.radius + "px";
+              shell.style.marginLeft = OPEN.marginLeft + "px";
+              links.style.opacity = "1";
+              actions.style.opacity = "1";
+              logo.style.left = OPEN.logoLeft + "px";
+              tweening = false;
+              return;
+            }
+
+            gsap.set([links, actions], { autoAlpha: 0, y: 8 });
+
+            tl = gsap.timeline({
+              defaults: { ease: "power3.inOut" },
+              onComplete: () => {
+                tweening = false;
+              },
+            });
+
+            tl.to(
+              shell,
+              {
+                width: OPEN.width,
+                height: OPEN.height,
+                borderRadius: OPEN.radius,
+                marginLeft: OPEN.marginLeft,
+                scale: 1,
+                duration: 0.7,
+              },
+              0
+            );
+            tl.to(
+              logo,
+              {
+                left: OPEN.logoLeft,
+                width: OPEN.logoSize,
+                height: OPEN.logoSize,
+                marginTop: -OPEN.logoSize / 2,
+                duration: 0.7,
+              },
+              0
+            );
+            tl.to(
+              [links, actions],
+              { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.04, ease: "power2.out" },
+              0.38
+            );
+          }
+
+          function syncToScroll() {
+            if (isInHero()) {
+              manualOpen = false;
+              expand(false);
+            } else if (!manualOpen) {
+              collapse(false);
+            }
+          }
+
+          logo.addEventListener("click", (event) => {
+            if (state === "collapsed") {
+              event.preventDefault();
+              expand(true);
+              return;
+            }
+            if (state === "open" && !isInHero()) {
+              event.preventDefault();
+              collapse(true);
+              return;
+            }
+            /* In hero while open — logo acts as home */
+            event.preventDefault();
+            if (lenis) lenis.scrollTo(0, { duration: 1.1 });
+            else window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+
+          shell.addEventListener("click", (event) => {
+            if (state !== "collapsed") return;
+            if (event.target.closest("a") && event.target.closest("a") !== logo) return;
+            if (event.target.closest("#nav-logo-btn")) return;
+            expand(true);
+          });
+
+          if (typeof ScrollTrigger !== "undefined" && typeof gsap !== "undefined") {
+            gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.create({
+              start: 0,
+              end: "max",
+              onUpdate: syncToScroll,
+            });
+          } else {
+            window.addEventListener("scroll", syncToScroll, { passive: true });
+          }
+
+          /* Start open on hero */
+          if (typeof gsap !== "undefined") {
+            gsap.set(shell, {
+              width: OPEN.width,
+              height: OPEN.height,
+              borderRadius: OPEN.radius,
+              marginLeft: OPEN.marginLeft,
+              scale: 1,
+            });
+            gsap.set(logo, {
+              left: OPEN.logoLeft,
+              width: OPEN.logoSize,
+              height: OPEN.logoSize,
+              marginTop: -OPEN.logoSize / 2,
+            });
+            gsap.set([links, actions], { autoAlpha: 1, y: 0 });
+          }
+          setState("open");
+          syncToScroll();
+        }
+
+        initLenis();
+        initSiteNav();
+        initScrollMotion();
+        initFeatureStackPin();
+        initHeroMotion();
+        initCursorPhase1();
+        initStatsDotSpotlight();
+        initCounters();
+        initOrbit();
+        initMeetingForm();
+        initAnchorScroll();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+Direct figma code/**
+tools/**
+assets/figma/**
+assets/feature/clean/**
+assets/stats/cursor-3d-src.png
+assets/stats/cursor-figma-raw.png
+assets/hero/figma-ref.png
+assets/hero/receipts.png
+assets/hero/screen-overlay-original.png
+assets/hero/screen-overlay-clear.png
+*.cs
+node_modules/**
+.git/**
