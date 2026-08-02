@@ -3193,6 +3193,8 @@
 
           if (mobileMq.matches) {
             document.documentElement.classList.add("layout-mobile");
+            const mobilePowers = document.querySelector(".mobile-powers");
+            if (mobilePowers) mobilePowers.setAttribute("aria-hidden", "false");
             canvas.style.zoom = "";
             canvas.style.transform = "";
             wrap.style.minHeight = "";
@@ -3262,6 +3264,8 @@
           }
 
           document.documentElement.classList.remove("layout-mobile");
+          const mobilePowers = document.querySelector(".mobile-powers");
+          if (mobilePowers) mobilePowers.setAttribute("aria-hidden", "true");
           document.querySelectorAll("img[data-src-parked]").forEach((img) => {
             if (img.dataset.srcParked && !img.getAttribute("src")) {
               img.setAttribute("src", img.dataset.srcParked);
