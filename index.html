@@ -7,29 +7,33 @@
     <meta
       name="description"
       content="Wacord is an e-commerce & omni-channel CRM that unifies chat, orders, and delivery so growing brands can scale faster."
-    />
+ />
     <meta name="theme-color" content="#050705" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Wacord — E-Commerce & Omni Channel CRM" />
     <meta
       property="og:description"
       content="Unify chat, orders, and delivery across every channel with Wacord CRM."
-    />
+ />
     <meta property="og:image" content="./assets/hero/logo.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Wacord — E-Commerce & Omni Channel CRM" />
     <meta
       name="twitter:description"
       content="Unify chat, orders, and delivery across every channel with Wacord CRM."
-    />
+ />
     <link rel="icon" type="image/png" href="./assets/hero/logo.png" />
     <link rel="apple-touch-icon" href="./assets/hero/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@400;600;700&display=swap"
       rel="stylesheet"
-    />
+ />
+    <link rel="preload" href="./assets/hero/mockup.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="./assets/optimized/screen-overlay.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="./assets/optimized/logo.webp" as="image" type="image/webp" />
     <link rel="stylesheet" href="./css/styles.css" />
     <style>
       .skip-link {
@@ -62,6 +66,56 @@
         color: #fff;
         font-family: Inter, ui-sans-serif, system-ui, sans-serif;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        scroll-padding-top: 96px;
+      }
+
+      /* Below-fold sections paint later for smoother first load */
+      #features {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 960px;
+      }
+      #about {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 870px;
+      }
+      #demo {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 920px;
+      }
+      #how-it-works {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1513px;
+      }
+      .site-footer {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 551px;
+      }
+
+      a,
+      button {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .btn-demo,
+      .meeting-submit,
+      .feature-link {
+        transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+      }
+
+      .btn-demo:hover,
+      .meeting-submit:hover {
+        transform: translateY(-1px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .btn-demo,
+        .meeting-submit,
+        .feature-link {
+          transition: none;
+        }
       }
 
       /* Lenis smooth scroll */
@@ -2095,7 +2149,7 @@
             data-node-id="2:206"
             aria-label="Wacord — open menu"
           >
-            <img src="./assets/hero/logo.png" alt="Wacord" />
+            <img src="./assets/optimized/logo.webp" alt="Wacord" width="120" height="32" decoding="async" />
           </a>
 
           <div class="site-nav__links" data-node-id="2:195">
@@ -2204,7 +2258,7 @@
             class="relative inline-flex h-[50px] w-[177px] items-center justify-center gap-2 rounded-[64px] border border-white/20 text-[16px] leading-none text-white"
             data-node-id="2:186"
           >
-            <img src="./assets/icons/play.svg" alt="" class="size-6" />
+            <img src="./assets/icons/play.svg" alt="" class="size-6" decoding="async" />
             How it works
           </a>
         </div>
@@ -2224,7 +2278,7 @@
             fetchpriority="high"
             decoding="async"
             class="absolute inset-0 size-full max-w-none object-cover"
-          />
+ />
         </div>
 
         <!-- Screen content overlay -->
@@ -2233,14 +2287,14 @@
           data-node-id="2:289"
         >
           <img
-            src="./assets/hero/screen-overlay.png"
+            src="./assets/optimized/screen-overlay.webp"
             alt=""
             width="668"
             height="507"
             decoding="async"
             fetchpriority="high"
             class="absolute inset-0 size-full max-w-none object-fill"
-          />
+ />
           <!-- Figma plane: rotate(8deg) skewX(8deg) scaleY(0.99) — only “10x” counts -->
           <span class="screen-count-10x" aria-hidden="true"
             ><span data-count-to="10">0</span>x</span
@@ -2253,12 +2307,12 @@
           data-node-id="2:297"
         >
           <img
-            src="./assets/hero/sticker.png"
+            src="./assets/optimized/sticker.webp"
             alt="Order receipt"
             class="absolute inset-0 size-full object-cover"
-            loading="lazy"
+ loading="lazy"
             decoding="async"
-          />
+ />
         </div>
 
         <!-- Glass labels — shell always opaque so backdrop blur works on brands text -->
@@ -2312,7 +2366,7 @@
                       src="./assets/icons/arrow.svg"
                       alt=""
                       class="size-10 shrink-0"
-                    />
+ loading="lazy" decoding="async" />
                   </div>
                   <p class="stat-title">
                     <span
@@ -2329,18 +2383,18 @@
 
               <!-- Mobile-only brand logos (hidden on desktop) -->
               <div class="mobile-logo-grid" aria-label="Brands using Wacord">
-                <img src="./assets/logos/adobe.png" alt="Adobe" />
-                <img src="./assets/logos/square.png" alt="Square" />
-                <img src="./assets/logos/1password.svg" alt="1Password" />
-                <img src="./assets/logos/nba.png" alt="NBA" />
-                <img src="./assets/logos/motive.svg" alt="Motive" />
-                <img src="./assets/logos/checkr.png" alt="Checkr" />
-                <img src="./assets/logos/twilio.png" alt="Twilio" />
-                <img src="./assets/logos/broadcom.png" alt="Broadcom" />
-                <img src="./assets/logos/sendoso.png" alt="Sendoso" />
-                <img src="./assets/logos/brex.svg" alt="Brex" />
-                <img src="./assets/logos/univision.svg" alt="Univision" />
-                <img src="./assets/logos/zendesk.png" alt="Zendesk" />
+                <img src="./assets/logos/adobe.png" alt="Adobe" loading="lazy" decoding="async" />
+                <img src="./assets/logos/square.png" alt="Square" loading="lazy" decoding="async" />
+                <img src="./assets/logos/1password.svg" alt="1Password" loading="lazy" decoding="async" />
+                <img src="./assets/logos/nba.png" alt="NBA" loading="lazy" decoding="async" />
+                <img src="./assets/logos/motive.svg" alt="Motive" loading="lazy" decoding="async" />
+                <img src="./assets/logos/checkr.png" alt="Checkr" loading="lazy" decoding="async" />
+                <img src="./assets/logos/twilio.png" alt="Twilio" loading="lazy" decoding="async" />
+                <img src="./assets/logos/broadcom.png" alt="Broadcom" loading="lazy" decoding="async" />
+                <img src="./assets/logos/sendoso.png" alt="Sendoso" loading="lazy" decoding="async" />
+                <img src="./assets/logos/brex.svg" alt="Brex" loading="lazy" decoding="async" />
+                <img src="./assets/logos/univision.svg" alt="Univision" loading="lazy" decoding="async" />
+                <img src="./assets/logos/zendesk.png" alt="Zendesk" loading="lazy" decoding="async" />
               </div>
             </div>
 
@@ -2359,32 +2413,32 @@
                   src="./assets/logos/adobe.png"
                   alt="Adobe"
                   class="absolute left-1/2 top-[152.5px] h-[31.5px] w-[121px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/square.png"
                   alt="Square"
                   class="absolute left-1/2 top-[224px] h-[34.5px] w-[136.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/1password.svg"
                   alt="1Password"
                   class="absolute left-1/2 top-[298.5px] h-[25.75px] w-[136.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/nba.png"
                   alt="NBA"
                   class="absolute left-1/2 top-[364.25px] h-[45px] w-[78.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/adobe.png"
                   alt="Adobe"
                   class="absolute left-1/2 top-[449.25px] h-[31.5px] w-[121px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/motive.svg"
                   alt="Motive"
                   class="absolute left-1/2 top-[520.75px] h-[47.11px] w-[127px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
               </div>
 
               <div
@@ -2395,42 +2449,42 @@
                   src="./assets/logos/1password.svg"
                   alt="1Password"
                   class="absolute left-1/2 top-[130.5px] h-[25.75px] w-[136.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/checkr.png"
                   alt="Checkr"
                   class="absolute left-1/2 top-[196.25px] h-[29.5px] w-[113.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/twilio.png"
                   alt="Twilio"
                   class="absolute left-1/2 top-[265.75px] h-[33.5px] w-[109.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/broadcom.png"
                   alt="Broadcom"
                   class="absolute left-1/2 top-[339.25px] h-[24.5px] w-[179px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/sendoso.png"
                   alt="Sendoso"
                   class="absolute left-1/2 top-[403.75px] h-[22.5px] w-[105.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/brex.svg"
                   alt="Brex"
                   class="absolute left-1/2 top-[466.25px] h-[29.77px] w-[113.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/univision.svg"
                   alt="Univision"
                   class="absolute left-1/2 top-[536.02px] h-[13.91px] w-[109.5px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
                 <img
                   src="./assets/logos/zendesk.png"
                   alt="Zendesk"
                   class="absolute left-1/2 top-[589.92px] h-[59.67px] w-[83px] -translate-x-1/2 object-contain"
-                />
+ loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -2455,136 +2509,136 @@
             alt=""
             data-node-id="2:120"
             style="left: 35.61px; top: 13.35px; width: 573.353px; height: 573.353px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-ring"
             src="./assets/feature/ellipse-1-copy.svg"
             alt=""
             data-node-id="2:121"
             style="left: 89.9px; top: 74.28px; width: 460.905px; height: 460.905px"
-          />
+ loading="lazy" decoding="async" />
 
           <!-- Center masked photo (Mask group 2:134) -->
           <div class="orbit-center" data-node-id="2:134">
             <img
               class="orbit-center-img"
-            src="./assets/feature/layer-3.png"
+            src="./assets/optimized/layer-3.webp"
             alt=""
-            loading="lazy"
+ loading="lazy"
             decoding="async"
             data-node-id="2:136"
             data-mobile-lazy="1"
-            />
+ />
           </div>
 
           <!-- Inner UI overlays (no floating shadow) -->
           <img
             class="orbit-overlay"
-            src="./assets/feature/layer-1-copy.png"
+            src="./assets/optimized/layer-1-copy.webp"
             alt=""
             data-node-id="2:137"
             style="left: 229.02px; top: 129.08px; width: 235.896px; height: 202.312px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-overlay"
-            src="./assets/feature/layer-4.png"
+            src="./assets/optimized/layer-4.webp"
             alt=""
             data-node-id="2:138"
             style="left: 233.06px; top: 135.14px; width: 226.59px; height: 182.89px"
-          />
+ loading="lazy" decoding="async" />
 
           <!-- App icons — exact Figma fills/colors (black bg keyed out) -->
           <img
             class="orbit-icon"
-            src="./assets/feature/communication-1.png"
+            src="./assets/optimized/communication-1.webp"
             alt=""
             data-node-id="2:130"
             style="left: 384.39px; top: 0; width: 90.636px; height: 90.636px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/layer-2.png"
+            src="./assets/optimized/layer-2.webp"
             alt=""
             data-node-id="2:132"
             style="left: 138.79px; top: 20.23px; width: 78.092px; height: 78.092px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/instagram.png"
+            src="./assets/optimized/instagram.webp"
             alt=""
             data-node-id="2:126"
             style="left: 261.79px; top: 30.35px; width: 84.971px; height: 84.971px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/social.png"
+            src="./assets/optimized/social.webp"
             alt=""
             data-node-id="2:124"
             style="left: 477.46px; top: 127.46px; width: 28.728px; height: 28.728px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/live-chat.png"
+            src="./assets/optimized/live-chat.webp"
             alt=""
             data-node-id="2:133"
             style="left: 86.99px; top: 136.76px; width: 74.046px; height: 74.046px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/communication.png"
+            src="./assets/optimized/communication.webp"
             alt=""
             data-node-id="2:125"
             style="left: 541.39px; top: 154.16px; width: 88.613px; height: 88.613px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/sheets.png"
+            src="./assets/optimized/sheets.webp"
             alt=""
             data-node-id="2:129"
             style="left: 0; top: 279.19px; width: 72.023px; height: 72.023px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/line.png"
+            src="./assets/optimized/line.webp"
             alt=""
             data-node-id="2:131"
             style="left: 66.36px; top: 280.81px; width: 45.723px; height: 45.723px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/shopify.png"
+            src="./assets/optimized/shopify.webp"
             alt=""
             data-node-id="2:139"
             style="left: 411.91px; top: 351.21px; width: 100.751px; height: 99.942px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/telephone-call-figma.png"
+            src="./assets/optimized/telephone-call.webp"
             alt=""
             data-node-id="2:128"
             style="left: 91.85px; top: 385.61px; width: 53.006px; height: 53.006px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/whatsapp.png"
+            src="./assets/optimized/whatsapp.webp"
             alt=""
             data-node-id="2:127"
             style="left: 521.97px; top: 435.78px; width: 65.549px; height: 65.549px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/pngegg.png"
+            src="./assets/optimized/pngegg.webp"
             alt=""
             data-node-id="2:123"
             style="left: 293.35px; top: 490.4px; width: 89.017px; height: 88.208px"
-          />
+ loading="lazy" decoding="async" />
           <img
             class="orbit-icon"
-            src="./assets/feature/unnamed.png"
+            src="./assets/optimized/unnamed.webp"
             alt=""
             data-node-id="2:122"
             style="left: 123.01px; top: 495.66px; width: 77.688px; height: 77.688px"
-          />
+ loading="lazy" decoding="async" />
         </div>
 
         <!-- Feature Text Container — page y 1943 → section-relative 1943-1648=295 -->
@@ -2638,7 +2692,7 @@
         data-motion-ease="0.5,0,0.5,1"
         aria-hidden="true"
       >
-        <img src="./assets/stats/cursor-figma.png" alt="" loading="lazy" decoding="async" data-desktop-only-img="1" />
+        <img src="./assets/optimized/cursor-figma.webp" alt="" loading="lazy" decoding="async" data-desktop-only-img="1" />
       </div>
 
       <!-- ========== STATS SECTION — Figma 2:142 ========== -->
@@ -2677,7 +2731,7 @@
                   stroke-width="3"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                />
+ />
               </svg>
               <p class="stats-value text-[32px] leading-[29px]">10+ Channels</p>
               <p class="stats-label mt-2 text-[18px] leading-[30px]">
@@ -2784,7 +2838,7 @@
                   required
                   autocomplete="url"
                   inputmode="url"
-                />
+ />
               </div>
 
               <div class="meeting-row">
@@ -2800,7 +2854,7 @@
                     placeholder="Your full name"
                     required
                     autocomplete="name"
-                  />
+ />
                 </div>
                 <div class="meeting-field meeting-field--half">
                   <label class="meeting-label" for="meeting-email"
@@ -2814,7 +2868,7 @@
                     placeholder="you@brand.com"
                     required
                     autocomplete="email"
-                  />
+ />
                 </div>
               </div>
 
@@ -2833,7 +2887,7 @@
                     required
                     autocomplete="tel-national"
                     inputmode="numeric"
-                  />
+ />
                 </div>
               </div>
 
@@ -2905,7 +2959,7 @@
               <div class="meeting-submit-row">
                 <button class="meeting-submit" type="submit" aria-label="Book meeting">
                   Book meeting
-                  <img src="./assets/meeting/arrow-right-white.svg" alt="" />
+                  <img src="./assets/meeting/arrow-right-white.svg" alt="" loading="lazy" decoding="async" />
                 </button>
               </div>
             </form>
@@ -2929,36 +2983,36 @@
             <p class="mobile-powers__row-title">Unify Your Conversations <span>↗</span></p>
             <div class="mobile-powers__media">
               <img
-                src="./assets/features/unify.png"
+                src="./assets/optimized/unify.webp"
                 alt="Unify your conversations"
-                loading="lazy"
+ loading="lazy"
                 decoding="async"
                 data-mobile-lazy="1"
-              />
+ />
             </div>
           </a>
           <a class="mobile-powers__row" href="#manage">
             <p class="mobile-powers__row-title">Manage &amp; Dispatch <span>↗</span></p>
             <div class="mobile-powers__media">
               <img
-                src="./assets/features/manage.png"
+                src="./assets/optimized/manage.webp"
                 alt="Manage and dispatch"
-                loading="lazy"
+ loading="lazy"
                 decoding="async"
                 data-mobile-lazy="1"
-              />
+ />
             </div>
           </a>
           <a class="mobile-powers__row" href="#track">
             <p class="mobile-powers__row-title">Track, Retarget &amp; Scale Sales <span>↗</span></p>
             <div class="mobile-powers__media">
               <img
-                src="./assets/features/track.png"
+                src="./assets/optimized/track.webp"
                 alt="Track, retarget and scale sales"
-                loading="lazy"
+ loading="lazy"
                 decoding="async"
                 data-mobile-lazy="1"
-              />
+ />
             </div>
           </a>
         </div>
@@ -3000,7 +3054,7 @@
               src="./assets/features/arrow.svg"
               alt=""
               data-node-id="2:94"
-            />
+ loading="lazy" decoding="async" />
 
             <div
               class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
@@ -3009,12 +3063,12 @@
               <div class="absolute inset-[-192px_-47px_-202px_-80px]" data-node-id="2:96">
                 <img
                   class="absolute left-[4.42%] top-[5.28%] h-[118.67%] w-[91.32%] max-w-none"
-                  src="./assets/features/unify.png"
+                  src="./assets/optimized/unify.webp"
                   alt=""
-                  loading="lazy"
+ loading="lazy"
                   decoding="async"
                   data-desktop-only-img="1"
-                />
+ />
               </div>
             </div>
           </a>
@@ -3043,7 +3097,7 @@
               src="./assets/features/arrow.svg"
               alt=""
               data-node-id="2:100"
-            />
+ loading="lazy" decoding="async" />
 
             <div
               class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
@@ -3052,12 +3106,12 @@
               <div class="absolute inset-[-11.63px_-36.4px_-12.38px_-58px]" data-node-id="2:102">
                 <img
                   class="absolute left-[4.94%] top-[-63.27%] h-[302.56%] w-full max-w-none"
-                  src="./assets/features/manage.png"
+                  src="./assets/optimized/manage.webp"
                   alt=""
-                  loading="lazy"
+ loading="lazy"
                   decoding="async"
                   data-desktop-only-img="1"
-                />
+ />
               </div>
             </div>
           </a>
@@ -3081,7 +3135,7 @@
               src="./assets/features/arrow.svg"
               alt=""
               data-node-id="2:106"
-            />
+ loading="lazy" decoding="async" />
 
             <div
               class="powers-pill absolute left-[394px] right-[-58px] top-[calc(50%-0.38px)] -translate-y-1/2"
@@ -3090,12 +3144,12 @@
               <div class="absolute inset-[-11.63px_-36.4px_-12.38px_-58px]" data-node-id="2:108">
                 <img
                   class="absolute left-[-3.23%] top-[-57%] h-[262.22%] w-full max-w-none"
-                  src="./assets/features/track.png"
+                  src="./assets/optimized/track.webp"
                   alt=""
-                  loading="lazy"
+ loading="lazy"
                   decoding="async"
                   data-desktop-only-img="1"
-                />
+ />
               </div>
             </div>
           </a>
@@ -3114,10 +3168,10 @@
             data-node-id="2:37"
           >
             <img
-              src="./assets/footer/logo.png"
+              src="./assets/optimized/footer-logo.webp"
               alt="Wacord"
               class="absolute inset-0 size-full object-cover"
-            />
+ loading="lazy" decoding="async" />
           </div>
 
           <div class="relative h-[154.188px] w-[289.281px] shrink-0" data-node-id="2:38">
@@ -3156,13 +3210,13 @@
 
             <div class="flex shrink-0 items-start gap-4" data-node-id="2:57">
               <a href="#demo" class="relative block size-5" aria-label="YouTube" data-node-id="2:58">
-                <img src="./assets/footer/social-1.svg" alt="" class="size-full" />
+                <img src="./assets/footer/social-1.svg" alt="" class="size-full" loading="lazy" decoding="async" />
               </a>
               <a href="#demo" class="relative block size-5" aria-label="Twitter" data-node-id="2:62">
-                <img src="./assets/footer/social-2.svg" alt="" class="size-full" />
+                <img src="./assets/footer/social-2.svg" alt="" class="size-full" loading="lazy" decoding="async" />
               </a>
               <a href="#demo" class="relative block size-5" aria-label="LinkedIn" data-node-id="2:66">
-                <img src="./assets/footer/social-3.svg" alt="" class="size-full" />
+                <img src="./assets/footer/social-3.svg" alt="" class="size-full" loading="lazy" decoding="async" />
               </a>
             </div>
           </div>
@@ -3186,6 +3240,15 @@
         let lenis = null;
 
         const mobileMq = window.matchMedia("(max-width: 900px)");
+
+        let fitRaf = 0;
+        function scheduleFitPage() {
+          if (fitRaf) return;
+          fitRaf = requestAnimationFrame(() => {
+            fitRaf = 0;
+            fitPage();
+          });
+        }
 
         function fitPage() {
           const width = wrap.clientWidth || window.innerWidth;
@@ -3304,11 +3367,11 @@
         }
 
         fitPage();
-        window.addEventListener("resize", fitPage);
+        window.addEventListener("resize", scheduleFitPage, { passive: true });
         if (typeof mobileMq.addEventListener === "function") {
-          mobileMq.addEventListener("change", fitPage);
+          mobileMq.addEventListener("change", scheduleFitPage);
         } else if (typeof mobileMq.addListener === "function") {
-          mobileMq.addListener(fitPage);
+          mobileMq.addListener(scheduleFitPage);
         }
 
         /* Mobile menu (preview file only) */
