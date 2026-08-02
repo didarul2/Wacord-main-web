@@ -1229,6 +1229,16 @@
         display: block;
       }
 
+      .meeting-submit:disabled {
+        opacity: 0.7;
+        cursor: wait;
+        transform: none;
+      }
+
+      .meeting-submit.is-error {
+        background: #8a3030 !important;
+      }
+
       .meeting-submit.is-sent {
         opacity: 0.6;
       }
@@ -2154,7 +2164,7 @@
 
           <div class="site-nav__links" data-node-id="2:195">
             <a href="#features">Features</a>
-            <a href="#demo">Pricing</a>
+            <a href="./pricing.html">Pricing</a>
             <a href="#features">Events</a>
             <a href="#about">About</a>
             <a href="#about">Blog</a>
@@ -2180,7 +2190,7 @@
 
         <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
           <a href="#features">Features</a>
-          <a href="#demo">Pricing</a>
+          <a href="./pricing.html">Pricing</a>
           <a href="#features">Events</a>
           <a href="#about">About</a>
           <a href="#about">Blog</a>
@@ -2958,7 +2968,7 @@
 
               <div class="meeting-submit-row">
                 <button class="meeting-submit" type="submit" aria-label="Book meeting">
-                  Book meeting
+                  <span class="meeting-submit__label">Book meeting</span>
                   <img src="./assets/meeting/arrow-right-white.svg" alt="" loading="lazy" decoding="async" />
                 </button>
               </div>
@@ -3177,7 +3187,7 @@
           <div class="relative h-[154.188px] w-[289.281px] shrink-0" data-node-id="2:38">
             <p class="footer-label absolute left-0 top-[9.5px] -translate-y-1/2">Product</p>
             <a href="#features" class="footer-link absolute left-0 top-[54.19px] -translate-y-1/2">Features</a>
-            <a href="#demo" class="footer-link absolute left-0 top-[94.19px] -translate-y-1/2">Pricing</a>
+            <a href="./pricing.html" class="footer-link absolute left-0 top-[94.19px] -translate-y-1/2">Pricing</a>
             <a href="#demo" class="footer-link sm absolute left-0 top-[134.19px] -translate-y-1/2">Book a demo</a>
           </div>
 
@@ -3632,40 +3642,87 @@
           const courierField = document.getElementById("courier-field");
           const courierError = document.getElementById("courier-error");
           const btn = form.querySelector(".meeting-submit");
+          const btnLabel = form.querySelector(".meeting-submit__label");
+          const defaultBtnText = "Book meeting";
 
-          form.addEventListener("submit", (event) => {
+          function setButtonState(state) {
+            if (!btn) return;
+            btn.classList.remove("is-sent", "is-error");
+            btn.disabled = state === "loading";
+            if (state === "loading") {
+              btn.setAttribute("aria-label", "Sending");
+              if (btnLabel) btnLabel.textContent = "Sending…";
+            } else if (state === "sent") {
+              btn.classList.add("is-sent");
+              btn.setAttribute("aria-label", "Sent");
+              if (btnLabel) btnLabel.textContent = "Booked ✓";
+            } else if (state === "error") {
+              btn.classList.add("is-error");
+              btn.setAttribute("aria-label", "Try again");
+              if (btnLabel) btnLabel.textContent = "Try again";
+            } else {
+              btn.setAttribute("aria-label", defaultBtnText);
+              if (btnLabel) btnLabel.textContent = defaultBtnText;
+            }
+          }
+
+          form.addEventListener("submit", async (event) => {
             event.preventDefault();
+            if (btn && btn.disabled) return;
+
             const data = new FormData(form);
             const website = String(data.get("website") || "").trim();
             const name = String(data.get("fullname") || "").trim();
             const email = String(data.get("email") || "").trim();
             const phone = String(data.get("phone") || "").trim();
             const volume = data.get("volume");
-            const couriers = data.getAll("courier");
+            const couriers = data.getAll("courier").map(String);
 
             const courierOk = couriers.length > 0;
             if (courierField && courierError) {
               courierField.classList.toggle("is-invalid", !courierOk);
               courierError.classList.toggle("is-visible", !courierOk);
             }
-            if (!website || !name || !email || !phone || !volume || !courierOk) return;
-
-            form.reset();
-            if (courierField && courierError) {
-              courierField.classList.remove("is-invalid");
-              courierError.classList.remove("is-visible");
+            if (!form.checkValidity() || !website || !name || !email || !phone || !volume || !courierOk) {
+              form.reportValidity();
+              return;
             }
-            const vol = form.querySelector('input[name="volume"][value="20000+"]');
-            if (vol) vol.checked = true;
 
-            if (!btn) return;
-            btn.classList.add("is-sent");
-            const prev = btn.getAttribute("aria-label") || "Book meeting";
-            btn.setAttribute("aria-label", "Sent");
-            setTimeout(() => {
-              btn.classList.remove("is-sent");
-              btn.setAttribute("aria-label", prev);
-            }, 1600);
+            setButtonState("loading");
+
+            try {
+              const res = await fetch("/api/book-meeting", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  website,
+                  name,
+                  email,
+                  phone,
+                  volume,
+                  couriers,
+                }),
+              });
+              const result = await res.json().catch(() => ({}));
+              if (!res.ok || !result.ok) {
+                throw new Error(result.error || "Booking failed");
+              }
+
+              form.reset();
+              if (courierField && courierError) {
+                courierField.classList.remove("is-invalid");
+                courierError.classList.remove("is-visible");
+              }
+              const vol = form.querySelector('input[name="volume"][value="20000+"]');
+              if (vol) vol.checked = true;
+
+              setButtonState("sent");
+              setTimeout(() => setButtonState("idle"), 2200);
+            } catch (err) {
+              console.error(err);
+              setButtonState("error");
+              setTimeout(() => setButtonState("idle"), 2800);
+            }
           });
 
           form.querySelectorAll('input[name="courier"]').forEach((box) => {
