@@ -1700,6 +1700,7 @@
           left: auto !important;
           top: auto !important;
           transform: none !important;
+          translate: none !important;
           width: 100% !important;
           max-width: 100%;
         }
@@ -1741,14 +1742,18 @@
         html.layout-mobile #about .stats-heading {
           position: relative !important;
           left: auto !important;
+          right: auto !important;
           top: auto !important;
+          inset: auto !important;
           transform: none !important;
-          width: 100% !important;
-          max-width: 20ch;
-          margin: 0 auto 28px;
-          font-size: clamp(26px, 7vw, 36px);
-          line-height: 1.2;
-          text-align: center;
+          translate: none !important;
+          width: min(100%, 18ch) !important;
+          max-width: 18ch !important;
+          margin: 8px auto 28px !important;
+          font-size: clamp(28px, 7.4vw, 36px) !important;
+          line-height: 1.15 !important;
+          text-align: center !important;
+          letter-spacing: -0.5px;
         }
 
         html.layout-mobile #about [data-node-id="2:144"] {
@@ -1870,30 +1875,95 @@
           font-size: 16px;
         }
 
-        /* ---- Powers: keep same desktop composition; zoom whole 1440 frame ---- */
+        /* ---- Powers: mobile stacked layout (same content, readable) ---- */
+        .mobile-powers {
+          display: none;
+        }
+
         html.layout-mobile #how-it-works.powers-section {
           position: relative !important;
           left: auto !important;
           top: auto !important;
-          width: 1440px !important;
-          height: 1513px !important;
+          width: 100% !important;
+          height: auto !important;
           min-height: 0 !important;
-          padding: 0 80px !important;
-          overflow: visible !important;
-          display: flex !important;
-          align-items: flex-start !important;
-          zoom: var(--powers-scale, 0.27);
+          padding: 48px 16px 56px !important;
+          overflow: hidden !important;
+          display: block !important;
+          zoom: 1 !important;
+          background: #f4f4f5;
         }
 
         html.layout-mobile #how-it-works > div[data-node-id="2:88"] {
-          position: relative !important;
-          width: 1280px !important;
-          height: 1513.375px !important;
-          max-width: none !important;
-          flex-shrink: 0 !important;
-          transform: none !important;
-          margin: 0 !important;
-          left: auto !important;
+          display: none !important;
+        }
+
+        html.layout-mobile .mobile-powers {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+          width: 100%;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+
+        html.layout-mobile .mobile-powers__title {
+          margin: 0;
+          font-family: Rockwell, "Zilla Slab", serif;
+          font-weight: 400;
+          font-size: clamp(30px, 8vw, 40px);
+          line-height: 1.15;
+          letter-spacing: -1px;
+          color: #0f172a;
+        }
+
+        html.layout-mobile .mobile-powers__title .brand {
+          color: #4c7046;
+        }
+
+        html.layout-mobile .mobile-powers__row {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        html.layout-mobile .mobile-powers__row-title {
+          margin: 0;
+          font-family: Rockwell, "Zilla Slab", serif;
+          font-size: clamp(22px, 6vw, 28px);
+          line-height: 1.2;
+          color: #0f172a;
+        }
+
+        html.layout-mobile .mobile-powers__row-title span {
+          color: #4c7046;
+        }
+
+        html.layout-mobile .mobile-powers__media {
+          width: 100%;
+          border-radius: 28px;
+          overflow: hidden;
+          background: #0b0f0c;
+          aspect-ratio: 16 / 10;
+        }
+
+        html.layout-mobile .mobile-powers__media img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: left center;
+        }
+
+        /* Faster mobile paint: skip heavy decorative glows */
+        html.layout-mobile header[aria-label="Wacord hero"] > .pointer-events-none {
+          display: none !important;
+        }
+
+        html.layout-mobile img[data-mobile-lazy="1"] {
+          content-visibility: auto;
         }
 
         /* ---- Footer ---- */
@@ -2045,7 +2115,7 @@
           aria-hidden="true"
         >
           <div class="absolute -top-[33.14%] right-[-31.68%] bottom-[7.4%] left-[-31.68%]">
-            <img src="./assets/effects/ellipse2.svg" alt="" class="glow-img" />
+            <img data-src="./assets/effects/ellipse2.svg" alt="" class="glow-img" data-desktop-only-img="1" decoding="async" />
           </div>
         </div>
         <div
@@ -2055,7 +2125,7 @@
         >
           <div class="relative h-[967.761px] w-[498.041px] rotate-[77.16deg]">
             <div class="absolute -top-[21.58%] right-[-41.92%] bottom-[3.19%] left-[-41.92%]">
-              <img src="./assets/effects/ellipse3.svg" alt="" class="glow-img" />
+              <img data-src="./assets/effects/ellipse3.svg" alt="" class="glow-img" data-desktop-only-img="1" decoding="async" />
             </div>
           </div>
         </div>
@@ -2065,7 +2135,7 @@
           aria-hidden="true"
         >
           <div class="absolute -top-[37.96%] right-[-34.23%] bottom-[10.41%] left-[-34.23%]">
-            <img src="./assets/effects/ellipse4.svg" alt="" class="glow-img" />
+            <img data-src="./assets/effects/ellipse4.svg" alt="" class="glow-img" data-desktop-only-img="1" decoding="async" />
           </div>
         </div>
 
@@ -2136,6 +2206,7 @@
             width="668"
             height="507"
             decoding="async"
+            fetchpriority="high"
             class="absolute inset-0 size-full max-w-none object-fill"
           />
           <!-- Figma plane: rotate(8deg) skewX(8deg) scaleY(0.99) — only “10x” counts -->
@@ -2153,6 +2224,8 @@
             src="./assets/hero/sticker.png"
             alt="Order receipt"
             class="absolute inset-0 size-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -2368,6 +2441,7 @@
             loading="lazy"
             decoding="async"
             data-node-id="2:136"
+            data-mobile-lazy="1"
             />
           </div>
 
@@ -2532,7 +2606,7 @@
         data-motion-ease="0.5,0,0.5,1"
         aria-hidden="true"
       >
-        <img src="./assets/stats/cursor-figma.png" alt="" loading="lazy" decoding="async" />
+        <img data-src="./assets/stats/cursor-figma.png" alt="" loading="lazy" decoding="async" data-desktop-only-img="1" />
       </div>
 
       <!-- ========== STATS SECTION — Figma 2:142 ========== -->
@@ -2814,6 +2888,49 @@
         data-node-id="2:87"
         aria-label="How Wacord Powers Your Business"
       >
+        <!-- Mobile stacked powers (shown only under layout-mobile) -->
+        <div class="mobile-powers" aria-hidden="false">
+          <h2 class="mobile-powers__title">
+            How <span class="brand">Wacord</span> Powers<br />Your Business
+          </h2>
+          <a class="mobile-powers__row" href="#unify">
+            <p class="mobile-powers__row-title">Unify Your Conversations <span>↗</span></p>
+            <div class="mobile-powers__media">
+              <img
+                src="./assets/features/unify.png"
+                alt="Unify your conversations"
+                loading="lazy"
+                decoding="async"
+                data-mobile-lazy="1"
+              />
+            </div>
+          </a>
+          <a class="mobile-powers__row" href="#manage">
+            <p class="mobile-powers__row-title">Manage &amp; Dispatch <span>↗</span></p>
+            <div class="mobile-powers__media">
+              <img
+                src="./assets/features/manage.png"
+                alt="Manage and dispatch"
+                loading="lazy"
+                decoding="async"
+                data-mobile-lazy="1"
+              />
+            </div>
+          </a>
+          <a class="mobile-powers__row" href="#track">
+            <p class="mobile-powers__row-title">Track, Retarget &amp; Scale Sales <span>↗</span></p>
+            <div class="mobile-powers__media">
+              <img
+                src="./assets/features/track.png"
+                alt="Track, retarget and scale sales"
+                loading="lazy"
+                decoding="async"
+                data-mobile-lazy="1"
+              />
+            </div>
+          </a>
+        </div>
+
         <div class="relative h-[1513.375px] w-[1280px] shrink-0" data-node-id="2:88">
           <div class="powers-divider top-[446.38px]" data-node-id="2:89"></div>
           <div class="powers-divider top-[767.38px]" data-node-id="2:109"></div>
@@ -2862,6 +2979,9 @@
                   class="absolute left-[4.42%] top-[5.28%] h-[118.67%] w-[91.32%] max-w-none"
                   src="./assets/features/unify.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-desktop-only-img="1"
                 />
               </div>
             </div>
@@ -2902,6 +3022,9 @@
                   class="absolute left-[4.94%] top-[-63.27%] h-[302.56%] w-full max-w-none"
                   src="./assets/features/manage.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-desktop-only-img="1"
                 />
               </div>
             </div>
@@ -2937,6 +3060,9 @@
                   class="absolute left-[-3.23%] top-[-57%] h-[262.22%] w-full max-w-none"
                   src="./assets/features/track.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-desktop-only-img="1"
                 />
               </div>
             </div>
@@ -3064,6 +3190,17 @@
               "--powers-offset",
               (width - 1280 * powersScale) / 2 + "px"
             );
+            /* Skip downloading desktop-only heavy assets on mobile */
+            document
+              .querySelectorAll(
+                "[data-desktop-only-img], .logo-cloud img, #cursor-3d img, #how-it-works [data-node-id='2:88'] img"
+              )
+              .forEach((img) => {
+                if (img.dataset.srcParked || !img.getAttribute("src")) return;
+                img.dataset.srcParked = img.getAttribute("src") || "";
+                img.removeAttribute("src");
+                img.removeAttribute("srcset");
+              });
             if (nav) {
               nav.style.transform = "translateX(-50%)";
               nav.style.top = "";
@@ -3093,6 +3230,16 @@
           }
 
           document.documentElement.classList.remove("layout-mobile");
+          document.querySelectorAll("img[data-src-parked]").forEach((img) => {
+            if (img.dataset.srcParked && !img.getAttribute("src")) {
+              img.setAttribute("src", img.dataset.srcParked);
+            }
+          });
+          document.querySelectorAll("img[data-src][data-desktop-only-img]").forEach((img) => {
+            if (!img.getAttribute("src") && img.dataset.src) {
+              img.setAttribute("src", img.dataset.src);
+            }
+          });
           const scale = Math.min(1, width / DESIGN_W);
           const supportsZoom =
             typeof CSS !== "undefined" &&
