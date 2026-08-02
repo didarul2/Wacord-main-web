@@ -1567,6 +1567,7 @@
           padding: 12px 0 0 !important;
           display: block;
           z-index: 6;
+          overflow: hidden;
         }
 
         html.layout-mobile header [data-node-id="2:208"],
@@ -1614,56 +1615,39 @@
         html.layout-mobile .stat-desc {
           font-size: 13px;
           line-height: 1.4;
-          max-width: 32ch;
+          max-width: 100%;
           margin-top: 4px;
+          white-space: normal;
         }
 
+        /* Desktop logo marquee stays in DOM; mobile uses clean grid below */
         html.layout-mobile .logo-cloud {
-          position: relative !important;
-          inset: auto !important;
-          left: auto !important;
-          right: auto !important;
-          top: auto !important;
-          width: 100% !important;
-          height: auto !important;
-          overflow: visible !important;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
+          display: none !important;
+        }
+
+        .mobile-logo-grid {
+          display: none;
+        }
+
+        html.layout-mobile .mobile-logo-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px 12px;
+          width: 100%;
+          margin: 8px 0 4px;
+          padding: 4px 0;
           align-items: center;
-          gap: 14px 18px;
-          padding: 8px 0 4px;
+          justify-items: center;
         }
 
-        html.layout-mobile .logo-cloud .logo-fade {
-          display: none;
-        }
-
-        html.layout-mobile .logo-cloud > div {
-          position: relative !important;
-          left: auto !important;
-          top: auto !important;
-          width: auto !important;
-          height: auto !important;
-          display: contents;
-        }
-
-        html.layout-mobile .logo-cloud img {
-          position: relative !important;
-          left: auto !important;
-          top: auto !important;
-          transform: none !important;
-          width: auto !important;
-          height: 22px !important;
-          max-width: 96px;
+        html.layout-mobile .mobile-logo-grid img {
+          display: block;
+          width: auto;
+          height: 18px;
+          max-width: 92px;
           object-fit: contain;
-          opacity: 0.85;
-          filter: grayscale(1) brightness(1.25);
-        }
-
-        /* Hide duplicate adobe in mobile logo strip (first column last adobe) */
-        html.layout-mobile .logo-cloud [data-node-id="2:220"] img:nth-child(5) {
-          display: none;
+          opacity: 0.9;
+          filter: brightness(0) invert(1);
         }
 
         /* ---- Orbit / feature: visual top, typography bottom ---- */
@@ -1685,12 +1669,16 @@
           left: auto !important;
           top: auto !important;
           order: 1;
-          width: 630px;
-          height: 586.7px;
-          margin: 0 auto 8px;
-          transform: scale(var(--orbit-scale, 0.52));
-          transform-origin: top center;
-          margin-bottom: calc(-586.7px * (1 - var(--orbit-scale, 0.52)) + 8px);
+          width: 630px !important;
+          height: 586.7px !important;
+          margin: 0 auto 16px !important;
+          transform: none !important;
+          /* zoom shrinks layout box too — no crop / no overlap */
+          zoom: var(--orbit-scale, 0.55);
+        }
+
+        html.layout-mobile #features .feature-copy {
+          margin-top: 4px;
         }
 
         html.layout-mobile #features .feature-copy {
@@ -1882,24 +1870,29 @@
           font-size: 16px;
         }
 
-        /* ---- Powers: keep same layout, scale to width ---- */
+        /* ---- Powers: keep same desktop composition, scale to viewport ---- */
         html.layout-mobile #how-it-works.powers-section {
           position: relative !important;
           left: auto !important;
           top: auto !important;
           width: 100% !important;
-          height: calc(1513px * (100vw / 1440)) !important;
-          min-height: 0;
+          height: calc(1513px * var(--powers-scale, 0.27)) !important;
+          min-height: 0 !important;
           padding: 0 !important;
-          overflow: hidden;
+          overflow: hidden !important;
+          display: block !important;
         }
 
-        html.layout-mobile #how-it-works > div {
-          width: 1280px;
-          height: 1513.375px;
-          transform: scale(calc(100vw / 1440));
-          transform-origin: top left;
-          margin-left: calc((100vw - 1280px * (100vw / 1440)) / 2 + 80px * (100vw / 1440));
+        html.layout-mobile #how-it-works > div[data-node-id="2:88"] {
+          position: relative !important;
+          width: 1280px !important;
+          height: 1513.375px !important;
+          max-width: none !important;
+          flex-shrink: 0 !important;
+          transform: scale(var(--powers-scale, 0.27)) !important;
+          transform-origin: top left !important;
+          margin: 0 0 0 var(--powers-offset, 0px) !important;
+          left: 0 !important;
         }
 
         /* ---- Footer ---- */
@@ -2226,6 +2219,22 @@
                   respond, confirm orders, and book parcels instantly from one
                   screen
                 </p>
+              </div>
+
+              <!-- Mobile-only brand logos (hidden on desktop) -->
+              <div class="mobile-logo-grid" aria-label="Brands using Wacord">
+                <img src="./assets/logos/adobe.png" alt="Adobe" />
+                <img src="./assets/logos/square.png" alt="Square" />
+                <img src="./assets/logos/1password.svg" alt="1Password" />
+                <img src="./assets/logos/nba.png" alt="NBA" />
+                <img src="./assets/logos/motive.svg" alt="Motive" />
+                <img src="./assets/logos/checkr.png" alt="Checkr" />
+                <img src="./assets/logos/twilio.png" alt="Twilio" />
+                <img src="./assets/logos/broadcom.png" alt="Broadcom" />
+                <img src="./assets/logos/sendoso.png" alt="Sendoso" />
+                <img src="./assets/logos/brex.svg" alt="Brex" />
+                <img src="./assets/logos/univision.svg" alt="Univision" />
+                <img src="./assets/logos/zendesk.png" alt="Zendesk" />
               </div>
             </div>
 
@@ -3034,9 +3043,25 @@
               "--hero-visual-scale",
               String(heroScale)
             );
+            const orbitScale = Math.min(1, (width - 40) / 630);
             document.documentElement.style.setProperty(
               "--orbit-scale",
-              String(Math.min(0.62, (width - 24) / 630))
+              String(orbitScale)
+            );
+            /* Collapse unused layout height after CSS scale */
+            document.documentElement.style.setProperty(
+              "--orbit-gap",
+              586.7 * (orbitScale - 1) + 20 + "px"
+            );
+            /* Scale full 1440 powers frame to viewport; keep composition */
+            const powersScale = Math.min(1, width / 1440);
+            document.documentElement.style.setProperty(
+              "--powers-scale",
+              String(powersScale)
+            );
+            document.documentElement.style.setProperty(
+              "--powers-offset",
+              (width - 1280 * powersScale) / 2 + "px"
             );
             if (nav) {
               nav.style.transform = "translateX(-50%)";
