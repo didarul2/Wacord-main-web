@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "dev": "node server.mjs",
     "build:css": "npx @tailwindcss/cli -i ./css/input.css -o ./css/styles.css --minify",
     "build": "npm run build:css"
   },
