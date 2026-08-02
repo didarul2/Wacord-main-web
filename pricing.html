@@ -29,9 +29,7 @@
         --line: rgba(16, 22, 18, 0.08);
         --card: #ffffff;
         --shadow: 0 18px 50px rgba(47, 74, 44, 0.1);
-        --radius-card: 28px;
-        --radius-pill: 999px;
-        --nav-h: 72px;
+        --radius-card: 24px;
         --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
         --font-display: "Zilla Slab", Rockwell, Georgia, serif;
       }
@@ -51,8 +49,8 @@
         color: var(--ink);
         font-family: var(--font-sans);
         background:
-          radial-gradient(1200px 520px at 50% -10%, rgba(155, 197, 122, 0.28), transparent 60%),
-          radial-gradient(900px 420px at 100% 0%, rgba(76, 112, 70, 0.1), transparent 55%),
+          radial-gradient(1200px 520px at 50% -10%, rgba(155, 197, 122, 0.22), transparent 60%),
+          radial-gradient(900px 420px at 100% 0%, rgba(76, 112, 70, 0.08), transparent 55%),
           var(--brand-mist);
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
@@ -72,7 +70,7 @@
         position: absolute;
         left: 16px;
         top: -48px;
-        z-index: 100;
+        z-index: 400;
         padding: 10px 14px;
         border-radius: 8px;
         background: var(--brand);
@@ -83,64 +81,157 @@
         top: 16px;
       }
 
-      /* ——— Header ——— */
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(16px) saturate(140%);
-        background: rgba(243, 247, 242, 0.82);
-        border-bottom: 1px solid rgba(76, 112, 70, 0.08);
+      /* ——— Main site nav (same glass pill) ——— */
+      .nav-glass {
+        background: linear-gradient(
+          165deg,
+          rgba(47, 74, 44, 0.92) 0%,
+          rgba(76, 112, 70, 0.88) 55%,
+          rgba(47, 74, 44, 0.9) 100%
+        );
+        backdrop-filter: blur(22px) saturate(1.35);
+        -webkit-backdrop-filter: blur(22px) saturate(1.35);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow:
+          0 10px 40px rgba(0, 0, 0, 0.22),
+          0 0 0 1px rgba(163, 255, 147, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.28),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.18);
       }
 
-      .site-header__inner {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-        min-height: var(--nav-h);
+      .site-nav {
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        z-index: 200;
+        width: min(1280px, calc(100vw - 32px));
+        height: 68.8px;
+        margin: 0;
+        transform: translateX(-50%);
+        transform-origin: top center;
+        pointer-events: none;
+      }
+
+      .site-nav * {
+        pointer-events: auto;
+      }
+
+      .site-nav__shell {
+        position: relative;
+        width: 100%;
+        height: 69px;
+        border-radius: 34.5px;
+      }
+
+      .site-nav__shine {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.16) 0%,
+          rgba(255, 255, 255, 0.04) 28%,
+          transparent 55%
+        );
+      }
+
+      .site-nav__inner {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        padding: 0 18px 0 15px;
+        gap: 16px;
       }
 
-      .brand-lockup {
+      .site-nav__logo {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        display: block;
+      }
+
+      .site-nav__logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .site-nav__links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(18px, 2.2vw, 32px);
+        flex: 1;
+        white-space: nowrap;
+        font-size: 15px;
+        line-height: 20.8px;
+        color: #fff;
+      }
+
+      .site-nav__links a {
+        color: inherit;
+        opacity: 0.92;
+        transition: opacity 0.2s ease;
+      }
+
+      .site-nav__links a:hover,
+      .site-nav__links a.is-active {
+        opacity: 1;
+      }
+
+      .site-nav__links a.is-active {
+        font-weight: 600;
+      }
+
+      .site-nav__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        flex-shrink: 0;
+      }
+
+      .site-nav__actions > a:not(.btn-demo) {
+        color: #fff;
+        font-size: 15px;
+        opacity: 0.92;
+      }
+
+      .site-nav__actions > a:not(.btn-demo):hover {
+        opacity: 1;
+      }
+
+      .btn-demo {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.35rem;
-        letter-spacing: -0.02em;
+        justify-content: center;
+        border-radius: 12px;
+        padding: 12px 20px;
+        background: #4c7046;
+        color: #fff !important;
+        font-size: 15px;
+        font-weight: 600;
+        box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
       }
 
-      .brand-lockup img {
-        width: 34px;
-        height: 34px;
-        object-fit: contain;
+      .site-nav__toggle {
+        display: none;
       }
 
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 22px;
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: var(--muted);
+      .mobile-nav-panel {
+        display: none;
       }
 
-      .nav-links a:hover,
-      .nav-links a.is-active {
-        color: var(--brand-deep);
-      }
-
-      .nav-links a.is-active {
-        font-weight: 700;
-      }
-
-      .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+      /* ——— Page content ——— */
+      .page {
+        padding-top: 120px;
       }
 
       .btn {
@@ -152,121 +243,40 @@
         cursor: pointer;
         font: inherit;
         font-weight: 600;
-        border-radius: var(--radius-pill);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        border-radius: 10px;
+        transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
       }
 
       .btn:hover {
         transform: translateY(-1px);
       }
 
-      .btn-ghost {
-        padding: 10px 16px;
-        color: var(--brand-deep);
-        background: transparent;
-        border: 1px solid rgba(76, 112, 70, 0.18);
-      }
-
       .btn-solid {
-        padding: 12px 20px;
+        padding: 12px 22px;
         color: #fff;
-        background: linear-gradient(180deg, var(--brand-bright), var(--brand));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.28),
-          0 10px 24px rgba(76, 112, 70, 0.22);
+        background: var(--brand);
       }
 
       .btn-solid:hover {
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.32),
-          0 14px 28px rgba(76, 112, 70, 0.28);
-      }
-
-      .menu-toggle {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        border: 1px solid rgba(76, 112, 70, 0.16);
-        background: #fff;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .menu-toggle span,
-      .menu-toggle span::before,
-      .menu-toggle span::after {
-        display: block;
-        width: 18px;
-        height: 2px;
         background: var(--brand-deep);
-        border-radius: 2px;
-        position: relative;
       }
 
-      .menu-toggle span::before,
-      .menu-toggle span::after {
-        content: "";
-        position: absolute;
-        left: 0;
-      }
-
-      .menu-toggle span::before {
-        top: -6px;
-      }
-
-      .menu-toggle span::after {
-        top: 6px;
-      }
-
-      .mobile-menu {
-        display: none;
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto 14px;
-        padding: 14px;
-        border-radius: 18px;
-        background: #fff;
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow);
-      }
-
-      .mobile-menu a {
-        display: block;
-        padding: 12px 10px;
-        font-weight: 500;
-        color: var(--ink);
-        border-radius: 10px;
-      }
-
-      .mobile-menu a:hover,
-      .mobile-menu a.is-active {
-        background: var(--brand-soft);
-        color: var(--brand-deep);
-      }
-
-      body.menu-open .mobile-menu {
-        display: grid;
-        gap: 4px;
-      }
-
-      /* ——— Hero ——— */
       .hero {
         position: relative;
         width: min(980px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 72px 0 40px;
+        padding: 28px 0 36px;
         text-align: center;
       }
 
       .hero::before {
         content: "";
         position: absolute;
-        inset: 20px -8% auto;
-        height: 280px;
+        inset: 10px -8% auto;
+        height: 260px;
         z-index: -1;
-        opacity: 0.45;
-        background-image: radial-gradient(rgba(76, 112, 70, 0.22) 1px, transparent 1px);
+        opacity: 0.4;
+        background-image: radial-gradient(rgba(76, 112, 70, 0.2) 1px, transparent 1px);
         background-size: 18px 18px;
         mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
       }
@@ -276,7 +286,7 @@
         align-items: center;
         gap: 8px;
         padding: 8px 14px;
-        border-radius: var(--radius-pill);
+        border-radius: 999px;
         background: #fff;
         border: 1px solid rgba(76, 112, 70, 0.12);
         box-shadow: 0 8px 24px rgba(47, 74, 44, 0.08);
@@ -289,20 +299,19 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--brand-lime), var(--brand));
+        background: var(--brand);
       }
 
       .hero h1 {
         margin: 22px 0 14px;
         font-family: var(--font-display);
-        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
         line-height: 1.08;
         letter-spacing: -0.03em;
-        color: var(--ink);
       }
 
       .hero p {
-        margin: 0 auto 28px;
+        margin: 0 auto 26px;
         max-width: 560px;
         font-size: 1.05rem;
         line-height: 1.6;
@@ -313,37 +322,22 @@
       .pricing-section {
         width: min(1240px, calc(100% - 24px));
         margin: 0 auto;
-        padding: 12px 0 72px;
+        padding: 8px 0 64px;
       }
 
       .pricing-grid {
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 18px;
+        gap: 16px;
         align-items: stretch;
-      }
-
-      .plan {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        min-width: 0;
-      }
-
-      .plan__label {
-        padding-left: 8px;
-        font-size: 0.92rem;
-        font-weight: 700;
-        color: var(--brand-deep);
       }
 
       .plan__card {
         position: relative;
         display: flex;
         flex-direction: column;
-        flex: 1;
-        min-height: 100%;
-        padding: 22px 20px 24px;
+        height: 100%;
+        padding: 22px 18px 22px;
         border-radius: var(--radius-card);
         background: var(--card);
         border: 1px solid rgba(76, 112, 70, 0.1);
@@ -354,9 +348,8 @@
       .plan--hero .plan__card {
         border: 1px solid rgba(76, 112, 70, 0.14);
         box-shadow:
-          0 22px 55px rgba(47, 74, 44, 0.16),
-          0 0 0 1px rgba(155, 197, 122, 0.2);
-        background: #fff;
+          0 22px 55px rgba(47, 74, 44, 0.14),
+          0 0 0 1px rgba(155, 197, 122, 0.18);
       }
 
       .plan--hero .plan__card::before {
@@ -365,49 +358,66 @@
         left: -10%;
         right: -10%;
         top: -8%;
-        height: 160px;
+        height: 150px;
         background:
           radial-gradient(55% 90% at 12% 0%, #c6e3a8 0%, transparent 70%),
           radial-gradient(50% 85% at 48% -5%, #8fbf6e 0%, transparent 65%),
           radial-gradient(55% 90% at 82% 0%, #4c7046 0%, transparent 68%),
           radial-gradient(40% 70% at 100% 20%, #2f4a2c 0%, transparent 60%);
-        filter: saturate(1.15);
-        opacity: 1;
         pointer-events: none;
       }
 
-      .plan--hero .plan__card::after {
-        content: "Most popular";
+      .plan__badge {
         position: absolute;
         top: 14px;
         right: 14px;
         z-index: 2;
-        padding: 6px 10px;
-        border-radius: var(--radius-pill);
-        background: rgba(255, 255, 255, 0.88);
-        color: var(--brand-deep);
-        font-size: 0.72rem;
+        padding: 5px 10px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--ink);
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 0.01em;
-        box-shadow: 0 6px 16px rgba(47, 74, 44, 0.12);
+        box-shadow: 0 6px 16px rgba(16, 22, 18, 0.1);
+      }
+
+      .plan__head {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding-right: 70px;
+      }
+
+      .plan:not(.plan--hero) .plan__head {
+        padding-right: 0;
       }
 
       .plan__icon {
-        position: relative;
-        z-index: 1;
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         border-radius: 12px;
         display: grid;
         place-items: center;
-        color: #fff;
-        background: linear-gradient(160deg, var(--brand-deep), var(--brand));
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-        margin-bottom: 14px;
+        flex-shrink: 0;
+        color: #111;
+        background: #f1f2f1;
+        border: 1px solid rgba(16, 22, 18, 0.08);
       }
 
-      .plan--hero .plan__icon {
-        background: #101612;
+      .plan__icon svg {
+        display: block;
+      }
+
+      .plan__title {
+        margin: 0;
+        font-size: 1.02rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: var(--ink);
       }
 
       .plan__desc {
@@ -415,7 +425,7 @@
         z-index: 1;
         margin: 0 0 16px;
         min-height: 44px;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         line-height: 1.45;
         color: var(--muted);
       }
@@ -427,12 +437,12 @@
         flex-wrap: wrap;
         align-items: baseline;
         gap: 6px;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
       }
 
       .plan__amount {
         font-family: var(--font-display);
-        font-size: clamp(1.8rem, 2vw, 2.25rem);
+        font-size: clamp(1.75rem, 2vw, 2.15rem);
         font-weight: 700;
         letter-spacing: -0.03em;
         line-height: 1;
@@ -448,74 +458,80 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        margin-bottom: 18px;
-        padding: 13px 16px;
-        border-radius: 16px;
+        margin-bottom: 20px;
+        padding: 12px 14px;
+        border-radius: 10px;
         color: #fff;
-        background: linear-gradient(180deg, #5f8757 0%, var(--brand) 55%, var(--brand-deep) 100%);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.3),
-          0 10px 20px rgba(76, 112, 70, 0.2);
+        background: var(--brand);
+        font-weight: 600;
+      }
+
+      .plan__cta:hover {
+        background: var(--brand-deep);
       }
 
       .plan--hero .plan__cta {
-        background: linear-gradient(180deg, #1c241e 0%, #101612 100%);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.18),
-          0 12px 24px rgba(16, 22, 18, 0.18);
+        background: #111;
+      }
+
+      .plan--hero .plan__cta:hover {
+        background: #000;
       }
 
       .plan__features {
         position: relative;
         z-index: 1;
         margin: 0;
-        padding: 0;
+        padding: 16px 0 0;
         list-style: none;
         display: grid;
-        gap: 11px;
+        gap: 12px;
+        border-top: 1px solid rgba(16, 22, 18, 0.08);
       }
 
       .plan__features li {
         display: grid;
-        grid-template-columns: 22px 1fr;
+        grid-template-columns: 24px 1fr;
         gap: 10px;
         align-items: start;
-        font-size: 0.86rem;
-        line-height: 1.4;
-        color: #2a342d;
+        font-size: 0.88rem;
+        line-height: 1.45;
+        color: #243028;
+        font-weight: 500;
       }
 
       .check {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
         display: grid;
         place-items: center;
-        background: #101612;
+        background: #111;
         color: #fff;
         flex-shrink: 0;
         margin-top: 1px;
+        box-shadow: 0 4px 10px rgba(16, 22, 18, 0.12);
       }
 
-      .plan--hero .check {
-        background: var(--brand);
+      .check svg {
+        display: block;
       }
 
       /* ——— Comparison ——— */
       .compare {
         width: min(1180px, calc(100% - 24px));
-        margin: 0 auto 88px;
+        margin: 0 auto 72px;
       }
 
       .compare__head {
         text-align: center;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
       }
 
       .compare__head h2 {
         margin: 0 0 10px;
         font-family: var(--font-display);
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
         letter-spacing: -0.02em;
       }
 
@@ -526,7 +542,8 @@
 
       .table-wrap {
         overflow-x: auto;
-        border-radius: 24px;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 18px;
         background: #fff;
         border: 1px solid rgba(76, 112, 70, 0.1);
         box-shadow: 0 12px 36px rgba(16, 22, 18, 0.05);
@@ -540,9 +557,9 @@
 
       th,
       td {
-        padding: 16px 18px;
+        padding: 15px 16px;
         text-align: left;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         border-bottom: 1px solid var(--line);
         vertical-align: top;
       }
@@ -556,16 +573,11 @@
       thead th:first-child,
       tbody td:first-child {
         font-weight: 600;
-        color: var(--ink);
-        min-width: 180px;
+        min-width: 170px;
       }
 
       tbody tr:last-child td {
         border-bottom: 0;
-      }
-
-      tbody tr:hover td {
-        background: rgba(243, 247, 242, 0.65);
       }
 
       td.hero-col {
@@ -582,32 +594,31 @@
         width: 22px;
         height: 22px;
         border-radius: 50%;
-        background: var(--brand-soft);
-        color: var(--brand);
+        background: #111;
+        color: #fff;
+        vertical-align: middle;
+        margin-right: 4px;
       }
 
-      /* ——— CTA band ——— */
+      /* ——— CTA ——— */
       .cta-band {
         width: min(980px, calc(100% - 24px));
-        margin: 0 auto 88px;
-        padding: 40px 28px;
-        border-radius: 28px;
+        margin: 0 auto 72px;
+        padding: 36px 24px;
+        border-radius: 20px;
         text-align: center;
         color: #fff;
-        background:
-          radial-gradient(700px 220px at 20% 0%, rgba(155, 197, 122, 0.35), transparent 60%),
-          linear-gradient(135deg, #2f4a2c, #4c7046 55%, #6f9a58);
-        box-shadow: 0 20px 50px rgba(47, 74, 44, 0.22);
+        background: var(--brand-deep);
       }
 
       .cta-band h2 {
         margin: 0 0 10px;
         font-family: var(--font-display);
-        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
       }
 
       .cta-band p {
-        margin: 0 auto 22px;
+        margin: 0 auto 20px;
         max-width: 520px;
         color: rgba(255, 255, 255, 0.86);
       }
@@ -615,24 +626,42 @@
       .cta-band .btn-solid {
         background: #fff;
         color: var(--brand-deep);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .cta-band .btn-solid:hover {
+        background: #f3f7f2;
       }
 
       /* ——— Footer ——— */
       .site-footer {
         border-top: 1px solid rgba(76, 112, 70, 0.1);
-        background: rgba(255, 255, 255, 0.55);
+        background: rgba(255, 255, 255, 0.6);
       }
 
       .site-footer__inner {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 36px 0;
+        padding: 32px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 20px 40px;
+        gap: 18px 36px;
         justify-content: space-between;
         align-items: center;
+      }
+
+      .brand-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .brand-lockup img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
       }
 
       .site-footer p {
@@ -644,7 +673,7 @@
       .footer-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px 22px;
+        gap: 14px 20px;
         font-size: 0.9rem;
         font-weight: 500;
         color: var(--brand-deep);
@@ -657,39 +686,162 @@
       }
 
       @media (max-width: 900px) {
-        .nav-links,
-        .header-actions .btn-ghost {
-          display: none;
+        html.layout-mobile,
+        html.layout-mobile body {
+          overflow-x: hidden;
         }
 
-        .menu-toggle {
+        html.layout-mobile .site-nav {
+          top: 12px !important;
+          width: min(92vw, 420px) !important;
+          height: auto !important;
+        }
+
+        html.layout-mobile .site-nav__shell {
+          height: 56px !important;
+          border-radius: 999px !important;
+        }
+
+        html.layout-mobile .site-nav__inner {
+          height: 56px;
+          padding: 0 10px 0 12px;
+        }
+
+        html.layout-mobile .site-nav__logo {
+          width: 40px !important;
+          height: 40px !important;
+        }
+
+        html.layout-mobile .site-nav__links,
+        html.layout-mobile .site-nav__actions {
+          display: none !important;
+        }
+
+        html.layout-mobile .site-nav__toggle {
           display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 42px;
+          height: 42px;
+          border: 0;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+          cursor: pointer;
+        }
+
+        html.layout-mobile .site-nav__toggle-bars {
+          display: block;
+          width: 18px;
+          height: 2px;
+          background: #fff;
+          border-radius: 2px;
+          box-shadow: 0 -6px 0 #fff, 0 6px 0 #fff;
+        }
+
+        html.layout-mobile .site-nav.is-menu-open .site-nav__toggle-bars {
+          box-shadow: none;
+          transform: rotate(45deg);
+        }
+
+        html.layout-mobile .site-nav.is-menu-open .site-nav__toggle-bars::after {
+          content: "";
+          display: block;
+          width: 18px;
+          height: 2px;
+          background: #fff;
+          border-radius: 2px;
+          transform: rotate(-90deg);
+        }
+
+        html.layout-mobile .mobile-nav-panel {
+          display: none;
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 0;
+          right: 0;
+          padding: 14px;
+          border-radius: 22px;
+          background: rgba(12, 28, 14, 0.94);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          backdrop-filter: blur(22px) saturate(160%);
+          -webkit-backdrop-filter: blur(22px) saturate(160%);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        html.layout-mobile .site-nav.is-menu-open .mobile-nav-panel {
+          display: grid;
+          gap: 4px;
+        }
+
+        html.layout-mobile .mobile-nav-panel a {
+          display: block;
+          padding: 12px 14px;
+          border-radius: 12px;
+          color: #fff;
+          font-size: 16px;
+        }
+
+        html.layout-mobile .mobile-nav-panel a:hover,
+        html.layout-mobile .mobile-nav-panel a.is-active {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        html.layout-mobile .mobile-nav-panel .btn-demo {
+          text-align: center;
+          margin-top: 6px;
+          border-radius: 10px;
+        }
+
+        .page {
+          padding-top: 92px;
         }
 
         .pricing-grid {
           grid-template-columns: 1fr;
-          max-width: 420px;
+          max-width: 440px;
           margin: 0 auto;
+          gap: 14px;
         }
 
-        .hero {
-          padding-top: 48px;
-        }
-
-        .plan--hero .plan__card::after {
-          top: 12px;
-          right: 12px;
-        }
-      }
-
-      @media (max-width: 560px) {
-        .header-actions .btn-solid {
-          padding: 10px 14px;
-          font-size: 0.9rem;
+        .plan__card {
+          padding: 20px 18px 22px;
         }
 
         .plan__desc {
           min-height: 0;
+        }
+
+        .plan__features {
+          gap: 13px;
+        }
+
+        .plan__features li {
+          font-size: 0.95rem;
+        }
+
+        .hero {
+          padding-top: 18px;
+        }
+
+        .cta-band {
+          border-radius: 16px;
+          margin-bottom: 48px;
+        }
+
+        .table-wrap {
+          border-radius: 14px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .site-footer__inner {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
 
@@ -697,7 +849,6 @@
         html {
           scroll-behavior: auto;
         }
-
         .btn,
         .btn:hover {
           transition: none;
@@ -709,44 +860,54 @@
   <body>
     <a class="skip-link" href="#plans">Skip to plans</a>
 
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a class="brand-lockup" href="./index.html" aria-label="Wacord home">
-          <img src="./assets/optimized/logo.webp" alt="" width="34" height="34" />
-          Wacord
-        </a>
+    <nav id="site-nav" class="site-nav is-open" aria-label="Primary">
+      <div class="site-nav__shell nav-glass">
+        <div class="site-nav__shine" aria-hidden="true"></div>
+        <div class="site-nav__inner">
+          <a href="./index.html" class="site-nav__logo" aria-label="Wacord home">
+            <img src="./assets/optimized/logo.webp" alt="Wacord" width="45" height="45" />
+          </a>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#features">Features</a>
-          <a href="./index.html#how-it-works">Product</a>
-          <a href="./pricing.html" class="is-active" aria-current="page">Pricing</a>
-          <a href="./index.html#about">About</a>
-          <a href="./index.html#contact">Contact</a>
-        </nav>
+          <div class="site-nav__links">
+            <a href="./index.html#features">Features</a>
+            <a href="./pricing.html" class="is-active" aria-current="page">Pricing</a>
+            <a href="./index.html#features">Events</a>
+            <a href="./index.html#about">About</a>
+            <a href="./index.html#about">Blog</a>
+          </div>
 
-        <div class="header-actions">
-          <a class="btn btn-ghost" href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
-          <a class="btn btn-solid" href="./index.html#demo">Book demo</a>
-          <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
+          <div class="site-nav__actions">
+            <a href="./index.html#contact">Support</a>
+            <a href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
+            <a href="./index.html#demo" class="btn-demo">Demo</a>
+          </div>
+
+          <button
+            type="button"
+            class="site-nav__toggle"
+            id="mobile-nav-toggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav-panel"
+          >
+            <span class="site-nav__toggle-bars" aria-hidden="true"></span>
           </button>
         </div>
-      </div>
 
-      <div class="mobile-menu" id="mobile-menu" hidden>
-        <a href="./index.html">Home</a>
-        <a href="./index.html#features">Features</a>
-        <a href="./index.html#how-it-works">Product</a>
-        <a href="./pricing.html" class="is-active">Pricing</a>
-        <a href="./index.html#about">About</a>
-        <a href="./index.html#contact">Contact</a>
-        <a href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
-        <a href="./index.html#demo">Book demo</a>
+        <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
+          <a href="./index.html#features">Features</a>
+          <a href="./pricing.html" class="is-active">Pricing</a>
+          <a href="./index.html#features">Events</a>
+          <a href="./index.html#about">About</a>
+          <a href="./index.html#about">Blog</a>
+          <a href="./index.html#contact">Support</a>
+          <a href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
+          <a href="./index.html#demo" class="btn-demo">Demo</a>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <main>
+    <main class="page">
       <section class="hero" aria-labelledby="pricing-title">
         <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Pricing Plan</div>
         <h1 id="pricing-title">Select a Plan That Powers Your Success.</h1>
@@ -759,14 +920,17 @@
 
       <section class="pricing-section" id="plans" aria-label="Pricing plans">
         <div class="pricing-grid">
-          <!-- Free Trial -->
           <article class="plan">
-            <div class="plan__label">Free Trial</div>
             <div class="plan__card">
-              <div class="plan__icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3v18M5 8h14M7 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+              <div class="plan__head">
+                <div class="plan__icon" aria-hidden="true">
+                  <!-- gift / trial -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 8v13M4 12h16v9H4v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M3 8h18v4H3V8Zm7.2-5.2C11 1.5 12 2.4 12 3.8 12 2.4 13 1.5 13.8 2.8 15 4.5 13.2 7 12 8c-1.2-1-3-3.5-1.8-5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3 class="plan__title">Free Trial</h3>
               </div>
               <p class="plan__desc">Test Wacord with a one-time free trial — no monthly bill.</p>
               <div class="plan__price">
@@ -775,23 +939,26 @@
               </div>
               <a class="btn plan__cta" href="./index.html#demo">Start free trial</a>
               <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>200 orders lifetime</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 conversations lifetime</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 AI test extractions</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 agent seat</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>FB + Webchat</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>200 orders lifetime</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 conversations lifetime</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 AI test extractions</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 agent seat</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>FB + Webchat messaging</li>
               </ul>
             </div>
           </article>
 
-          <!-- Starter -->
           <article class="plan">
-            <div class="plan__label">Starter Plan</div>
             <div class="plan__card">
-              <div class="plan__icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 17 9 7l4 6 2-3 5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="plan__head">
+                <div class="plan__icon" aria-hidden="true">
+                  <!-- rocket / start -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 4c3.5 1 6 3.5 7 7-2.8.4-5.2 1.7-7 3.5L9.5 19.5 4.5 14.5 9.5 10C11.3 8.2 12.6 5.8 14 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M9.5 14.5 7 20l2.5-2.5L12 20l-2.5-5.5ZM5 15l-2 2 3 1 1 3 2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3 class="plan__title">Starter Plan</h3>
               </div>
               <p class="plan__desc">Perfect for new stores finding their first rhythm.</p>
               <div class="plan__price">
@@ -800,23 +967,28 @@
               </div>
               <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
               <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 agent seats</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steadfast + RedX couriers</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 orders / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3,000 conversations / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 AI extracts / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 agent seats</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steadfast + RedX couriers</li>
               </ul>
             </div>
           </article>
 
-          <!-- Growth Hero -->
           <article class="plan plan--hero">
-            <div class="plan__label">Growth Plan</div>
             <div class="plan__card">
-              <div class="plan__icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3 14.4 8.6 20.5 9.2 16 13.3 17.3 19.4 12 16.4 6.7 19.4 8 13.3 3.5 9.2 9.6 8.6 12 3Z" fill="currentColor"/>
-                </svg>
+              <span class="plan__badge">Most popular</span>
+              <div class="plan__head">
+                <div class="plan__icon" aria-hidden="true">
+                  <!-- chart growth -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 19V5M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="m7 14 3.5-3.5 3 3L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 7h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3 class="plan__title">Growth Plan</h3>
               </div>
               <p class="plan__desc">Best for scaling brands that need all channels + 1-click booking.</p>
               <div class="plan__price">
@@ -825,23 +997,25 @@
               </div>
               <a class="btn plan__cta" href="./index.html#demo">Choose Growth</a>
               <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2,000 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 agents · all channels + VoIP</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All couriers · 1-click booking</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4,000 orders / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 conversations / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2,000 AI extracts / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 agents · all channels + VoIP</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All couriers · 1-click booking</li>
               </ul>
             </div>
           </article>
 
-          <!-- Pro -->
           <article class="plan">
-            <div class="plan__label">Pro Plan</div>
             <div class="plan__card">
-              <div class="plan__icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 19V5h4.5l2.5 4 2.5-4H19v14h-4V11l-2.5 4L10 11v8H5Z" fill="currentColor"/>
-                </svg>
+              <div class="plan__head">
+                <div class="plan__icon" aria-hidden="true">
+                  <!-- bolt / power -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 3 5 14h6l-1 7 9-13h-6l0-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3 class="plan__title">Pro Plan</h3>
               </div>
               <p class="plan__desc">High-volume teams that need priority courier throughput.</p>
               <div class="plan__price">
@@ -850,23 +1024,26 @@
               </div>
               <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
               <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5,000 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>25 agent seats</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-priority courier queue</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 orders / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30,000 conversations / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5,000 AI extracts / mo</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>25 agent seats</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-priority courier queue</li>
               </ul>
             </div>
           </article>
 
-          <!-- Enterprise -->
           <article class="plan">
-            <div class="plan__label">Enterprise Plan</div>
             <div class="plan__card">
-              <div class="plan__icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 20V8l8-4 8 4v12H4Zm4-2h3v-4H8v4Zm5 0h3v-4h-3v4ZM8 10h8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                </svg>
+              <div class="plan__head">
+                <div class="plan__icon" aria-hidden="true">
+                  <!-- building / enterprise -->
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20V7.5L12 4l8 3.5V20H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M9 20v-5h6v5M9 10h.01M12 10h.01M15 10h.01M9 13.5h.01M12 13.5h.01M15 13.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3 class="plan__title">Enterprise Plan</h3>
               </div>
               <p class="plan__desc">Custom scale with private infra for established brands.</p>
               <div class="plan__price">
@@ -875,11 +1052,11 @@
               </div>
               <a class="btn plan__cta" href="./index.html#demo">Talk to sales</a>
               <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited / custom orders</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited conversations</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited AI · BYO key option</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited agents</li>
-                <li><span class="check" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Isolated VPS Docker + private DB</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited / custom orders</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited conversations</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited AI · BYO key option</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited agents</li>
+                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Isolated VPS Docker + private DB</li>
               </ul>
             </div>
           </article>
@@ -947,11 +1124,11 @@
               </tr>
               <tr>
                 <td>Connected Stores</td>
-                <td><span class="ok" aria-label="Included"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td class="hero-col"><span class="ok" aria-label="Included"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                <td class="hero-col"><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
               </tr>
               <tr>
                 <td>Omnichannel Messaging</td>
@@ -1002,23 +1179,34 @@
 
     <script>
       (function () {
-        const toggle = document.getElementById("menu-toggle");
-        const menu = document.getElementById("mobile-menu");
-        if (!toggle || !menu) return;
+        const mobileMq = window.matchMedia("(max-width: 900px)");
+        function syncLayout() {
+          document.documentElement.classList.toggle("layout-mobile", mobileMq.matches);
+        }
+        syncLayout();
+        if (typeof mobileMq.addEventListener === "function") {
+          mobileMq.addEventListener("change", syncLayout);
+        } else if (typeof mobileMq.addListener === "function") {
+          mobileMq.addListener(syncLayout);
+        }
+
+        const nav = document.getElementById("site-nav");
+        const toggle = document.getElementById("mobile-nav-toggle");
+        const panel = document.getElementById("mobile-nav-panel");
+        if (!nav || !toggle || !panel) return;
 
         function setOpen(open) {
-          document.body.classList.toggle("menu-open", open);
+          nav.classList.toggle("is-menu-open", open);
           toggle.setAttribute("aria-expanded", open ? "true" : "false");
           toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-          if (open) menu.removeAttribute("hidden");
-          else menu.setAttribute("hidden", "");
+          if (open) panel.removeAttribute("hidden");
+          else panel.setAttribute("hidden", "");
         }
 
         toggle.addEventListener("click", () => {
-          setOpen(!document.body.classList.contains("menu-open"));
+          setOpen(!nav.classList.contains("is-menu-open"));
         });
-
-        menu.querySelectorAll("a").forEach((link) => {
+        panel.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => setOpen(false));
         });
       })();
