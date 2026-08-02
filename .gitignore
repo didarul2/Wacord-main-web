@@ -6,6 +6,11 @@ node_modules/
 Thumbs.db
 *.log
 
+# Secrets / local env
+.env
+.env.local
+.env.*.local
+
 # Local tooling / Figma dumps (not needed in production repo)
 tools/
 Direct figma code/
