@@ -1,7 +1,7 @@
 /**
- * Local preview server: static files + /api/book-meeting
+ * Local preview server: static files + API routes
  * Usage: node server.mjs
- * Loads SLACK_WEBHOOK_URL from .env.local / .env
+ * Loads env from .env.local / .env
  */
 import http from "node:http";
 import fs from "node:fs";
@@ -59,20 +59,35 @@ function send(res, status, body, headers = {}) {
   res.end(body);
 }
 
-async function handleBookMeeting(req, res) {
+async function readRaw(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
-  const raw = Buffer.concat(chunks).toString("utf8");
-  const request = new Request("http://localhost/api/book-meeting", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: raw || "{}",
-  });
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+async function handleApiModule(req, res, routePath, moduleFile) {
+  const raw = await readRaw(req);
+  const contentType = req.headers["content-type"] || "application/json";
+  const method = req.method || "GET";
+  const init = {
+    method,
+    headers: { "Content-Type": contentType },
+  };
+  if (!["GET", "HEAD"].includes(method)) {
+    init.body = raw || "";
+  }
+  const request = new Request(`http://localhost${routePath}`, init);
 
   const mod = await import(
-    pathToFileURL(path.join(ROOT, "api/book-meeting.js")).href + "?t=" + Date.now()
+    pathToFileURL(path.join(ROOT, moduleFile)).href + "?t=" + Date.now()
   );
-  const response = await mod.POST(request);
+  const handler = mod[req.method || "GET"] || mod.POST;
+  if (!handler) {
+    return send(res, 405, JSON.stringify({ ok: false, error: "Method not allowed" }), {
+      "Content-Type": "application/json",
+    });
+  }
+  const response = await handler(request);
   const buf = Buffer.from(await response.arrayBuffer());
   const headers = Object.fromEntries(response.headers.entries());
   send(res, response.status, buf, headers);
@@ -102,7 +117,29 @@ const server = http.createServer(async (req, res) => {
           "Content-Type": "application/json",
         });
       }
-      return await handleBookMeeting(req, res);
+      return await handleApiModule(req, res, "/api/book-meeting", "api/book-meeting.js");
+    }
+
+    if (url.pathname === "/api/meta-data-deletion") {
+      if (req.method === "OPTIONS") {
+        return send(res, 204, "", {
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        });
+      }
+      if (req.method !== "POST" && req.method !== "GET") {
+        return send(res, 405, JSON.stringify({ ok: false, error: "Method not allowed" }), {
+          "Content-Type": "application/json",
+        });
+      }
+      // Preserve query string for GET status checks
+      req.url = url.pathname + url.search;
+      return await handleApiModule(
+        req,
+        res,
+        url.pathname + url.search,
+        "api/meta-data-deletion.js"
+      );
     }
 
     let filePath = safeJoin(ROOT, url.pathname === "/" ? "/index.html" : url.pathname);
