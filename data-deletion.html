@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meta Data Deletion Instructions — Wacord</title>
-  <meta name="description" content="How to request deletion of Facebook and Instagram data associated with the Wacord Meta app, per Meta Platform Terms." />
+  <title>User Data Deletion Instructions — Wacord</title>
+  <meta name="description" content="Request complete Wacord data deletion: remove the Facebook app, then email support@wacord.com with subject Data Deletion Request." />
   <meta name="theme-color" content="#f3f7f2" />
   <link rel="icon" type="image/png" href="./assets/hero/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -176,95 +176,38 @@ html.layout-mobile .mobile-nav-panel .btn-demo{text-align:center;margin-top:6px}
     </nav>
     <main class="legal-page">
     <article class="legal-shell" id="legal-content">
-
-<h1>Meta Data Deletion Instructions</h1>
-<p class="legal-kicker">Wacord · Facebook &amp; Instagram app compliance</p>
+<h1>User Data Deletion Instructions</h1>
+<p class="legal-kicker">Wacord · Meta Platform compliance</p>
 <p><strong>Last updated:</strong> 2 August 2026</p>
-<p>This page explains how Facebook / Instagram users and Wacord Merchants can request deletion of data associated with the Wacord Meta integration, in line with <a href="https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback" target="_blank" rel="noopener noreferrer">Meta’s Data Deletion requirements</a>.</p>
-<p><strong>Use this URL in Meta App Dashboard</strong> as your Data Deletion Instructions URL:<br /><code>https://wacord.com/data-deletion.html</code></p>
+<p>In accordance with Meta’s Platform Terms, this page explains how you can request <strong>complete deletion</strong> of your data associated with the Wacord Facebook / Instagram integration.</p>
 
 <div class="meta-deletion-tile meta-deletion-tile--hero">
-  <div class="meta-deletion-tile__badge">Recommended Meta path</div>
-  <h2 class="meta-deletion-tile__title" style="margin-top:0">Request deletion from Facebook</h2>
+  <div class="meta-deletion-tile__badge">Manual deletion method</div>
+  <h2 class="meta-deletion-tile__title" style="margin-top:0">How to request data deletion</h2>
+  <p class="meta-deletion-tile__lead">Follow these steps to revoke Wacord access on Facebook and ask us to purge your data:</p>
   <ol class="meta-deletion-tile__steps">
-    <li>Log in to Facebook</li>
-    <li>Open <strong>Settings &amp; privacy → Settings → Apps and Websites</strong><br /><a href="https://www.facebook.com/settings?tab=applications" target="_blank" rel="noopener noreferrer">https://www.facebook.com/settings?tab=applications</a></li>
-    <li>Find <strong>Wacord</strong> and remove / disconnect the app</li>
-    <li>Open <strong>View Removed Apps and Websites</strong></li>
-    <li>Next to Wacord, click <strong>Send Request</strong></li>
+    <li><strong>Step 1:</strong> Go to your Facebook <strong>Settings &amp; Privacy</strong> → <strong>Settings</strong>.</li>
+    <li><strong>Step 2:</strong> Navigate to <strong>Business Integrations</strong> (or <strong>Apps and Websites</strong>).<br />
+      <a href="https://www.facebook.com/settings?tab=business_tools" target="_blank" rel="noopener noreferrer">Business Integrations</a> ·
+      <a href="https://www.facebook.com/settings?tab=applications" target="_blank" rel="noopener noreferrer">Apps and Websites</a>
+    </li>
+    <li><strong>Step 3:</strong> Find <strong>Wacord</strong> in the list and click <strong>Remove</strong> to revoke access.</li>
+    <li><strong>Step 4:</strong> Send an email to <a href="mailto:support@wacord.com">support@wacord.com</a> with the subject line <strong>Data Deletion Request</strong>. Include your registered Wacord email address or Account ID.</li>
+    <li><strong>Step 5:</strong> Our support team will manually purge all your associated chat data, tokens, and records from our database within <strong>7 business days</strong> and send a confirmation email.</li>
   </ol>
-  <p class="meta-deletion-tile__lead" style="margin-bottom:0">Meta may also call our secure HTTPS Data Deletion Request Callback. We then start deletion and return a confirmation code + status URL.</p>
+  <div class="meta-deletion-tile__actions">
+    <a class="meta-deletion-tile__btn" href="mailto:support@wacord.com?subject=Data%20Deletion%20Request">Email Data Deletion Request</a>
+  </div>
 </div>
 
 <hr />
-<h2 id="overview">1. Overview</h2>
+<h2>Related</h2>
 <ul>
-<li>Merchants remain the <strong>data controllers</strong> of their Buyer data.</li>
-<li>Wacord acts as a <strong>data processor</strong> and will delete Meta-linked user data when a valid deletion request is received (subject to legal retention exceptions below).</li>
-</ul>
-
-<h2 id="manual">2. Request deletion via Wacord (manual / Merchant)</h2>
-<p>Email or contact Support with:</p>
-<ul>
-<li>Subject: <strong>Meta Data Deletion Request</strong></li>
-<li>Your full name and email used with Wacord / Facebook</li>
-<li>Facebook Page name or Page ID (if known)</li>
-<li>Instagram business account handle (if applicable)</li>
-<li>Approximate connection date</li>
-<li>Confirmation that you want Meta-linked data deleted</li>
-</ul>
-<p>Contact: <a href="./index.html#contact">Contact / Support on wacord.com</a>, or your account manager. We may verify identity / Page ownership before processing.</p>
-
-<h2 id="what-we-delete">3. What we delete</h2>
-<p>For a valid Meta-linked deletion request, we initiate deletion of data Wacord holds from Facebook / Instagram about that user or connected identity, which may include:</p>
-<ul>
-<li>App-scoped user identifiers and related auth metadata</li>
-<li>Page / Instagram connection tokens and channel credentials tied to that identity (as applicable)</li>
-<li>Conversation and inbox records synced from Meta for that identity, where Wacord is the processor</li>
-<li>Cached profile fields provided by Meta APIs for that identity</li>
-</ul>
-<p><strong>Merchant account data</strong> (billing, subscription, agent seats) follows the general Privacy Policy deletion process and may require a Merchant admin request.</p>
-
-<h2 id="exceptions">4. What we may retain (exceptions)</h2>
-<ul>
-<li>Records needed for tax, accounting, fraud prevention, or dispute resolution</li>
-<li>Security / audit logs for a limited period</li>
-<li>Anonymized or aggregated analytics that no longer identify you</li>
-<li>Data a Merchant must keep as controller under their own legal obligations</li>
-</ul>
-<p>Residual encrypted backups may persist for a short period before irreversible purge.</p>
-
-<h2 id="timeline">5. Timeline</h2>
-<ul>
-<li>We <strong>initiate</strong> deletion promptly after a valid request (or Meta callback).</li>
-<li>Typical completion target: <strong>within 30 days</strong> (often sooner).</li>
-<li>Complex Merchant / multi-Page accounts may take longer; we will communicate if verification is needed.</li>
-</ul>
-
-<h2 id="status">6. Check deletion status</h2>
-<p>If you received a confirmation code (from Meta’s callback response or from Support), enter it below or open <code>https://wacord.com/data-deletion.html?code=YOUR_CODE</code>.</p>
-<form class="status-box" id="deletion-status-form" action="#" method="get">
-  <label for="deletion-code">Confirmation code</label>
-  <div class="status-box__row">
-    <input id="deletion-code" name="code" type="text" autocomplete="off" placeholder="e.g. WAC-AB12CD34" />
-    <button type="submit">Check status</button>
-  </div>
-  <p class="status-box__result" id="deletion-status-result" hidden></p>
-</form>
-<ul>
-<li><strong>Received</strong> — request logged, verification / processing started</li>
-<li><strong>In progress</strong> — deletion running</li>
-<li><strong>Completed</strong> — Meta-linked data deletion finished (subject to legal exceptions)</li>
-<li><strong>Needs info</strong> — we need identity / Page verification</li>
-</ul>
-
-<h2 id="related">7. Related policies</h2>
-<ul>
-<li><a href="./privacy.html">Privacy Policy</a> — full retention, rights, and Meta inbox practices</li>
+<li><a href="./privacy.html">Privacy Policy</a></li>
 <li><a href="./terms.html">Terms of Service</a></li>
 </ul>
 <hr />
-<p><em>This page is provided to satisfy Meta’s requirement that apps explain how users can request deletion of their data. It is not legal advice.</em></p>
+<p><em>This page is provided to help users request deletion of data related to the Wacord Meta integration, as required by Meta’s Platform Terms.</em></p>
 
     </article>
   </main>
@@ -344,45 +287,6 @@ html.layout-mobile .mobile-nav-panel .btn-demo{text-align:center;margin-top:6px}
 })();
 </script>
 
-
-<script>
-(function(){
-  const form=document.getElementById("deletion-status-form");
-  const input=document.getElementById("deletion-code");
-  const out=document.getElementById("deletion-status-result");
-  if(!form||!input||!out) return;
-  function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));}
-  async function show(code, empty){
-    out.hidden=false;
-    if(empty){
-      out.textContent="Enter the confirmation code from Meta or Support.";
-      return;
-    }
-    out.innerHTML="<strong>Request reference:</strong> "+esc(code)+"<br/>Checking status…";
-    try{
-      const res=await fetch("./api/meta-data-deletion?code="+encodeURIComponent(code),{headers:{"Accept":"application/json"}});
-      const data=await res.json();
-      if(res.ok && data.ok){
-        out.innerHTML="<strong>Request reference:</strong> "+esc(code)+"<br/>Status: <strong>"+esc(data.status||"received")+"</strong>"+(data.created_at?" · logged "+esc(data.created_at):"")+". Contact Support with this code if you need a human update.";
-        return;
-      }
-    }catch(_){/* static hosts may not expose the API */}
-    out.innerHTML="<strong>Request reference:</strong> "+esc(code)+"<br/>Status: <strong>Received / processing</strong> (or pending Meta callback). Contact Support with this code for a confirmed update.";
-  }
-  const params=new URLSearchParams(location.search);
-  const preset=params.get("code");
-  if(preset){ input.value=preset; show(preset); }
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    const code=(input.value||"").trim();
-    if(!code){ show("", true); return; }
-    const url=new URL(location.href);
-    url.searchParams.set("code", code);
-    history.replaceState(null,"",url.toString());
-    show(code);
-  });
-})();
-</script>
 
 </body>
 </html>

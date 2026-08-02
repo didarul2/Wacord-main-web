@@ -175,25 +175,19 @@ Submit requests via Support / Contact channels. We may verify identity before ac
 
 ### 10.3 Meta / Facebook & Instagram data deletion
 
-Apps that access Meta user data must tell users how to request deletion. Wacord provides a dedicated instructions page (and may also receive Meta’s signed Data Deletion Request Callback):
+Apps that access Meta user data must tell users how to request deletion. Wacord uses **one manual method** only:
 
-**→ Full instructions:** [Meta Data Deletion Instructions](./data-deletion.html)
+**→ Full instructions:** [User Data Deletion Instructions](./data-deletion.html)
 
-**Quick Facebook path:**
-1. Facebook → Settings & privacy → Settings → Apps and Websites  
-   ([open Apps and Websites](https://www.facebook.com/settings?tab=applications))
-2. Remove **Wacord**
-3. View Removed Apps and Websites → **Send Request** next to Wacord
+1. Go to Facebook **Settings & Privacy** → **Settings**.
+2. Navigate to **Business Integrations** (or **Apps and Websites**).
+3. Find **Wacord** and click **Remove** to revoke access.
+4. Email **support@wacord.com** with subject **Data Deletion Request**, and include your registered Wacord email or Account ID.
+5. Our support team will manually purge associated chat data, tokens, and records within **7 business days** and send a confirmation email.
 
-You may also contact Support with subject **“Meta Data Deletion Request”** and your Page / Instagram details.
+### 10.4 What is deleted
 
-When Meta calls our callback, we initiate deletion of Meta-linked data we hold for that app-scoped user and return a confirmation code plus a status URL (`data-deletion.html?code=…`).
-
-### 10.4 What is deleted vs. what may be retained
-
-**We initiate deletion of** Meta-linked identifiers, connection tokens (as applicable), and inbox / conversation data synced from Facebook / Instagram for the requested identity, to the extent Wacord stores it as processor.
-
-**We may retain** limited records required for law, tax, fraud prevention, security logs (time-limited), or anonymized analytics; and Merchant-controlled commerce records that the Merchant must keep under their own obligations. See the [Data Deletion page](./data-deletion.html) for the full Meta-specific list.
+After a valid email request, we manually purge associated **chat data, tokens, and records** from our database within **7 business days**, then send a confirmation email. Limited records may be retained only where required by law (for example tax, fraud, or security logs for a limited period).
 
 ---
 
@@ -222,7 +216,7 @@ We may update this Privacy Policy from time to time. Material changes will be po
 
 ## 14. Contact
 
-For privacy questions, data deletion requests, or security concerns, contact Wacord through the website Contact / Support channels or your designated account contact. For Meta-linked deletion, prefer [data-deletion.html](./data-deletion.html).
+For privacy questions, data deletion requests, or security concerns, contact Wacord through the website Contact / Support channels, your account manager, or **support@wacord.com**. For Meta-linked deletion, follow [User Data Deletion Instructions](./data-deletion.html).
 
 ---
 

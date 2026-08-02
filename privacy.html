@@ -327,27 +327,28 @@ html.layout-mobile .mobile-nav-panel .btn-demo{text-align:center;margin-top:6px}
 </ul>
 <p>Submit requests via Support / Contact channels. We may verify identity before acting. Typical deletion completion target is <strong>within 30 days</strong> after a valid, verified request.</p>
 <h3>10.3 Meta / Facebook &amp; Instagram data deletion</h3>
-<p>Apps that access Meta user data must tell users how to request deletion. Wacord provides a dedicated instructions page (and may also receive Meta’s signed Data Deletion Request Callback):</p>
+<p>Apps that access Meta user data must tell users how to request deletion. Wacord uses one clear manual method:</p>
 
 <div class="meta-deletion-tile" id="meta-data-deletion">
   <div class="meta-deletion-tile__badge">Meta Platform</div>
-  <h3 class="meta-deletion-tile__title">Facebook &amp; Instagram data deletion</h3>
-  <p class="meta-deletion-tile__lead">In line with Meta’s Platform Terms, you can request deletion of data Wacord obtained through Facebook / Instagram. Full step-by-step instructions live on a dedicated page you can also paste into the Meta App Dashboard as your <strong>Data Deletion Instructions URL</strong>.</p>
+  <h3 class="meta-deletion-tile__title">User Data Deletion Instructions</h3>
+  <p class="meta-deletion-tile__lead">Request complete data deletion for the Wacord Facebook / Instagram integration with these steps:</p>
   <ol class="meta-deletion-tile__steps">
-    <li>Open Facebook <a href="https://www.facebook.com/settings?tab=applications" target="_blank" rel="noopener noreferrer">Apps and Websites</a></li>
-    <li>Remove <strong>Wacord</strong>, then open <strong>View Removed Apps and Websites</strong></li>
-    <li>Click <strong>Send Request</strong> next to Wacord — or contact Support with subject “Meta Data Deletion Request”</li>
+    <li>Go to Facebook <strong>Settings &amp; Privacy</strong> → <strong>Settings</strong>.</li>
+    <li>Open <strong>Business Integrations</strong> (or <strong>Apps and Websites</strong>).</li>
+    <li>Find <strong>Wacord</strong> and click <strong>Remove</strong> to revoke access.</li>
+    <li>Email <a href="mailto:support@wacord.com">support@wacord.com</a> with subject <strong>Data Deletion Request</strong>, and include your registered Wacord email or Account ID.</li>
+    <li>We will manually purge associated chat data, tokens, and records within <strong>7 business days</strong> and send a confirmation email.</li>
   </ol>
   <div class="meta-deletion-tile__actions">
-    <a class="meta-deletion-tile__btn" href="./data-deletion.html">Open Meta Data Deletion page</a>
-    <a class="meta-deletion-tile__link" href="./data-deletion.html#status">Check status with confirmation code</a>
+    <a class="meta-deletion-tile__btn" href="./data-deletion.html">Open full Data Deletion page</a>
+    <a class="meta-deletion-tile__link" href="mailto:support@wacord.com?subject=Data%20Deletion%20Request">Email support@wacord.com</a>
   </div>
 </div>
 
-<p>When Meta calls our callback, we initiate deletion of Meta-linked data we hold for that app-scoped user and return a confirmation code plus a status URL (<code>data-deletion.html?code=…</code>).</p>
-<h3>10.4 What is deleted vs. what may be retained</h3>
-<p><strong>We initiate deletion of</strong> Meta-linked identifiers, connection tokens (as applicable), and inbox / conversation data synced from Facebook / Instagram for the requested identity, to the extent Wacord stores it as processor.</p>
-<p><strong>We may retain</strong> limited records required for law, tax, fraud prevention, security logs (time-limited), or anonymized analytics; and Merchant-controlled commerce records that the Merchant must keep under their own obligations. See the <a href="./data-deletion.html">Data Deletion page</a> for the full Meta-specific list.</p>
+<p>Full instructions for Meta App Dashboard: <a href="./data-deletion.html">data-deletion.html</a>.</p>
+<h3>10.4 What is deleted<h3>10.4 What is deleted</h3>
+<p>After a valid email request, our support team manually purges associated <strong>chat data, tokens, and records</strong> from our database within <strong>7 business days</strong>, then sends a confirmation email. Limited records may be retained only where required by law (for example tax, fraud, or security logs for a limited period).</p>
 <hr />
 <h2 id="11-merchant-responsibilities-buyers">11. Merchant Responsibilities (Buyers)</h2>
 <p>Merchants are responsible for:</p>
@@ -366,7 +367,7 @@ html.layout-mobile .mobile-nav-panel .btn-demo{text-align:center;margin-top:6px}
 <p>We may update this Privacy Policy from time to time. Material changes will be posted on this page with an updated “Last updated” date. Continued use of the Service after changes constitutes acceptance of the updated Policy.</p>
 <hr />
 <h2 id="14-contact">14. Contact</h2>
-<p>For privacy questions, data deletion requests, or security concerns, contact Wacord through the website Contact / Support channels or your designated account contact. For Meta-linked deletion, prefer <a href="./data-deletion.html">data-deletion.html</a>.</p>
+<p>For privacy questions, data deletion requests, or security concerns, contact Wacord through the website Contact / Support channels or your designated account contact. For Meta-linked deletion, follow <a href="./data-deletion.html">User Data Deletion Instructions</a> or email <a href="mailto:support@wacord.com">support@wacord.com</a>.</p>
 <hr />
 <p><em>This document is provided for product transparency and operational clarity. It is not legal advice. Merchants should consult counsel for jurisdiction-specific compliance (including Bangladesh data protection and Meta Platform requirements).</em></p>
 
