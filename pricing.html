@@ -352,27 +352,27 @@
       }
 
       .plan--hero .plan__card {
-        border-color: transparent;
-        box-shadow: var(--shadow);
-        background:
-          linear-gradient(#fff, #fff) padding-box,
-          linear-gradient(135deg, var(--brand-lime), var(--brand-bright), var(--brand), var(--brand-deep))
-            border-box;
-        border: 1.5px solid transparent;
+        border: 1px solid rgba(76, 112, 70, 0.14);
+        box-shadow:
+          0 22px 55px rgba(47, 74, 44, 0.16),
+          0 0 0 1px rgba(155, 197, 122, 0.2);
+        background: #fff;
       }
 
       .plan--hero .plan__card::before {
         content: "";
         position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 110px;
+        left: -10%;
+        right: -10%;
+        top: -8%;
+        height: 160px;
         background:
-          radial-gradient(120% 90% at 15% 0%, rgba(155, 197, 122, 0.95), transparent 55%),
-          radial-gradient(100% 80% at 70% 0%, rgba(111, 154, 88, 0.85), transparent 50%),
-          radial-gradient(90% 70% at 100% 10%, rgba(76, 112, 70, 0.75), transparent 45%);
-        opacity: 0.95;
+          radial-gradient(55% 90% at 12% 0%, #c6e3a8 0%, transparent 70%),
+          radial-gradient(50% 85% at 48% -5%, #8fbf6e 0%, transparent 65%),
+          radial-gradient(55% 90% at 82% 0%, #4c7046 0%, transparent 68%),
+          radial-gradient(40% 70% at 100% 20%, #2f4a2c 0%, transparent 60%);
+        filter: saturate(1.15);
+        opacity: 1;
         pointer-events: none;
       }
 
