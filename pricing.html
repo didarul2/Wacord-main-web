@@ -8,7 +8,7 @@
       name="description"
       content="Simple Wacord pricing for growing e-commerce brands. Free trial to Enterprise — pick a plan that matches your order volume."
     />
-    <meta name="theme-color" content="#f3f7f2" />
+    <meta name="theme-color" content="#050705" />
     <link rel="icon" type="image/png" href="./assets/hero/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,20 +16,18 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Zilla+Slab:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./css/styles.css" />
     <style>
       :root {
         --brand: #4c7046;
         --brand-deep: #2f4a2c;
-        --brand-bright: #6f9a58;
-        --brand-lime: #9bc57a;
         --brand-soft: #e7f0e4;
         --brand-mist: #f3f7f2;
         --ink: #101612;
         --muted: #5d6b61;
         --line: rgba(16, 22, 18, 0.08);
-        --card: #ffffff;
-        --shadow: 0 18px 50px rgba(47, 74, 44, 0.1);
-        --radius-card: 24px;
+        --btn-gray: #5f675f;
+        --btn-gray-hover: #4a514a;
         --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
         --font-display: "Zilla Slab", Rockwell, Georgia, serif;
       }
@@ -40,20 +38,14 @@
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
+      html,
       body {
         margin: 0;
-        color: var(--ink);
+        background: #050705;
+        color: #fff;
         font-family: var(--font-sans);
-        background:
-          radial-gradient(1200px 520px at 50% -10%, rgba(155, 197, 122, 0.22), transparent 60%),
-          radial-gradient(900px 420px at 100% 0%, rgba(76, 112, 70, 0.08), transparent 55%),
-          var(--brand-mist);
+        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
       }
 
       a {
@@ -61,39 +53,35 @@
         text-decoration: none;
       }
 
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
       .skip-link {
         position: absolute;
         left: 16px;
         top: -48px;
-        z-index: 400;
+        z-index: 300;
         padding: 10px 14px;
         border-radius: 8px;
-        background: var(--brand);
+        background: #4c7046;
         color: #fff;
+        font-size: 14px;
       }
 
       .skip-link:focus {
         top: 16px;
       }
 
-      /* ——— Main site nav (same glass pill) ——— */
+      /* ===== SAME NAV AS HOME (index.html) ===== */
       .nav-glass {
         background: linear-gradient(
           165deg,
-          rgba(47, 74, 44, 0.92) 0%,
-          rgba(76, 112, 70, 0.88) 55%,
-          rgba(47, 74, 44, 0.9) 100%
+          rgba(163, 255, 147, 0.2) 0%,
+          rgba(163, 255, 147, 0.1) 45%,
+          rgba(76, 112, 70, 0.12) 100%
         );
         backdrop-filter: blur(22px) saturate(1.35);
         -webkit-backdrop-filter: blur(22px) saturate(1.35);
         border: 1px solid rgba(255, 255, 255, 0.14);
         box-shadow:
-          0 10px 40px rgba(0, 0, 0, 0.22),
+          0 10px 40px rgba(0, 0, 0, 0.28),
           0 0 0 1px rgba(163, 255, 147, 0.06),
           inset 0 1px 0 rgba(255, 255, 255, 0.28),
           inset 0 -1px 0 rgba(0, 0, 0, 0.18);
@@ -104,7 +92,7 @@
         top: 30px;
         left: 50%;
         z-index: 200;
-        width: min(1280px, calc(100vw - 32px));
+        width: 1280px;
         height: 68.8px;
         margin: 0;
         transform: translateX(-50%);
@@ -117,9 +105,12 @@
       }
 
       .site-nav__shell {
-        position: relative;
-        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1321px;
         height: 69px;
+        margin-left: -660.5px;
         border-radius: 34.5px;
       }
 
@@ -141,34 +132,38 @@
         z-index: 1;
         height: 100%;
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 18px 0 15px;
-        gap: 16px;
       }
 
       .site-nav__logo {
+        position: absolute;
+        left: 15px;
+        top: 50%;
         width: 45px;
         height: 45px;
+        margin-top: -22.5px;
         border-radius: 50%;
         overflow: hidden;
-        flex-shrink: 0;
+        z-index: 3;
         display: block;
+        flex-shrink: 0;
       }
 
       .site-nav__logo img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
       .site-nav__links {
+        position: absolute;
+        left: 477.95px;
+        top: 0;
         display: flex;
+        height: 68.8px;
+        width: 398px;
         align-items: center;
-        justify-content: center;
-        gap: clamp(18px, 2.2vw, 32px);
-        flex: 1;
+        gap: 32px;
         white-space: nowrap;
         font-size: 15px;
         line-height: 20.8px;
@@ -177,8 +172,8 @@
 
       .site-nav__links a {
         color: inherit;
+        text-decoration: none;
         opacity: 0.92;
-        transition: opacity 0.2s ease;
       }
 
       .site-nav__links a:hover,
@@ -186,38 +181,30 @@
         opacity: 1;
       }
 
-      .site-nav__links a.is-active {
-        font-weight: 600;
-      }
-
       .site-nav__actions {
+        position: absolute;
+        left: 993px;
+        top: 10.39px;
         display: flex;
+        height: 48px;
+        width: 312px;
         align-items: center;
         justify-content: flex-end;
-        gap: 16px;
-        flex-shrink: 0;
+        gap: 20px;
       }
 
       .site-nav__actions > a:not(.btn-demo) {
         color: #fff;
+        text-decoration: none;
+        text-align: center;
         font-size: 15px;
+        line-height: 16px;
         opacity: 0.92;
       }
 
-      .site-nav__actions > a:not(.btn-demo):hover {
-        opacity: 1;
-      }
-
       .btn-demo {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        padding: 12px 20px;
         background: #4c7046;
-        color: #fff !important;
-        font-size: 15px;
-        font-weight: 600;
+        color: #fff;
         box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
       }
 
@@ -229,56 +216,25 @@
         display: none;
       }
 
-      /* ——— Page content ——— */
-      .page {
-        padding-top: 120px;
+      /* ===== PAGE CONTENT ===== */
+      .pricing-page {
+        min-height: 100vh;
+        padding-top: 140px;
+        background:
+          radial-gradient(900px 420px at 50% 0%, rgba(76, 112, 70, 0.28), transparent 60%),
+          #050705;
       }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border: 0;
-        cursor: pointer;
-        font: inherit;
-        font-weight: 600;
-        border-radius: 10px;
-        transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn-solid {
-        padding: 12px 22px;
-        color: #fff;
-        background: var(--brand);
-      }
-
-      .btn-solid:hover {
-        background: var(--brand-deep);
+      .pricing-shell {
+        width: min(1240px, calc(100% - 32px));
+        margin: 0 auto;
+        padding-bottom: 80px;
       }
 
       .hero {
-        position: relative;
-        width: min(980px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 28px 0 36px;
         text-align: center;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 10px -8% auto;
-        height: 260px;
-        z-index: -1;
-        opacity: 0.4;
-        background-image: radial-gradient(rgba(76, 112, 70, 0.2) 1px, transparent 1px);
-        background-size: 18px 18px;
-        mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+        max-width: 760px;
+        margin: 0 auto 40px;
       }
 
       .eyebrow {
@@ -287,49 +243,69 @@
         gap: 8px;
         padding: 8px 14px;
         border-radius: 999px;
-        background: #fff;
-        border: 1px solid rgba(76, 112, 70, 0.12);
-        box-shadow: 0 8px 24px rgba(47, 74, 44, 0.08);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--brand-deep);
+        color: #dfe8dc;
       }
 
       .eyebrow-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: var(--brand);
+        background: #9bc57a;
       }
 
       .hero h1 {
-        margin: 22px 0 14px;
+        margin: 20px 0 12px;
         font-family: var(--font-display);
         font-size: clamp(2.2rem, 5vw, 3.4rem);
         line-height: 1.08;
         letter-spacing: -0.03em;
+        color: #fff;
       }
 
       .hero p {
-        margin: 0 auto 26px;
+        margin: 0 auto 24px;
         max-width: 560px;
         font-size: 1.05rem;
         line-height: 1.6;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.68);
       }
 
-      /* ——— Cards ——— */
-      .pricing-section {
-        width: min(1240px, calc(100% - 24px));
-        margin: 0 auto;
-        padding: 8px 0 64px;
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: background 0.2s ease, transform 0.2s ease;
       }
 
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-gray {
+        padding: 12px 22px;
+        color: #fff;
+        background: var(--btn-gray);
+      }
+
+      .btn-gray:hover {
+        background: var(--btn-gray-hover);
+      }
+
+      /* Cards */
       .pricing-grid {
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 16px;
-        align-items: stretch;
+        margin-bottom: 72px;
       }
 
       .plan__card {
@@ -337,19 +313,19 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        padding: 22px 18px 22px;
-        border-radius: var(--radius-card);
-        background: var(--card);
-        border: 1px solid rgba(76, 112, 70, 0.1);
-        box-shadow: 0 10px 30px rgba(16, 22, 18, 0.05);
+        padding: 22px 18px;
+        border-radius: 22px;
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
         overflow: hidden;
       }
 
       .plan--hero .plan__card {
-        border: 1px solid rgba(76, 112, 70, 0.14);
         box-shadow:
-          0 22px 55px rgba(47, 74, 44, 0.14),
-          0 0 0 1px rgba(155, 197, 122, 0.18);
+          0 22px 55px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(155, 197, 122, 0.25);
       }
 
       .plan--hero .plan__card::before {
@@ -358,27 +334,25 @@
         left: -10%;
         right: -10%;
         top: -8%;
-        height: 150px;
+        height: 140px;
         background:
           radial-gradient(55% 90% at 12% 0%, #c6e3a8 0%, transparent 70%),
           radial-gradient(50% 85% at 48% -5%, #8fbf6e 0%, transparent 65%),
-          radial-gradient(55% 90% at 82% 0%, #4c7046 0%, transparent 68%),
-          radial-gradient(40% 70% at 100% 20%, #2f4a2c 0%, transparent 60%);
+          radial-gradient(55% 90% at 82% 0%, #4c7046 0%, transparent 68%);
         pointer-events: none;
       }
 
       .plan__badge {
-        position: absolute;
-        top: 14px;
-        right: 14px;
+        position: relative;
         z-index: 2;
+        align-self: flex-start;
+        margin-bottom: 12px;
         padding: 5px 10px;
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.92);
-        color: var(--ink);
+        background: rgba(16, 22, 18, 0.9);
+        color: #fff;
         font-size: 0.7rem;
         font-weight: 700;
-        box-shadow: 0 6px 16px rgba(16, 22, 18, 0.1);
       }
 
       .plan__head {
@@ -387,12 +361,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 14px;
-        padding-right: 70px;
-      }
-
-      .plan:not(.plan--hero) .plan__head {
-        padding-right: 0;
+        margin-bottom: 12px;
       }
 
       .plan__icon {
@@ -407,24 +376,19 @@
         border: 1px solid rgba(16, 22, 18, 0.08);
       }
 
-      .plan__icon svg {
-        display: block;
-      }
-
       .plan__title {
         margin: 0;
         font-size: 1.02rem;
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.2;
-        color: var(--ink);
       }
 
       .plan__desc {
         position: relative;
         z-index: 1;
-        margin: 0 0 16px;
-        min-height: 44px;
+        margin: 0 0 14px;
+        min-height: 42px;
         font-size: 0.9rem;
         line-height: 1.45;
         color: var(--muted);
@@ -437,12 +401,12 @@
         flex-wrap: wrap;
         align-items: baseline;
         gap: 6px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
 
       .plan__amount {
         font-family: var(--font-display);
-        font-size: clamp(1.75rem, 2vw, 2.15rem);
+        font-size: clamp(1.7rem, 2vw, 2.1rem);
         font-weight: 700;
         letter-spacing: -0.03em;
         line-height: 1;
@@ -458,24 +422,24 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         padding: 12px 14px;
         border-radius: 10px;
         color: #fff;
-        background: var(--brand);
+        background: var(--btn-gray);
         font-weight: 600;
       }
 
       .plan__cta:hover {
-        background: var(--brand-deep);
+        background: var(--btn-gray-hover);
       }
 
       .plan--hero .plan__cta {
-        background: #111;
+        background: #3f4540;
       }
 
       .plan--hero .plan__cta:hover {
-        background: #000;
+        background: #2f3430;
       }
 
       .plan__features {
@@ -508,36 +472,29 @@
         place-items: center;
         background: #111;
         color: #fff;
-        flex-shrink: 0;
-        margin-top: 1px;
         box-shadow: 0 4px 10px rgba(16, 22, 18, 0.12);
       }
 
-      .check svg {
-        display: block;
-      }
-
-      /* ——— Comparison ——— */
+      /* Compare */
       .compare {
-        width: min(1180px, calc(100% - 24px));
-        margin: 0 auto 72px;
+        margin-bottom: 72px;
       }
 
       .compare__head {
         text-align: center;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
 
       .compare__head h2 {
-        margin: 0 0 10px;
+        margin: 0 0 8px;
         font-family: var(--font-display);
         font-size: clamp(1.7rem, 3vw, 2.3rem);
-        letter-spacing: -0.02em;
+        color: #fff;
       }
 
       .compare__head p {
         margin: 0;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.65);
       }
 
       .table-wrap {
@@ -545,8 +502,8 @@
         -webkit-overflow-scrolling: touch;
         border-radius: 18px;
         background: #fff;
-        border: 1px solid rgba(76, 112, 70, 0.1);
-        box-shadow: 0 12px 36px rgba(16, 22, 18, 0.05);
+        color: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       table {
@@ -565,7 +522,7 @@
       }
 
       thead th {
-        background: rgba(231, 240, 228, 0.85);
+        background: rgba(231, 240, 228, 0.9);
         font-weight: 700;
         color: var(--brand-deep);
       }
@@ -600,83 +557,146 @@
         margin-right: 4px;
       }
 
-      /* ——— CTA ——— */
       .cta-band {
-        width: min(980px, calc(100% - 24px));
-        margin: 0 auto 72px;
+        margin: 0 auto 0;
         padding: 36px 24px;
-        border-radius: 20px;
+        border-radius: 18px;
         text-align: center;
-        color: #fff;
-        background: var(--brand-deep);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .cta-band h2 {
         margin: 0 0 10px;
         font-family: var(--font-display);
-        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        font-size: clamp(1.5rem, 3vw, 2rem);
       }
 
       .cta-band p {
         margin: 0 auto 20px;
         max-width: 520px;
-        color: rgba(255, 255, 255, 0.86);
+        color: rgba(255, 255, 255, 0.7);
       }
 
-      .cta-band .btn-solid {
-        background: #fff;
-        color: var(--brand-deep);
+      /* ===== SAME FOOTER AS HOME ===== */
+      .site-footer.pricing-footer {
+        position: relative;
+        left: auto;
+        top: auto;
+        z-index: 20;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+        padding: 80px 40px 0;
+        background: #4c7046;
+        color: #fff;
       }
 
-      .cta-band .btn-solid:hover {
-        background: #f3f7f2;
+      .site-footer.pricing-footer > [data-node-id="2:36"] {
+        width: min(1134px, 100%);
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
       }
 
-      /* ——— Footer ——— */
-      .site-footer {
-        border-top: 1px solid rgba(76, 112, 70, 0.1);
-        background: rgba(255, 255, 255, 0.6);
+      .site-footer.pricing-footer [data-node-id="2:37"] {
+        position: relative;
+        width: 170px;
+        height: 170px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       }
 
-      .site-footer__inner {
-        width: min(1180px, calc(100% - 32px));
+      .site-footer.pricing-footer [data-node-id="2:37"] img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .site-footer.pricing-footer [data-node-id="2:38"],
+      .site-footer.pricing-footer [data-node-id="2:43"],
+      .site-footer.pricing-footer [data-node-id="2:47"] {
+        position: relative;
+        width: 289px;
+        min-height: 154px;
+        flex: 1;
+      }
+
+      .site-footer .footer-label {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 18.2px;
+        color: rgba(255, 255, 255, 0.65);
+        margin: 0 0 18px;
+      }
+
+      .site-footer .footer-link {
+        display: block;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 19px;
+        line-height: 24px;
+        letter-spacing: -0.2px;
+        color: #fff;
+        text-decoration: none;
+        margin: 0 0 16px;
+      }
+
+      .site-footer .footer-link.sm {
+        font-size: 18px;
+      }
+
+      .site-footer .footer-bottom {
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 28px 0;
+      }
+
+      .site-footer .footer-bottom > div {
+        width: min(1280px, 100%);
         margin: 0 auto;
-        padding: 32px 0;
         display: flex;
-        flex-wrap: wrap;
-        gap: 18px 36px;
+        align-items: center;
         justify-content: space-between;
-        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
       }
 
-      .brand-lockup {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.2rem;
-      }
-
-      .brand-lockup img {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-      }
-
-      .site-footer p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      .footer-links {
+      .site-footer [data-node-id="2:53"] {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px 20px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--brand-deep);
+        gap: 18px 28px;
+        align-items: center;
+      }
+
+      .site-footer .footer-meta {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 18.2px;
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        margin: 0;
+      }
+
+      .site-footer [data-node-id="2:57"] {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .site-footer [data-node-id="2:57"] a {
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+
+      .site-footer [data-node-id="2:57"] img {
+        width: 100%;
+        height: 100%;
       }
 
       @media (max-width: 1180px) {
@@ -692,24 +712,43 @@
         }
 
         html.layout-mobile .site-nav {
+          position: fixed;
           top: 12px !important;
+          left: 50% !important;
           width: min(92vw, 420px) !important;
           height: auto !important;
+          transform: translateX(-50%) !important;
+          pointer-events: none;
+          z-index: 300;
         }
 
         html.layout-mobile .site-nav__shell {
+          position: relative !important;
+          left: 0 !important;
+          top: 0 !important;
+          margin-left: 0 !important;
+          width: 100% !important;
           height: 56px !important;
           border-radius: 999px !important;
+          transform: none !important;
         }
 
         html.layout-mobile .site-nav__inner {
-          height: 56px;
+          display: flex !important;
+          align-items: center;
+          justify-content: space-between;
           padding: 0 10px 0 12px;
+          height: 56px;
         }
 
         html.layout-mobile .site-nav__logo {
+          position: relative !important;
+          left: auto !important;
+          top: auto !important;
+          margin-top: 0 !important;
           width: 40px !important;
           height: 40px !important;
+          transform: none !important;
         }
 
         html.layout-mobile .site-nav__links,
@@ -728,6 +767,7 @@
           background: rgba(255, 255, 255, 0.1);
           color: #fff;
           cursor: pointer;
+          pointer-events: auto;
         }
 
         html.layout-mobile .site-nav__toggle-bars {
@@ -762,11 +802,12 @@
           right: 0;
           padding: 14px;
           border-radius: 22px;
-          background: rgba(12, 28, 14, 0.94);
+          background: rgba(12, 28, 14, 0.92);
           border: 1px solid rgba(255, 255, 255, 0.14);
           backdrop-filter: blur(22px) saturate(160%);
           -webkit-backdrop-filter: blur(22px) saturate(160%);
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+          pointer-events: auto;
         }
 
         html.layout-mobile .site-nav.is-menu-open .mobile-nav-panel {
@@ -777,9 +818,11 @@
         html.layout-mobile .mobile-nav-panel a {
           display: block;
           padding: 12px 14px;
-          border-radius: 12px;
+          border-radius: 14px;
           color: #fff;
+          text-decoration: none;
           font-size: 16px;
+          line-height: 1.2;
         }
 
         html.layout-mobile .mobile-nav-panel a:hover,
@@ -790,65 +833,62 @@
         html.layout-mobile .mobile-nav-panel .btn-demo {
           text-align: center;
           margin-top: 6px;
-          border-radius: 10px;
         }
 
-        .page {
-          padding-top: 92px;
+        .pricing-page {
+          padding-top: 96px;
         }
 
         .pricing-grid {
           grid-template-columns: 1fr;
           max-width: 440px;
-          margin: 0 auto;
-          gap: 14px;
-        }
-
-        .plan__card {
-          padding: 20px 18px 22px;
+          margin: 0 auto 56px;
         }
 
         .plan__desc {
           min-height: 0;
         }
 
-        .plan__features {
-          gap: 13px;
+        .site-footer.pricing-footer {
+          gap: 40px;
+          padding: 48px 20px 0;
+          align-items: stretch;
         }
 
-        .plan__features li {
-          font-size: 0.95rem;
+        .site-footer.pricing-footer > [data-node-id="2:36"] {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px 12px;
         }
 
-        .hero {
-          padding-top: 18px;
+        .site-footer.pricing-footer [data-node-id="2:37"] {
+          grid-column: 1 / -1;
+          width: 88px;
+          height: 88px;
+          margin-bottom: 4px;
         }
 
-        .cta-band {
-          border-radius: 16px;
-          margin-bottom: 48px;
+        .site-footer.pricing-footer [data-node-id="2:38"],
+        .site-footer.pricing-footer [data-node-id="2:43"],
+        .site-footer.pricing-footer [data-node-id="2:47"] {
+          width: auto;
+          min-height: 0;
         }
 
-        .table-wrap {
-          border-radius: 14px;
-        }
-      }
-
-      @media (max-width: 560px) {
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .site-footer__inner {
+        .site-footer .footer-bottom > div {
           flex-direction: column;
           align-items: flex-start;
+        }
+
+        .site-footer [data-node-id="2:53"] {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
         .btn,
         .btn:hover {
           transition: none;
@@ -860,15 +900,16 @@
   <body>
     <a class="skip-link" href="#plans">Skip to plans</a>
 
-    <nav id="site-nav" class="site-nav is-open" aria-label="Primary">
-      <div class="site-nav__shell nav-glass">
+    <!-- SAME header as home -->
+    <nav id="site-nav" class="site-nav is-open" data-state="open" aria-label="Primary">
+      <div class="site-nav__shell nav-glass" data-node-id="2:194">
         <div class="site-nav__shine" aria-hidden="true"></div>
         <div class="site-nav__inner">
-          <a href="./index.html" class="site-nav__logo" aria-label="Wacord home">
-            <img src="./assets/optimized/logo.webp" alt="Wacord" width="45" height="45" />
+          <a href="./index.html" class="site-nav__logo" id="nav-logo-btn" data-node-id="2:206" aria-label="Wacord home">
+            <img src="./assets/optimized/logo.webp" alt="Wacord" width="120" height="32" decoding="async" />
           </a>
 
-          <div class="site-nav__links">
+          <div class="site-nav__links" data-node-id="2:195">
             <a href="./index.html#features">Features</a>
             <a href="./pricing.html" class="is-active" aria-current="page">Pricing</a>
             <a href="./index.html#features">Events</a>
@@ -876,10 +917,15 @@
             <a href="./index.html#about">Blog</a>
           </div>
 
-          <div class="site-nav__actions">
+          <div class="site-nav__actions" data-node-id="2:201">
             <a href="./index.html#contact">Support</a>
             <a href="https://wacord.cineetap.com/auth.html?mode=login">Login</a>
-            <a href="./index.html#demo" class="btn-demo">Demo</a>
+            <a
+              href="./index.html#demo"
+              class="btn-demo relative inline-flex items-center rounded-[64px] px-[23px] py-[14px] text-[16px] leading-none text-white"
+              data-node-id="2:204"
+              >Demo</a
+            >
           </div>
 
           <button
@@ -907,290 +953,337 @@
       </div>
     </nav>
 
-    <main class="page">
-      <section class="hero" aria-labelledby="pricing-title">
-        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Pricing Plan</div>
-        <h1 id="pricing-title">Select a Plan That Powers Your Success.</h1>
-        <p>
-          Unify chat, orders, and courier booking in one CRM. Start free — upgrade when your
-          brand is ready to scale.
-        </p>
-        <a class="btn btn-solid" href="./index.html#demo">Get started free</a>
-      </section>
+    <main class="pricing-page">
+      <div class="pricing-shell">
+        <section class="hero" aria-labelledby="pricing-title">
+          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Pricing Plan</div>
+          <h1 id="pricing-title">Select a Plan That Powers Your Success.</h1>
+          <p>
+            Unify chat, orders, and courier booking in one CRM. Start free — upgrade when your
+            brand is ready to scale.
+          </p>
+          <a class="btn btn-gray" href="./index.html#demo">Get started free</a>
+        </section>
 
-      <section class="pricing-section" id="plans" aria-label="Pricing plans">
-        <div class="pricing-grid">
-          <article class="plan">
-            <div class="plan__card">
-              <div class="plan__head">
-                <div class="plan__icon" aria-hidden="true">
-                  <!-- gift / trial -->
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 8v13M4 12h16v9H4v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M3 8h18v4H3V8Zm7.2-5.2C11 1.5 12 2.4 12 3.8 12 2.4 13 1.5 13.8 2.8 15 4.5 13.2 7 12 8c-1.2-1-3-3.5-1.8-5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  </svg>
+        <section id="plans" aria-label="Pricing plans">
+          <div class="pricing-grid">
+            <article class="plan">
+              <div class="plan__card">
+                <div class="plan__head">
+                  <div class="plan__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 8v13M4 12h16v9H4v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                      <path d="M3 8h18v4H3V8Zm7.2-5.2C11 1.5 12 2.4 12 3.8 12 2.4 13 1.5 13.8 2.8 15 4.5 13.2 7 12 8c-1.2-1-3-3.5-1.8-5.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="plan__title">Free Trial</h3>
                 </div>
-                <h3 class="plan__title">Free Trial</h3>
-              </div>
-              <p class="plan__desc">Test Wacord with a one-time free trial — no monthly bill.</p>
-              <div class="plan__price">
-                <span class="plan__amount">৳0</span>
-                <span class="plan__period">One-time</span>
-              </div>
-              <a class="btn plan__cta" href="./index.html#demo">Start free trial</a>
-              <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>200 orders lifetime</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 conversations lifetime</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 AI test extractions</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 agent seat</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>FB + Webchat messaging</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="plan">
-            <div class="plan__card">
-              <div class="plan__head">
-                <div class="plan__icon" aria-hidden="true">
-                  <!-- rocket / start -->
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M14 4c3.5 1 6 3.5 7 7-2.8.4-5.2 1.7-7 3.5L9.5 19.5 4.5 14.5 9.5 10C11.3 8.2 12.6 5.8 14 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M9.5 14.5 7 20l2.5-2.5L12 20l-2.5-5.5ZM5 15l-2 2 3 1 1 3 2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                <p class="plan__desc">Test Wacord with a one-time free trial — no monthly bill.</p>
+                <div class="plan__price">
+                  <span class="plan__amount">৳0</span>
+                  <span class="plan__period">One-time</span>
                 </div>
-                <h3 class="plan__title">Starter Plan</h3>
+                <a class="btn plan__cta" href="./index.html#demo">Start free trial</a>
+                <ul class="plan__features">
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>200 orders lifetime</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 conversations lifetime</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 AI test extractions</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1 agent seat</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>FB + Webchat messaging</li>
+                </ul>
               </div>
-              <p class="plan__desc">Perfect for new stores finding their first rhythm.</p>
-              <div class="plan__price">
-                <span class="plan__amount">৳1,999</span>
-                <span class="plan__period">/ mo</span>
-              </div>
-              <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
-              <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 agent seats</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steadfast + RedX couriers</li>
-              </ul>
-            </div>
-          </article>
+            </article>
 
-          <article class="plan plan--hero">
-            <div class="plan__card">
-              <span class="plan__badge">Most popular</span>
-              <div class="plan__head">
-                <div class="plan__icon" aria-hidden="true">
-                  <!-- chart growth -->
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 19V5M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="m7 14 3.5-3.5 3 3L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M16 7h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+            <article class="plan">
+              <div class="plan__card">
+                <div class="plan__head">
+                  <div class="plan__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M14 4c3.5 1 6 3.5 7 7-2.8.4-5.2 1.7-7 3.5L9.5 19.5 4.5 14.5 9.5 10C11.3 8.2 12.6 5.8 14 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                      <path d="M9.5 14.5 7 20l2.5-2.5L12 20l-2.5-5.5ZM5 15l-2 2 3 1 1 3 2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="plan__title">Starter Plan</h3>
                 </div>
-                <h3 class="plan__title">Growth Plan</h3>
-              </div>
-              <p class="plan__desc">Best for scaling brands that need all channels + 1-click booking.</p>
-              <div class="plan__price">
-                <span class="plan__amount">৳3,999</span>
-                <span class="plan__period">/ mo</span>
-              </div>
-              <a class="btn plan__cta" href="./index.html#demo">Choose Growth</a>
-              <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2,000 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 agents · all channels + VoIP</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All couriers · 1-click booking</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="plan">
-            <div class="plan__card">
-              <div class="plan__head">
-                <div class="plan__icon" aria-hidden="true">
-                  <!-- bolt / power -->
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M13 3 5 14h6l-1 7 9-13h-6l0-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  </svg>
+                <p class="plan__desc">Perfect for new stores finding their first rhythm.</p>
+                <div class="plan__price">
+                  <span class="plan__amount">৳1,999</span>
+                  <span class="plan__period">/ mo</span>
                 </div>
-                <h3 class="plan__title">Pro Plan</h3>
+                <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
+                <ul class="plan__features">
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 orders / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3,000 conversations / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>500 AI extracts / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 agent seats</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steadfast + RedX couriers</li>
+                </ul>
               </div>
-              <p class="plan__desc">High-volume teams that need priority courier throughput.</p>
-              <div class="plan__price">
-                <span class="plan__amount">৳14,500</span>
-                <span class="plan__period">/ mo</span>
-              </div>
-              <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
-              <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 orders / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30,000 conversations / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5,000 AI extracts / mo</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>25 agent seats</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-priority courier queue</li>
-              </ul>
-            </div>
-          </article>
+            </article>
 
-          <article class="plan">
-            <div class="plan__card">
-              <div class="plan__head">
-                <div class="plan__icon" aria-hidden="true">
-                  <!-- building / enterprise -->
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 20V7.5L12 4l8 3.5V20H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M9 20v-5h6v5M9 10h.01M12 10h.01M15 10h.01M9 13.5h.01M12 13.5h.01M15 13.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
+            <article class="plan plan--hero">
+              <div class="plan__card">
+                <span class="plan__badge">Most popular</span>
+                <div class="plan__head">
+                  <div class="plan__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 19V5M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="m7 14 3.5-3.5 3 3L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M16 7h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="plan__title">Growth Plan</h3>
                 </div>
-                <h3 class="plan__title">Enterprise Plan</h3>
+                <p class="plan__desc">Best for scaling brands that need all channels + 1-click booking.</p>
+                <div class="plan__price">
+                  <span class="plan__amount">৳3,999</span>
+                  <span class="plan__period">/ mo</span>
+                </div>
+                <a class="btn plan__cta" href="./index.html#demo">Choose Growth</a>
+                <ul class="plan__features">
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4,000 orders / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 conversations / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2,000 AI extracts / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 agents · all channels + VoIP</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All couriers · 1-click booking</li>
+                </ul>
               </div>
-              <p class="plan__desc">Custom scale with private infra for established brands.</p>
-              <div class="plan__price">
-                <span class="plan__amount">৳18,900</span>
-                <span class="plan__period">/ mo</span>
+            </article>
+
+            <article class="plan">
+              <div class="plan__card">
+                <div class="plan__head">
+                  <div class="plan__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M13 3 5 14h6l-1 7 9-13h-6l0-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="plan__title">Pro Plan</h3>
+                </div>
+                <p class="plan__desc">High-volume teams that need priority courier throughput.</p>
+                <div class="plan__price">
+                  <span class="plan__amount">৳14,500</span>
+                  <span class="plan__period">/ mo</span>
+                </div>
+                <a class="btn plan__cta" href="./index.html#demo">Try for free</a>
+                <ul class="plan__features">
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10,000 orders / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30,000 conversations / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5,000 AI extracts / mo</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>25 agent seats</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-priority courier queue</li>
+                </ul>
               </div>
-              <a class="btn plan__cta" href="./index.html#demo">Talk to sales</a>
-              <ul class="plan__features">
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited / custom orders</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited conversations</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited AI · BYO key option</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited agents</li>
-                <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Isolated VPS Docker + private DB</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
+            </article>
 
-      <section class="compare" aria-labelledby="compare-title">
-        <div class="compare__head">
-          <h2 id="compare-title">See Features Included</h2>
-          <p>Compare limits side by side and pick the plan that matches your volume.</p>
-        </div>
+            <article class="plan">
+              <div class="plan__card">
+                <div class="plan__head">
+                  <div class="plan__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 20V7.5L12 4l8 3.5V20H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                      <path d="M9 20v-5h6v5M9 10h.01M12 10h.01M15 10h.01M9 13.5h.01M12 13.5h.01M15 13.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="plan__title">Enterprise Plan</h3>
+                </div>
+                <p class="plan__desc">Custom scale with private infra for established brands.</p>
+                <div class="plan__price">
+                  <span class="plan__amount">৳18,900</span>
+                  <span class="plan__period">/ mo</span>
+                </div>
+                <a class="btn plan__cta" href="./index.html#demo">Talk to sales</a>
+                <ul class="plan__features">
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited / custom orders</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited conversations</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited AI · BYO key option</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited agents</li>
+                  <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Isolated VPS Docker + private DB</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
 
-        <div class="table-wrap" role="region" aria-label="Feature comparison table" tabindex="0">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Feature / Limit</th>
-                <th scope="col">Free Trial</th>
-                <th scope="col">Starter Plan</th>
-                <th class="hero-col" scope="col">Growth Plan</th>
-                <th scope="col">Pro Plan</th>
-                <th scope="col">Enterprise Plan</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monthly Price</td>
-                <td>৳0 (One-time)</td>
-                <td>৳1,999 / mo</td>
-                <td class="hero-col">৳3,999 / mo</td>
-                <td>৳14,500 / mo</td>
-                <td>৳18,900 / mo</td>
-              </tr>
-              <tr>
-                <td>Order Limit</td>
-                <td>200 Lifetime</td>
-                <td>1,000 / mo</td>
-                <td class="hero-col">4,000 / mo</td>
-                <td>10,000 / mo</td>
-                <td>Unlimited / Custom</td>
-              </tr>
-              <tr>
-                <td>Conversations Limit</td>
-                <td>500 Lifetime</td>
-                <td>3,000 / mo</td>
-                <td class="hero-col">10,000 / mo</td>
-                <td>30,000 / mo</td>
-                <td>Unlimited</td>
-              </tr>
-              <tr>
-                <td>AI Extraction &amp; Smart Reply</td>
-                <td>10 Test Usage</td>
-                <td>500 Extracts/mo</td>
-                <td class="hero-col">2,000 Extracts/mo</td>
-                <td>5,000 Extracts/mo</td>
-                <td>Unlimited (BYO Key Option)</td>
-              </tr>
-              <tr>
-                <td>Agent Seats</td>
-                <td>1 Agent</td>
-                <td>3 Agents</td>
-                <td class="hero-col">10 Agents</td>
-                <td>25 Agents</td>
-                <td>Unlimited</td>
-              </tr>
-              <tr>
-                <td>Connected Stores</td>
-                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td class="hero-col"><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-                <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
-              </tr>
-              <tr>
-                <td>Omnichannel Messaging</td>
-                <td>FB + Webchat</td>
-                <td>FB + Insta + Webchat</td>
-                <td class="hero-col">All Channels + VoIP Calls</td>
-                <td>All Channels + VoIP Calls</td>
-                <td>All Channels + Custom Integrations</td>
-              </tr>
-              <tr>
-                <td>Courier APIs</td>
-                <td>Standard</td>
-                <td>Steadfast, RedX</td>
-                <td class="hero-col">All Couriers (1-Click Booking)</td>
-                <td>High-Priority Queue</td>
-                <td>Isolated VPS Docker + Private DB</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+        <section class="compare" aria-labelledby="compare-title">
+          <div class="compare__head">
+            <h2 id="compare-title">See Features Included</h2>
+            <p>Compare limits side by side and pick the plan that matches your volume.</p>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Feature comparison table" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Feature / Limit</th>
+                  <th scope="col">Free Trial</th>
+                  <th scope="col">Starter Plan</th>
+                  <th class="hero-col" scope="col">Growth Plan</th>
+                  <th scope="col">Pro Plan</th>
+                  <th scope="col">Enterprise Plan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Monthly Price</td>
+                  <td>৳0 (One-time)</td>
+                  <td>৳1,999 / mo</td>
+                  <td class="hero-col">৳3,999 / mo</td>
+                  <td>৳14,500 / mo</td>
+                  <td>৳18,900 / mo</td>
+                </tr>
+                <tr>
+                  <td>Order Limit</td>
+                  <td>200 Lifetime</td>
+                  <td>1,000 / mo</td>
+                  <td class="hero-col">4,000 / mo</td>
+                  <td>10,000 / mo</td>
+                  <td>Unlimited / Custom</td>
+                </tr>
+                <tr>
+                  <td>Conversations Limit</td>
+                  <td>500 Lifetime</td>
+                  <td>3,000 / mo</td>
+                  <td class="hero-col">10,000 / mo</td>
+                  <td>30,000 / mo</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td>AI Extraction &amp; Smart Reply</td>
+                  <td>10 Test Usage</td>
+                  <td>500 Extracts/mo</td>
+                  <td class="hero-col">2,000 Extracts/mo</td>
+                  <td>5,000 Extracts/mo</td>
+                  <td>Unlimited (BYO Key Option)</td>
+                </tr>
+                <tr>
+                  <td>Agent Seats</td>
+                  <td>1 Agent</td>
+                  <td>3 Agents</td>
+                  <td class="hero-col">10 Agents</td>
+                  <td>25 Agents</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td>Connected Stores</td>
+                  <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                  <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                  <td class="hero-col"><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                  <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                  <td><span class="ok" aria-label="Included"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.2 6.2 4.8 8.8 9.8 3.2" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Unlimited</td>
+                </tr>
+                <tr>
+                  <td>Omnichannel Messaging</td>
+                  <td>FB + Webchat</td>
+                  <td>FB + Insta + Webchat</td>
+                  <td class="hero-col">All Channels + VoIP Calls</td>
+                  <td>All Channels + VoIP Calls</td>
+                  <td>All Channels + Custom Integrations</td>
+                </tr>
+                <tr>
+                  <td>Courier APIs</td>
+                  <td>Standard</td>
+                  <td>Steadfast, RedX</td>
+                  <td class="hero-col">All Couriers (1-Click Booking)</td>
+                  <td>High-Priority Queue</td>
+                  <td>Isolated VPS Docker + Private DB</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-      <section class="cta-band" aria-labelledby="cta-title">
-        <h2 id="cta-title">Ready to scale with Wacord?</h2>
-        <p>Book a short demo and we’ll help you choose the right plan for your order volume.</p>
-        <a class="btn btn-solid" href="./index.html#demo">Book a meeting</a>
-      </section>
+        <section class="cta-band" aria-labelledby="cta-title">
+          <h2 id="cta-title">Ready to scale with Wacord?</h2>
+          <p>Book a short demo and we’ll help you choose the right plan for your order volume.</p>
+          <a class="btn btn-gray" href="./index.html#demo">Book a meeting</a>
+        </section>
+      </div>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <div>
-          <a class="brand-lockup" href="./index.html">
-            <img src="./assets/optimized/logo.webp" alt="" width="28" height="28" />
-            Wacord
-          </a>
-          <p style="margin-top: 10px">E-commerce &amp; omni-channel CRM for growing brands.</p>
+    <!-- SAME footer content as home -->
+    <footer class="site-footer pricing-footer" data-node-id="2:34" aria-label="Site footer">
+      <div class="relative flex w-[1133.86px] items-start gap-[32px]" data-node-id="2:36">
+        <div class="relative size-[170px] shrink-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]" data-node-id="2:37">
+          <img
+            src="./assets/optimized/footer-logo.webp"
+            alt="Wacord"
+            class="absolute inset-0 size-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="footer-links">
-          <a href="./index.html#features">Features</a>
-          <a href="./pricing.html">Pricing</a>
-          <a href="./index.html#demo">Book demo</a>
-          <a href="./index.html#contact">Contact</a>
+
+        <div class="relative h-[154.188px] w-[289.281px] shrink-0" data-node-id="2:38">
+          <p class="footer-label">Product</p>
+          <a href="./index.html#features" class="footer-link">Features</a>
+          <a href="./pricing.html" class="footer-link">Pricing</a>
+          <a href="./index.html#demo" class="footer-link sm">Book a demo</a>
         </div>
-        <p>© 2026 Wacord. All rights reserved.</p>
+
+        <div class="relative h-[114.188px] w-[289.281px] shrink-0" data-node-id="2:43">
+          <p class="footer-label">Explore</p>
+          <a href="./index.html#features" class="footer-link sm">Events</a>
+          <a href="./index.html#about" class="footer-link">Blog</a>
+        </div>
+
+        <div class="relative h-[114.188px] w-[289.297px] shrink-0" data-node-id="2:47">
+          <p class="footer-label">Company</p>
+          <a href="./index.html#about" class="footer-link">About us</a>
+          <a href="./index.html#contact" class="footer-link sm">Contact us</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom relative flex w-full items-start px-[80px] pt-px" data-node-id="2:51">
+        <div class="relative flex w-[1280px] items-center gap-[726.23px] py-[28px]" data-node-id="2:52">
+          <div class="relative h-[18.188px] w-[461.766px] shrink-0" data-node-id="2:53">
+            <p class="footer-meta">© 2026 Wacord. All rights reserved.</p>
+            <a href="./index.html#contact" class="footer-meta">Privacy Policy</a>
+            <a href="./index.html#contact" class="footer-meta">Terms of Service</a>
+          </div>
+
+          <div class="flex shrink-0 items-start gap-4" data-node-id="2:57">
+            <a href="./index.html#demo" class="relative block size-5" aria-label="YouTube" data-node-id="2:58">
+              <img src="./assets/footer/social-1.svg" alt="" class="size-full" loading="lazy" decoding="async" />
+            </a>
+            <a href="./index.html#demo" class="relative block size-5" aria-label="Twitter" data-node-id="2:62">
+              <img src="./assets/footer/social-2.svg" alt="" class="size-full" loading="lazy" decoding="async" />
+            </a>
+            <a href="./index.html#demo" class="relative block size-5" aria-label="LinkedIn" data-node-id="2:66">
+              <img src="./assets/footer/social-3.svg" alt="" class="size-full" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
 
     <script>
       (function () {
+        const DESIGN_W = 1440;
         const mobileMq = window.matchMedia("(max-width: 900px)");
-        function syncLayout() {
-          document.documentElement.classList.toggle("layout-mobile", mobileMq.matches);
-        }
-        syncLayout();
-        if (typeof mobileMq.addEventListener === "function") {
-          mobileMq.addEventListener("change", syncLayout);
-        } else if (typeof mobileMq.addListener === "function") {
-          mobileMq.addListener(syncLayout);
+        const nav = document.getElementById("site-nav");
+
+        function fitNav() {
+          if (!nav) return;
+          if (mobileMq.matches) {
+            document.documentElement.classList.add("layout-mobile");
+            nav.style.transform = "translateX(-50%)";
+            nav.style.top = "";
+            return;
+          }
+          document.documentElement.classList.remove("layout-mobile");
+          const scale = Math.min(1, (window.innerWidth || DESIGN_W) / DESIGN_W);
+          nav.style.transform = "translateX(-50%) scale(" + scale + ")";
+          nav.style.top = 30 * scale + "px";
         }
 
-        const nav = document.getElementById("site-nav");
+        fitNav();
+        window.addEventListener("resize", fitNav, { passive: true });
+        if (typeof mobileMq.addEventListener === "function") {
+          mobileMq.addEventListener("change", fitNav);
+        } else if (typeof mobileMq.addListener === "function") {
+          mobileMq.addListener(fitNav);
+        }
+
         const toggle = document.getElementById("mobile-nav-toggle");
         const panel = document.getElementById("mobile-nav-panel");
         if (!nav || !toggle || !panel) return;
