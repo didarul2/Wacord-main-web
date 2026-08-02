@@ -11,6 +11,9 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# Local Meta deletion request store (callback acknowledgements)
+.data/
+
 # Local tooling / Figma dumps (not needed in production repo)
 tools/
 Direct figma code/

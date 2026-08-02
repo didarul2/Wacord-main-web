@@ -3,7 +3,8 @@
 **Last updated:** 2 August 2026  
 **Company:** Wacord (“Wacord”, “we”, “us”, or “our”)  
 **Product:** Wacord e-commerce & omni-channel CRM (the “Service”)  
-**Contact:** Use the Contact / Support options on [wacord.com](./index.html#contact) or your account manager.
+**Contact:** Use the Contact / Support options on [wacord.com](./index.html#contact) or your account manager.  
+**Meta data deletion:** See our dedicated [Meta Data Deletion Instructions](./data-deletion.html).
 
 This Privacy Policy explains how Wacord collects, uses, shares, and protects information when merchants use our B2B SaaS platform. By using Wacord, you agree to this Policy.
 
@@ -148,14 +149,51 @@ No method of transmission or storage is 100% secure; Merchants should also secur
 
 ---
 
-## 10. Retention
+## 10. Data Retention & Deletion
+
+This section combines our retention rules, general deletion rights, and **Meta Platform data-deletion** instructions (required for Facebook / Instagram app compliance).
+
+### 10.1 Retention
 
 We retain data for as long as needed to:
 - Provide the Service to the Merchant
 - Meet legal, tax, accounting, and dispute requirements
 - Maintain security logs for a limited period
 
-Upon account termination, Merchants may request deletion/export subject to legal retention obligations and technical feasibility. Residual backups may persist for a limited period before irreversible deletion.
+When a Merchant account ends, Merchants may request deletion or export subject to legal retention obligations and technical feasibility. Residual backups may persist for a limited period before irreversible deletion.
+
+### 10.2 How to request deletion (general)
+
+Depending on applicable law, Merchants (and where applicable individuals) may request:
+- Access to personal data we hold about them
+- Correction of inaccurate data
+- **Deletion** (subject to legal exceptions)
+- Export / portability of account data where feasible
+- Restriction or objection to certain processing
+
+Submit requests via Support / Contact channels. We may verify identity before acting. Typical deletion completion target is **within 30 days** after a valid, verified request.
+
+### 10.3 Meta / Facebook & Instagram data deletion
+
+Apps that access Meta user data must tell users how to request deletion. Wacord provides a dedicated instructions page (and may also receive Meta’s signed Data Deletion Request Callback):
+
+**→ Full instructions:** [Meta Data Deletion Instructions](./data-deletion.html)
+
+**Quick Facebook path:**
+1. Facebook → Settings & privacy → Settings → Apps and Websites  
+   ([open Apps and Websites](https://www.facebook.com/settings?tab=applications))
+2. Remove **Wacord**
+3. View Removed Apps and Websites → **Send Request** next to Wacord
+
+You may also contact Support with subject **“Meta Data Deletion Request”** and your Page / Instagram details.
+
+When Meta calls our callback, we initiate deletion of Meta-linked data we hold for that app-scoped user and return a confirmation code plus a status URL (`data-deletion.html?code=…`).
+
+### 10.4 What is deleted vs. what may be retained
+
+**We initiate deletion of** Meta-linked identifiers, connection tokens (as applicable), and inbox / conversation data synced from Facebook / Instagram for the requested identity, to the extent Wacord stores it as processor.
+
+**We may retain** limited records required for law, tax, fraud prevention, security logs (time-limited), or anonymized analytics; and Merchant-controlled commerce records that the Merchant must keep under their own obligations. See the [Data Deletion page](./data-deletion.html) for the full Meta-specific list.
 
 ---
 
@@ -166,37 +204,25 @@ Merchants are responsible for:
 - Obtaining any required consents for messaging, AI processing, courier sharing, and calling/recording
 - Using Meta channels in compliance with Meta policies and local law
 - Configuring Wacord features (AI, couriers, VoIP recording) appropriately
+- Handling end-Buyer deletion requests that fall under the Merchant’s role as data controller
 
 ---
 
-## 12. Merchant & Agent Rights
-
-Depending on applicable law, Merchants (and where applicable individuals) may request:
-- Access to personal data we hold about them
-- Correction of inaccurate data
-- Deletion (subject to legal exceptions)
-- Export/portability of account data where feasible
-- Restriction or objection to certain processing
-
-Requests can be submitted via Support / Contact channels. We may need to verify identity before acting.
-
----
-
-## 13. Children’s Data
+## 12. Children’s Data
 
 Wacord is a B2B platform and is not directed to children. Merchants must not knowingly use the Service to target or collect data from children in violation of law.
 
 ---
 
-## 14. Changes to this Policy
+## 13. Changes to this Policy
 
 We may update this Privacy Policy from time to time. Material changes will be posted on this page with an updated “Last updated” date. Continued use of the Service after changes constitutes acceptance of the updated Policy.
 
 ---
 
-## 15. Contact
+## 14. Contact
 
-For privacy questions, data requests, or security concerns, contact Wacord through the website Contact / Support channels or your designated account contact.
+For privacy questions, data deletion requests, or security concerns, contact Wacord through the website Contact / Support channels or your designated account contact. For Meta-linked deletion, prefer [data-deletion.html](./data-deletion.html).
 
 ---
 
