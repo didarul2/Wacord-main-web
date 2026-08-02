@@ -1870,17 +1870,19 @@
           font-size: 16px;
         }
 
-        /* ---- Powers: keep same desktop composition, scale to viewport ---- */
+        /* ---- Powers: keep same desktop composition; zoom whole 1440 frame ---- */
         html.layout-mobile #how-it-works.powers-section {
           position: relative !important;
           left: auto !important;
           top: auto !important;
-          width: 100% !important;
-          height: calc(1513px * var(--powers-scale, 0.27)) !important;
+          width: 1440px !important;
+          height: 1513px !important;
           min-height: 0 !important;
-          padding: 0 !important;
-          overflow: hidden !important;
-          display: block !important;
+          padding: 0 80px !important;
+          overflow: visible !important;
+          display: flex !important;
+          align-items: flex-start !important;
+          zoom: var(--powers-scale, 0.27);
         }
 
         html.layout-mobile #how-it-works > div[data-node-id="2:88"] {
@@ -1889,10 +1891,9 @@
           height: 1513.375px !important;
           max-width: none !important;
           flex-shrink: 0 !important;
-          transform: scale(var(--powers-scale, 0.27)) !important;
-          transform-origin: top left !important;
-          margin: 0 0 0 var(--powers-offset, 0px) !important;
-          left: 0 !important;
+          transform: none !important;
+          margin: 0 !important;
+          left: auto !important;
         }
 
         /* ---- Footer ---- */
